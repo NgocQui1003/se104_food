@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/header_normal';
+import HeaderUser from './components/header_user';
 
 function App() {
   return (
-    <Header />
+    <HeaderUser />
+    //<Header />
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
