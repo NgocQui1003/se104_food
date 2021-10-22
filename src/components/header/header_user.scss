@@ -1,8 +1,6 @@
-$mainColor: #CA5A4B;
-$placeholder-clr: #AAAAAA;
-$placeholder-bg: #EBEBEB;
+@use '../styles/variables';
 
-.headerNormal {
+.HeaderUserContainer {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 5px;
@@ -33,16 +31,16 @@ a {
     color: $mainColor;
 }
 
-.header-menu {
+.header-menu-user {
     display: grid;
     grid-template-columns: repeat(2, auto);
 }
 
-.header-searchbar {
+.header-searchbar-user {
     text-align: center;
 }
 
-.header-searchbar input {
+.header-searchbar-user input {
     width: 90%;
     border-radius: 10px;
     border-color: $mainColor;
@@ -50,7 +48,19 @@ a {
     height: 40px;
 }
 
-.header-auth {
+.img-header-user{
+    margin-left:  21%;
     display: grid;
     grid-template-columns: repeat(2, auto);
+}
+
+.img-header-user-img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.img-header-user-img-span{
+    position: relative;
+    top: 24%;
 }

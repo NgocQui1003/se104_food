@@ -1,8 +1,6 @@
-$mainColor: #CA5A4B;
-$placeholder-clr: #AAAAAA;
-$placeholder-bg: #EBEBEB;
+@import '../styles/variables';
 
-.HeaderUserContainer {
+.headerNormal {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 5px;
@@ -33,36 +31,28 @@ a {
     color: $mainColor;
 }
 
-.header-menu-user {
+.header-menu {
     display: grid;
     grid-template-columns: repeat(2, auto);
-}
-
-.header-searchbar-user {
     text-align: center;
 }
 
-.header-searchbar-user input {
-    width: 90%;
+.header-searchbar {
+    text-align: center;
+}
+
+.header-searchbar input {
+    width: 80%;
     border-radius: 10px;
     border-color: $mainColor;
     background-color: $placeholder-bg;
     height: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.img-header-user{
-    margin-left:  21%;
+.header-auth {
     display: grid;
     grid-template-columns: repeat(2, auto);
-}
-
-.img-header-user-img{
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-}
-
-.img-header-user-img-span{
-    position: relative;
-    top: 24%;
+    text-align: center;
 }

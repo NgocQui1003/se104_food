@@ -1,0 +1,181 @@
+@import '../styles/variables';
+
+
+.navbar {
+  background: transparent;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  //font
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  top: 0;
+
+  //border
+  border-color: $mainColor;
+  border-style: solid;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+}
+.navbar.active {
+  border-width: 2px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-logo {
+  color: rgb(0, 0, 0);
+  justify-self: start;
+  margin: 0 100px;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  font-size: 2rem;
+  display: flex;
+}
+
+.fa-typo3 {
+  margin-left: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  text-align: center;
+}
+
+.nav-item {
+  display: flex;
+  margin: 0 40px;
+  align-items: center;
+  height: 80px;
+}
+
+.nav-links {
+  color: #CA5A4B;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  height: 50%;
+}
+
+.nav-links:hover {
+  color: #84af25;
+  transition: all 0.2s ease-out;
+}
+
+.fa-bars {
+  color: #CA5A4B;
+}
+
+.nav-links-mobile {
+  color: #CA5A4B;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.nav-links-mobile:hover {
+  color: #84af25;
+  transition: all 0.2s ease-out;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.nav-item-remove {
+  display: none;
+}
+
+@media screen and (max-width: 990px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-item {
+    height: 100px;
+  }
+
+  .nav-menu.active {
+    background: #ffffff;
+    left: 0;
+    transition: all 0.5s ease;
+    // display: block;
+  }
+
+  .nav-item-remove {
+    display: block;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .nav-links:hover {
+    background-color: #fff;
+    color: #84af25;
+    border-radius: 0;
+    border-bottom: 0;
+  }
+
+  .navbar-logo {
+    position: absolute;
+    margin: 0 20px;
+    top: 0;
+    left: 0;
+    transform: translate(25%, 50%);
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .fa-times {
+    color: #CA5A4B;
+    font-size: 2rem;
+  }
+
+  .nav-links-mobile {
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 8px;
+    height: auto;
+    background: $mainColor;
+    text-decoration: none;
+    color: #fff;
+    
+  }
+
+  .nav-links-mobile:hover {
+    background: #84af25;
+    color: #ffffff;
+    transition: 250ms;
+  }
+}
