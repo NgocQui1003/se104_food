@@ -15,4 +15,7 @@ const userApi = {
         const url = '/forgot-password';
         return axiosClient.post(url, data);
     },
+
 }
+
+export default userApi;

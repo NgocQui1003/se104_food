@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { Config } from '../Config';
 import { getToken } from '../utils/Auth';
 const axiosClient = axios.create({
-    baseURL = Config.API_URL,
+    baseURL : Config.API_URL,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -12,7 +12,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(async (config) => {
-    config.headers.authorization = `Bearer ${getToken()}`;
+    config.headers.Authorization = `Bearer ${getToken()}`;
     return config;
 });
 
