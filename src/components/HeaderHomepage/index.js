@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './header.module.scss';
+import styles from './Header.module.scss';
 
 function HeaderHomepage() {
 
@@ -16,4 +16,4 @@ function HeaderHomepage() {
     )
 }
 
-export default HeaderHomepage
+export default HeaderHomepage;

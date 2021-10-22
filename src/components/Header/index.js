@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 
-import '../styles/header_normal.scss';
+import './Header.scss';
 
 class Header extends Component {
     constructor(props) {
