@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import './Header.scss';
 
@@ -10,7 +10,6 @@ class Header extends Component {
     }
     render() {
         return (
-            <Router>
                 <header className="headerNormal">
                     <div className="header-logo"></div>
                     <ul className="header-menu">
@@ -26,16 +25,15 @@ class Header extends Component {
                     </div>
                     <ul className="header-auth">
                         <li>
-                            <Link className="" to="#">Đăng nhập</Link>
+                            <Link className="" to="/login">Đăng nhập</Link>
                         </li>
                         <li>
-                            <Link className="" to="#">Đăng kí</Link>
+                            <Link className="" to="/register">Đăng kí</Link>
                         </li>
                     </ul>
 
                     {/* <p>This is our header</p> */}
                 </header>
-            </Router>
         );
     }
 }

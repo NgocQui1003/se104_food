@@ -1,0 +1,66 @@
+@import "../../config.scss";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 40px 60px;
+        border-radius: 16px;
+        border: 1px solid #CA5A4B;
+
+        h2 {
+            margin: 0px;
+            padding: 16px;
+            font-weight: 800;
+            color: #CA5A4B;
+            font-size: 30px;
+        }
+
+        table {
+            tr {
+                td {
+                    padding: 4px;
+                    text-align: right;
+                    color: $mainColor;
+                    font-weight: 400;
+                }
+                input {
+                    appearance: none;
+                    background: none;
+                    border: 0px;
+                    border-radius: 4px;
+                    outline: none;
+                    display: block;
+                    padding: 0.6rem 1rem;
+                    background-color: #EBEBEB;
+                }
+            }
+        }
+    }
+}
+
+.btn-submit {
+    margin-top: 20px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 8px 20px;
+    background-color: rgb(202, 90, 75);
+}
+
+.text-danger {
+    text-align: left;
+
+    font-size: small;
+}
+.error-login {
+    color: #f82a2a;
+}
