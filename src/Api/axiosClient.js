@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 import { Config } from '../Config';
-import { getToken } from '../utils/Auth';
+import Auth from '../Utils/Auth';
 const axiosClient = axios.create({
     baseURL : Config.API_URL,
     headers: {
@@ -12,7 +12,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(async (config) => {
-    config.headers.Authorization = `Bearer ${getToken()}`;
+    config.headers.Authorization = `Bearer ${Auth.getToken()}`;
     return config;
 });
 

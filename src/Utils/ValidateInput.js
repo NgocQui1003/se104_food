@@ -1,7 +1,6 @@
 const ValidateInput = {
     email: (email) => {
         // kt email
-
         return 'wr email'
     },
     
