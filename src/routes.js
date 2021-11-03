@@ -10,28 +10,24 @@ export const routes = [
         component: Home,
     },
     {
-        path: '/login',
+        path: '/dang-nhap',
         component: Login,
     },
     {
-        path: '/register',
+        path: '/dang-ki',
         component: Register,
     },
     {
-        path: '/profile',
+        path: '/ho-so',
         component: Profile,
     },
     {
-        path: '/recipe',
+        path: '/cong-thuc',
         component: Recipe,
     },
     {
-        path: '/forgot-password',
+        path: '/quen-mat-khau',
         component: ForgotPassword,
-    },
-    {
-        path: '/register',
-        component: Register,
     },
 
 ];
