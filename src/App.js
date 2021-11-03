@@ -1,26 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+import { routes } from './routes';
 
-import Header from './components/header/Header.js';
-import Navbar from './components/header/HeaderHomepage.js';
-import Home from './components/pages/Home';
-import Register from './components/Register/Register';
-
+import Header from './Components/Header';
+// import HeaderHomepage from './Components/HeaderHomepage';
 
 function App() {
   return (
-    <Router>
-      {/* <Navbar /> */}
-      <Header />
-      <Switch>
-        <Route path='/' exact component={Home}>
-        </Route>
-        <Route path='/dang-ki' exact component={Register}>
-          <Register />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Header />
+        {/* <HeaderHomepage /> */}
+        <Switch>
+          {routes.map(({ path, component }, key) =>
+            <Route
+              exact
+              path={path}
+              component={component}
+              key={key}
+            />
+          )}
+        </Switch>
+      </Router>
+    </>
   );
 }
 
