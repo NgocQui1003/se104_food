@@ -1,0 +1,162 @@
+@import '../../config.scss';
+
+.header-container {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 5px;
+    align-items: center;
+    width: 100%;
+
+    //border
+    border-style: solid;
+    border-color: $mainColor;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+
+    //font adjust
+    font-size: 20px;
+    font-family: 'Roboto Condensed';
+    font-weight: bold;
+
+
+    .header-menu {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      text-align: center;
+    }
+
+  .header-searchbar {
+    text-align: center;
+  }
+
+.header-searchbar input {
+    width: 80%;
+    border-radius: 5px;
+    border: 2px solid $mainColor;
+    background-color: rgba(235, 235, 235, 0.53) ;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.header-auth {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    }
+    .menu-btn {
+      display: none;
+      }
+  
+    .header-item-remove {
+      display: none;
+      }
+  
+    .header-columns { 
+      text-align: center;
+      }
+}
+
+
+ul.header-menu {
+    display: inline-block;
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: $mainColor;
+}
+
+.active {
+  display: block;
+}
+
+.nav-item-remove {
+  display: none;
+}
+
+.header-menu.active {
+  background: #ffffff;
+  left: 0;
+  transition: all 0.5s ease;
+}
+
+// for tablet
+@media screen and (max-width: 768px) {
+  .header-container {
+      font-size: 13px;
+  }
+
+  .header-auth {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-container {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+
+    .header-logo {
+      margin-left: 20px;
+    }
+
+    .header-searchbar, .header-menu, .header-auth {
+      display: none;
+    }
+
+    .header-menu.active {
+      display: block;
+    }
+
+    ul {
+      display: flex;
+      background-color: #ffffff;
+    }
+
+    .header-item-remove {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      left: 0;
+      position: absolute;
+      top: 120px;
+      opacity: 1;
+      transition: all 0.5s ease;
+      background-color: #ffffff;
+    }
+
+    .nav-item {
+      display: flex;
+      margin: 0 40px;
+      align-items: center;
+      height: 80px;
+    }
+    
+    .menu-btn {
+      display: block;
+      color: $mainColor;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-100%, 60%);
+      font-size: 1.8em;
+      cursor: pointer;
+    }
+
+    .nav-links-mobile {
+      display: block;
+      text-align: center;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      border-radius: 8px;
+      height: auto;
+      background: $mainColor;
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
