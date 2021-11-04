@@ -3,7 +3,6 @@
 
 .navbar {
   background: transparent;
-  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,8 +15,7 @@
   top: 0;
 
   //border
-  border-color: $mainColor;
-  border-style: solid;
+  border: 2px solid $mainColor;
   border-left-style: none;
   border-right-style: none;
   border-top-style: none;
@@ -52,6 +50,7 @@
   display: grid;
   grid-template-columns: repeat(4, auto);
   text-align: center;
+
 }
 
 .nav-item {
@@ -109,6 +108,10 @@
     transition: all 0.5s ease;
   }
 
+  .navbar {
+    justify-content: left;
+  }
+
   .nav-item {
     height: 100px;
   }
@@ -140,9 +143,6 @@
   .navbar-logo {
     position: absolute;
     margin: 0 20px;
-    top: 0;
-    left: 0;
-    transform: translate(25%, 50%);
   }
 
   .menu-icon {
