@@ -100,6 +100,8 @@ input[type="radio"]:checked {
     margin-left: 10px;
     font-size: 15px;
     float: right;
+    color: $mainColor;
+    text-decoration: none;
 }
 
 p.center {
