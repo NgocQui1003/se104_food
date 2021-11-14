@@ -4,6 +4,7 @@ import Register from "./Pages/Register";
 import Profile from './Pages/Profile';
 import Recipe from './Pages/Recipe';
 import ForgotPassword from './Pages/ForgotPassword';
+import SavedPostList from './Pages/SavedPostList';
 export const routes = [
     {
         path: '/',
@@ -29,5 +30,9 @@ export const routes = [
         path: '/quen-mat-khau',
         component: ForgotPassword,
     },
+    {
+        path: '/luu',
+        component: SavedPostList,
+    }
 
 ];

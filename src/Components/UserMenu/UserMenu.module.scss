@@ -1,0 +1,66 @@
+@import '../../config.scss';
+
+.user-menu {
+    // background-color: blue;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    width: 20%;
+
+    margin: 10px;
+    text-align: center;
+
+    display: inline-block;
+
+    .user-name {
+        font-weight: bold;
+    }
+
+    .menu-list {
+        list-style: none;
+        color: black;
+        margin-top: 20px;
+    }
+
+    .menu-item {
+        padding: 10px 30px;
+        text-align: left;
+
+        .menu-item__icon {
+            display: inline;
+            padding-right: 10px;
+        }
+
+        .menu-item__name {
+            display: inline;
+            height: 30px;
+        }
+
+        .menu-item__link {
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+        }
+    }
+
+    .menu-btn {
+        padding: 20px 0;
+
+        .menu-btn__logout{
+            color: white;
+            background-color: $mainColor;
+            border: 1px solid $mainColor;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .menu-btn__logout:hover {
+            color: $mainColor;
+            background-color: white;
+            border: 1.5px solid $mainColor;
+        }
+    }
+}
+
+.picked {
+    font-weight: bold;
+}
