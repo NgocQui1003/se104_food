@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
+import FacebookLogin from '../../Components/FacebookLogin';
+import GoogleLogin from '../../Components/GoogleLogin';
 
 function Register() {
 
@@ -141,12 +143,8 @@ function Register() {
 
             <p className={styles.center}>Hoặc</p>
             <div className={styles["thirdparty-login"]}>
-                <div className={[styles["submit-btn"], styles["facebook-btn"]].join(' ')}>
-                    Login with Facebook
-                </div>
-                <div className={[styles["submit-btn"], styles["google-btn"]].join(' ')}>
-                    Login with Google
-                </div>
+                <FacebookLogin />
+                <GoogleLogin />
             </div>
 
         </div >
