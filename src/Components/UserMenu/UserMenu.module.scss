@@ -28,6 +28,10 @@
         .menu-item__icon {
             display: inline;
             padding-right: 10px;
+
+            svg {
+                padding-bottom: 3px;
+            }
         }
 
         .menu-item__name {
@@ -38,7 +42,7 @@
         .menu-item__link {
             text-decoration: none;
             color: black;
-            display: inline-block;
+            display: flex;
         }
     }
 
@@ -50,7 +54,7 @@
             background-color: $mainColor;
             border: 1px solid $mainColor;
             border-radius: 5px;
-            padding: 5px 10px;
+            padding: 10px 20px;
         }
 
         .menu-btn__logout:hover {
@@ -63,4 +67,20 @@
 
 .picked {
     font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+    .user-menu {
+        font-size: 14px;
+        
+        .menu-item {
+            padding: 10px 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .user-menu {
+        display: none;
+    }
 }

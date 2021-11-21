@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import styles from '../UserMenu/UserMenu.module.scss';
 import logo from '../../Assets/100x100.png';
@@ -12,6 +12,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 
 function UserMenu() {
+
     return (
         <div className={styles['user-menu']}>
             <div className={styles['user-avatar']}>
@@ -22,47 +23,46 @@ function UserMenu() {
             </div>
             <ul className={styles['menu-list']}>
                 <li className={styles['menu-item']}>
-                    <Link to="/nguoi-dung" className={styles['menu-item__link']}>
+                    <NavLink to="/nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
-                            <PersonOutlineIcon fontSize="medium" />
+                            <PersonOutlineIcon />
                         </div>
                         <div className={styles['menu-item__name']}>
                             Thông tin người dùng
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className={styles['menu-item']}>
-                    <Link to="/doi-mat-khau" className={styles['menu-item__link']}>
+                    <NavLink to="/doi-mat-khau" className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
-                            <ShieldOutlinedIcon fontSize="medium" />
+                            <ShieldOutlinedIcon />
                         </div>
                         <div className={styles['menu-item__name']}>
                             Đổi mật khẩu
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
-                <li className={[styles['menu-item'], styles['picked']].join(' ')}>
-                    <Link to="/luu" className={styles['menu-item__link']}>
+                <li className={styles['menu-item']}>
+                    <NavLink to="/luu" className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
-                            <BookmarkOutlinedIcon fontSize="medium" />
+                            <BookmarkBorderOutlinedIcon />
                         </div>
                         <div className={styles['menu-item__name']}>
                             Bài viết đã lưu
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className={styles['menu-item']}>
-                    <Link to="/cai-dat" className={styles['menu-item__link']}>
+                    <NavLink to="/cai-dat" className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
-                            <SettingsOutlinedIcon fontSize="medium" />
+                            <SettingsOutlinedIcon />
                         </div>
                         <div className={styles['menu-item__name']}>
                             Cài đặt
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
-
             <div className={styles["menu-btn"]}>
                 <button className={styles["menu-btn__logout"]}>Đăng xuất</button>
             </div>
