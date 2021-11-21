@@ -25,6 +25,15 @@
     .form-submit {
         text-align: center;
     }
+
+    .form-error {
+        font-size: 15px;
+        color: black;
+        text-align: center;
+        margin: 5px 0;
+        padding-left: 40px;
+        display: block;
+    }
 }
 
 .register-form h2 {
@@ -143,7 +152,13 @@ p.center {
     .register-form {
         font-size: 15px;
         padding: 10px 15px;
+
+        .form-error {
+            font-size: 13px;
+        }
     }
+
+    
 
     .form-input {
         display: block;
@@ -157,6 +172,7 @@ p.center {
         .register-input {
             width: fit-content;
         }
+
     }
 
     .form-link {

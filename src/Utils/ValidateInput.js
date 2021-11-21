@@ -9,9 +9,15 @@ const ValidateInput = {
         }
     },
 
-    userName: (userName) => {
-        if (userName.trim() === '') {
-            return 'Vui lòng nhập đầy đủ Họ tên'
+    userFirstName: (fName) => {
+        if (fName.trim() === '') {
+            return 'Vui lòng nhập Tên'
+        } else return '';
+    },
+
+    userLastName: (lName) => {
+        if (lName.trim() === '') {
+            return 'Vui lòng nhập Họ';
         } else return '';
     },
 

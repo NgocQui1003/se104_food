@@ -28,10 +28,17 @@ function Register() {
             ...registerValue,
             [name]: value
         });
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (this.handleSubmit()) {
+            alert("Đăng kí thành công!");
+        } else {
+            alert("Form đăng kí lỗi. Xin vui lòng thử lại");
+        }
     }
 
     return (
@@ -48,14 +55,17 @@ function Register() {
                             value={registerValue.firstname}
                             onChange={handleChange}
                             onBlur={(e) => {
-                                let error = ValidateInput.userName(e.target.value);
+                                let error = ValidateInput.userLastName(e.target.value);
                                 setError({
                                     ...error,
-                                    name: error
+                                    lastname: error
                                 });
                             }} />
                     </div>
-                    < br />
+                    <br />
+                    {error.lastname == '' ? null :
+                        <div className={styles['form-error']}>{error.lastname}</div>
+                    }
                     <div>
                         <label for="lastname" className={styles["label-input"]}>
                             Tên:
@@ -65,14 +75,17 @@ function Register() {
                             value={registerValue.lastname}
                             onChange={handleChange}
                             onBlur={(e) => {
-                                let error = ValidateInput.userName(e.target.value);
+                                let error = ValidateInput.userFirstName(e.target.value);
                                 setError({
                                     ...error,
-                                    name: error
+                                    firstname: error
                                 });
                             }} />
                     </div>
                 </div>
+                {error.firstname == '' ? null :
+                    <div className={styles['form-error']}>{error.firstname}</div>
+                }
                 <div className={styles["form-input"]}>
                     <label for="gender" className={styles["label-input"]}>
                         Giới tính:
@@ -108,10 +121,13 @@ function Register() {
                             let error = ValidateInput.email(e.target.value);
                             setError({
                                 ...error,
-                                name: error
+                                email: error
                             });
                         }} />
                 </div>
+                {error.email == '' ? null :
+                    <div className={styles['form-error']}>{error.email}</div>
+                }
                 <div className={styles["form-input"]}>
                     <label for="password" className={styles["label-input"]}>
                         Mật khẩu:
@@ -124,10 +140,13 @@ function Register() {
                             let error = ValidateInput.password(e.target.value);
                             setError({
                                 ...error,
-                                name: error
+                                password: error
                             });
                         }} />
                 </div>
+                {error.password == '' ? null :
+                    <div className={styles['form-error']}>{error.password}</div>
+                }
                 <div className={styles["form-via"]}>
                     <Link to="/quen-mat-khau" className={styles["form-link"]}>Quên mật khẩu</Link>
                     <Link to='dang-nhap' className={styles["form-link"]}>Đăng nhập</Link>
