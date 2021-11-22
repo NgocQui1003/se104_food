@@ -5,6 +5,7 @@ import Profile from './Pages/Profile';
 import Recipe from './Pages/Recipe';
 import ForgotPassword from './Pages/ForgotPassword';
 import SavedPostList from './Pages/SavedPostList';
+import InformationUser from './Pages/InfomationUser';
 export const routes = [
     {
         path: '/',
@@ -33,6 +34,10 @@ export const routes = [
     {
         path: '/luu',
         component: SavedPostList,
+    },
+    {
+        path: '/nguoi-dung',
+        component: InformationUser,
     }
 
 ];
