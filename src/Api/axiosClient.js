@@ -2,11 +2,14 @@ import axios from 'axios';
 import queryString from 'query-string';
 import { Config } from '../Config';
 import Auth from '../Utils/Auth';
+
+
 const axiosClient = axios.create({
     baseURL: Config.API_URL,
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': Config.API_URL
     },
     paramsSerializer: params => queryString.stringify(params),
 });
