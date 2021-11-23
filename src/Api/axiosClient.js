@@ -12,19 +12,18 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(async (config) => {
-    config.headers.Authorization = `Bearer ${Auth.getToken()}`;
+    if (Auth.getToken() != null)
+        config.headers.Authorization = `${Auth.getToken()}`;
     return config;
 });
 
 axiosClient.interceptors.response.use((response) => {
-    // Custom !!!
-    // if (response && response.data) {
-    //     return response.data;
-    // }
+    if (response && response.data) {
+        return response.data;
+    }
     return response;
 }, (error) => {
-    // Handle error
-    throw error;
+    return error.response.data;
 });
 
 export default axiosClient;

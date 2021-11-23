@@ -1,0 +1,48 @@
+.btn-heart {
+    cursor: pointer;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    width: fit-content;
+    padding: 4px;
+    border-radius: 9999px;
+    background-color: #ECEBE9;
+
+    span {
+        margin-left: 4px;
+    }
+}
+.btn-heart:hover {
+    background-color: #c5c1b8;
+}
+.active {
+    border: 1px solid #E25727;
+    background-color: #FDF1E2;
+    span {
+        color: #E25727;
+    }
+}
+.active:hover {
+    background-color: #FDF1E2;
+}
+.container-img-button {
+    margin-top: 4px;
+    position: relative;
+    img {
+        border-radius: 4px;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    .bookmark-icon {
+        cursor: pointer;
+        font-size: 30px;
+        color: white;
+        position: absolute;
+        top: 82%;
+        left: 88%;
+    }
+    
+}
+

@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import styles from './Login.module.scss';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import ValidateInput from '../../Utils/ValidateInput';
+import Auth from '../../Utils/Auth';
+
 import userApi from '../../Api/userApi';
+
 import FacebookLogin from '../../Components/FacebookLogin';
 import GoogleLogin from '../../Components/GoogleLogin';
 
+import { userActions } from '../../Redux/Actions/userActions';
+
 function Login() {
+    const dispatch = useDispatch()
+    const history = useHistory();
     const [loginData, setLoginData] = useState({
         email: "",
         password: "",
@@ -41,16 +50,15 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await userApi.login(loginData)
-            .then((res) => {
-                // Thuong thi xu ly chinh o day
-                console.log(res);
-            })
-            .catch((err) => {
-                // Thuong thi loi o server
-                console.log(err);
-            })
-
+        const data = await userApi.login(loginData);
+        if (data.success) {
+            Auth.setToken(data.accessToken)
+            const res = await userApi.getProfile();
+            dispatch(userActions.setProfile(res.data))
+            history.goBack()
+        } else {
+            setError({...error, login: data.message})
+        }
     }
     return (
         <div className={styles['container']}>

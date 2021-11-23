@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const userApi = {
     login: (data) => {
-        const url = '/login';
+        const url = '/api/auth/login';
         return axiosClient.post(url, data);
     },
     
@@ -11,10 +11,19 @@ const userApi = {
         return axiosClient.post(url, data);
     },
 
+    getProfile: () => {
+        const url ='/api/user/profile';
+        return axiosClient.get(url);
+    },
+
     forgotPassword: (data) => {
         const url = '/forgot-password';
         return axiosClient.post(url, data);
     },
+
+    logout: () => {
+        localStorage.removeItem('user');
+    }
 
 }
 
