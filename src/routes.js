@@ -7,6 +7,7 @@ import ForgotPassword from './Pages/ForgotPassword';
 import SavedPostList from './Pages/SavedPostList';
 import NotFound from './Pages/NotFound';
 
+import InformationUser from './Pages/InfomationUser';
 export const routes = [
     {
         path: '/',
@@ -38,5 +39,7 @@ export const routes = [
     },
     {
         component: NotFound,
+        path: '/nguoi-dung',
+        component: InformationUser,
     }
 ];
