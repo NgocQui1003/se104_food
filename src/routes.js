@@ -5,6 +5,8 @@ import Profile from './Pages/Profile';
 import Recipe from './Pages/Recipe';
 import ForgotPassword from './Pages/ForgotPassword';
 import SavedPostList from './Pages/SavedPostList';
+import NotFound from './Pages/NotFound';
+
 export const routes = [
     {
         path: '/',
@@ -33,6 +35,8 @@ export const routes = [
     {
         path: '/luu',
         component: SavedPostList,
+    },
+    {
+        component: NotFound,
     }
-
 ];
