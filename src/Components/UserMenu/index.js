@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import styles from '../UserMenu/UserMenu.module.scss';
 import logo from '../../Assets/100x100.png';
@@ -9,7 +9,7 @@ import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+// import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 
 function UserMenu() {
 
