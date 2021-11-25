@@ -8,6 +8,9 @@ import SavedPostList from './Pages/SavedPostList';
 import NotFound from './Pages/NotFound';
 
 import InformationUser from './Pages/InfomationUser';
+import Contact from './Pages/Contact';
+import Random from './Pages/Random';
+
 export const routes = [
     {
         path: '/',
@@ -38,8 +41,18 @@ export const routes = [
         component: SavedPostList,
     },
     {
-        component: NotFound,
         path: '/nguoi-dung',
         component: InformationUser,
+    },
+    {
+        path: '/lien-he',
+        component: Contact,
+    },
+    {
+        path: '/random-mon-an',
+        component: Random,
+    },
+    {
+        component: NotFound,
     }
 ];

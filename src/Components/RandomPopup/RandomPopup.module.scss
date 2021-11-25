@@ -1,0 +1,116 @@
+@import '../../config.scss';
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .popup-inner {
+        position: relative;
+        background-color: white;
+        width: 50%;
+        padding: 32px;
+        border-radius: 5px;
+
+        .close-btn {
+            float: right;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: black;
+        }
+        
+        .random-title {
+            display: block;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .random-author {
+            margin: 10px 32px;
+            display: block;
+        }
+
+        .random-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .random-image a {
+            display: flex;
+            justify-content: center;
+        }
+
+        .random-image img {
+            max-width: 500px;
+            max-height: 200px;
+        }
+
+        .random-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            margin: 10px 32px;
+            text-align: justify;
+        }
+    }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 750px) {
+    .popup-container {
+        .popup-inner {
+            
+            width: 70%;
+
+            .random-image img {
+                max-width: 300px;
+            }
+
+            .random-description, .random-author {
+                margin: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .popup-container {
+        .popup-inner {
+
+            .random-image img {
+                max-width: 200px;
+            }
+
+            .random-title {
+                font-size: 20px;
+            }
+
+            .random-description, .random-author {
+                font-size: 12px;
+                margin: 10px;
+            }
+        }
+    }
+}
+
