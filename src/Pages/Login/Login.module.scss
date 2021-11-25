@@ -5,62 +5,102 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 40px;
-    form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 40px 60px;
-        border-radius: 16px;
-        border: 1px solid #CA5A4B;
+    p {
+        font-size: 20px;
+        font-weight: bold;
+        color: $mainColor;
+    }
+}
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-color: $mainColor;
+    border-style: solid;
+    border-radius: 15px;
+    justify-content: space-between;
 
-        h2 {
-            margin: 0px;
-            padding: 16px;
-            font-weight: 800;
-            color: #CA5A4B;
-            font-size: 30px;
-        }
-
-        table {
-            tr {
-                td {
-                    padding: 4px;
-                    text-align: right;
-                    color: $mainColor;
-                    font-weight: 400;
-                }
-                input {
-                    appearance: none;
-                    background: none;
-                    border: 0px;
-                    border-radius: 4px;
-                    outline: none;
-                    display: block;
-                    padding: 0.6rem 1rem;
-                    background-color: #EBEBEB;
-                }
-            }
-        }
+    margin-top: 60px;
+    padding: 30px 70px;
+    // width: max-content;
+    font-size: 18px;
+    color: $mainColor;
+    h2 {
+        text-align: center;
+        color: $mainColor;
     }
 }
 
-.btn-submit {
+.form-input {
+    margin-bottom: 20px;
+    
+    label {
+        margin: 0 10px;
+        width: 70px;
+        text-align: right;
+        display: inline-block;
+    }
+
+    input {
+        //border
+
+        width: 350px;
+        border-color: $mainColor;
+        border-radius: 5px;
+        background-color: $placeholder-bg;
+        border: 0px solid;
+        height: 30px;
+        float: right;
+    }
+}
+
+.submit-btn {
+    background-color: $mainColor;
+    color: #fff;
+    box-shadow: none;
+    border: 1px solid $mainColor;
+
+    border-radius: 8px;
+    border: 1px solid;
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;    
     margin-top: 20px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 8px 20px;
-    background-color: rgb(202, 90, 75);
+}
+
+.form-via {
+    width: 100%;
+
+    .form-link {
+        margin: 0px;
+        margin-left: 10px;
+        font-size: 15px;
+        float: right;
+        color: $mainColor;
+        text-decoration: none;
+    }
+    
 }
 
 .text-danger {
-    text-align: left;
-
+    text-align: right;
     font-size: small;
-}
-.error-login {
     color: #f82a2a;
+    padding: 4px 0px;
+}
+
+@media screen and (max-width:600px) {
+    .login-form {
+        padding: 10px 15px;    
+        font-size: 15px;
+    }
+    .form-input {
+        input {
+            width: 160px;
+        }
+
+    }
 }

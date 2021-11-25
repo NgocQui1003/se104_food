@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { routes } from './routes';
 
-import Header from './Components/Header';
-// import HeaderHomepage from './Components/HeaderHomepage';
+import RootHeader from './Components/RootHeader';
 
 function App() {
+
   return (
     <>
       <Router>
-        <Header />
-        {/* <HeaderHomepage /> */}
+        <RootHeader />
         <Switch>
           {routes.map(({ path, component }, key) =>
             <Route

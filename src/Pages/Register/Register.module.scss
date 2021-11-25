@@ -124,28 +124,10 @@ p.center {
 
 
 .thirdparty-login { 
-
-    .submit-btn {
-        border-radius: 8px;
-        border: 1px solid;
-        width: 250px;
-        padding: 10px;
-        margin-bottom: 10px;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        font-weight: bold;
-    }
-
-    .facebook-btn {
-        color: whitesmoke;
-        background-color: #3B5998;
-    }
-
-    .google-btn {
-        color: whitesmoke;
-        background-color: #D50F25;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 @media screen and (max-width:600px) {

@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
+import FacebookLogin from '../../Components/FacebookLogin';
+import GoogleLogin from '../../Components/GoogleLogin';
+
+import userApi from '../../Api/userApi';
+import { userActions } from '../../Redux/Actions/userActions';
+import Auth from '../../Utils/Auth';
 
 function Register() {
+    const history = useHistory();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         document.title = "Đăng kí tài khoản - Nomnom"
@@ -27,7 +37,6 @@ function Register() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
         setRegisterValue({
             ...registerValue,
             [name]: value
@@ -35,13 +44,15 @@ function Register() {
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const data = await userApi.register(registerValue);
 
-        if (this.handleSubmit()) {
-            alert("Đăng kí thành công!");
-        } else {
-            alert("Form đăng kí lỗi. Xin vui lòng thử lại");
+        if (data.success) {
+            Auth.setToken(data.accessToken)
+            const res = await userApi.getProfile()
+            dispatch(userActions.setProfile(res.data))
+            history.goBack()
         }
     }
 
@@ -100,7 +111,7 @@ function Register() {
                             <input type="radio" value="Nam"
                                 name="gender"
                                 id="gender-1"
-                                value={registerValue.gender}
+                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                         <label className={styles["label-input"]} for="gender">
@@ -108,7 +119,7 @@ function Register() {
                             <input type="radio" value="Nữ"
                                 name="gender"
                                 id="gender-0"
-                                value={registerValue.gender}
+                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                     </div>
@@ -164,12 +175,8 @@ function Register() {
 
             <p className={styles.center}>Hoặc</p>
             <div className={styles["thirdparty-login"]}>
-                <div className={[styles["submit-btn"], styles["facebook-btn"]].join(' ')}>
-                    Login with Facebook
-                </div>
-                <div className={[styles["submit-btn"], styles["google-btn"]].join(' ')}>
-                    Login with Google
-                </div>
+                <FacebookLogin />
+                <GoogleLogin />
             </div>
 
         </div >

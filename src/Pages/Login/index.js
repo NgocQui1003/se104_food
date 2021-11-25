@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Login.module.scss';
 
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import ValidateInput from '../../Utils/ValidateInput';
+import Auth from '../../Utils/Auth';
+
 import userApi from '../../Api/userApi';
+
+import FacebookLogin from '../../Components/FacebookLogin';
+import GoogleLogin from '../../Components/GoogleLogin';
+
+import { userActions } from '../../Redux/Actions/userActions';
 
 function Login() {
     useEffect(() => {
         document.title = "Đăng nhập"
     })
 
+    const dispatch = useDispatch()
+    const history = useHistory();
     const [loginData, setLoginData] = useState({
         email: "",
         password: "",
@@ -20,78 +32,82 @@ function Login() {
         login: '',
     })
 
-    const submitHandler = async (e) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setLoginData({
+            ...loginData,
+            [name]: value,
+        })
+    }
+
+    const handleBlur = (e) => {
+        const { name, value } = e.target;
+        if (name === 'password') return;
+        let err = ValidateInput[name](value)
+        setError({
+            ...error,
+            [name]: err,
+        })
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(loginData);
-
-        // Test Input
-        // Opt 1
-        console.log(ValidateInput.email(loginData.email));
-
-        // Op1 2 (*)
-        // 2 key phai giong nhau moi map dc nha
-        // ko thi loi sml :)
-        Object.keys(loginData).map((key) => {
-            console.log(ValidateInput[key](loginData[key]));
-        })
-
-
-        // API
-        await userApi.login(loginData)
-            .then((res) => {
-                // Thuong thi xu ly chinh o day
-                console.log(res);
-            })
-            .catch((err) => {
-                // Thuong thi loi o server
-                console.log(err);
-            })
-
+        const data = await userApi.login(loginData);
+        if (data.success) {
+            Auth.setToken(data.accessToken)
+            const res = await userApi.getProfile();
+            dispatch(userActions.setProfile(res.data))
+            history.goBack()
+        } else {
+            setError({ ...error, login: data.message })
+        }
     }
     return (
         <div className={styles['container']}>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={handleSubmit} className={styles['login-form']}>
                 <h2>ĐĂNG NHẬP</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Email:</td>
-                            <td>
-                                <input
-                                    type='email'
-                                    placeholder='peo@gmail.com'
-                                    onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <span className={styles['text-danger']}>{error.email}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mật khẩu:</td>
-                            <td>
-                                <input
-                                    type='password'
-                                    onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <span className={styles['text-danger']}>{error.email}</span>
-                            </td>
-                        </tr>
+                <div>
+                    <div className={styles['form-input']}>
+                        <label for='email' className={styles['']}>
+                            Email:
+                        </label>
+                        <input type='email' className={styles['']}
+                            name='email'
+                            value={loginData.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </div>
+                    <div className={styles['text-danger']}>{error.email}</div>
 
-                    </tbody>
-                </table>
-                <div className={styles['error-login']}>{error.login}</div>
-                <button type="submit" className={styles['btn-submit']}>Đăng nhập</button>
+                    <div className={styles['form-input']}>
+                        <label for='password' className={styles['']}>
+                            Mật khẩu:
+                        </label>
+                        <input type='password' className={styles['']}
+                            name='password'
+                            value={loginData.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </div>
+                    <div className={styles['text-danger']}>{error.password}</div>
+
+                </div>
+
+                <div className={styles['text-danger']}>{error.login}</div>
+
+                <div className={styles["form-via"]}>
+                    <Link to="/quen-mat-khau" className={styles["form-link"]}>Quên mật khẩu</Link>
+                    <Link to='/dang-ki' className={styles["form-link"]}>Đăng kí</Link>
+                </div>
+                <button type="submit" className={styles['submit-btn']}>Đăng nhập</button>
             </form>
+            <p>Hoặc</p>
+            <FacebookLogin />
+            <GoogleLogin />
         </div>
     )
 }

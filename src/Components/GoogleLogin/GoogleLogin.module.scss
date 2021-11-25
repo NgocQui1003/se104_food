@@ -1,0 +1,24 @@
+$google: #D50F25;
+
+.container {
+    display: inline-block;
+    width: 200px;
+    margin: 8px;
+    .btn-login-google { 
+        display: flex;
+        align-items: center;
+        background-color: $google;
+        align-content: center;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        border-color: $google;
+        transition: background-color .3s, border-color .3s;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        span {
+            margin-left: 8px;
+        }
+    }
+}
