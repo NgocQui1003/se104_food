@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore } from 'redux';
 import rootReducer from './Reducers';
-import thunk from 'redux-thunk';
+
 const loadState = () => {
     try {
         const serializedState = localStorage.getItem('state');

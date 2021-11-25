@@ -1,66 +1,56 @@
 import React from 'react';
 import styles from './ItemPost.module.scss';
-import {
-    Avatar,
-    Stack,
-    Card,
-    Typography,
-    CardContent,
-} from '@mui/material';
 
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+
 function ItemPost({ post, savePost, reactPost }) {
-    const getDescription = () => {
-        if (post['description']) return post['description'];
 
-        return (
-            post['ingredients'].map(ingredient => {
-                return <span><b>{ingredient.name}</b>: {ingredient.quantity}<br /></span>
-            })
-        )
+    const formatTitle = (title) => {
+        let sz = title.length;
+        if (sz > 50)
+            return title.slice(0, Math.min(50, sz)) + "...";
+        return title;
     }
-
     return (
-        <div>
+        <div className={styles['container']}>
             <Card>
-                <Stack direction="row" spacing={0.5}>
-                    <Avatar
-                        alt={post["id_author"]["firstname"]}
-                        src={post["id_author"]["avatar"]}
-                        sx={{ width: 24, height: 24 }}
-                    />
-                    <span>{`${post["id_author"]["lastname"]} ${post["id_author"]["firstname"]}`}</span>
-                </Stack>
                 <div className={styles['container-img-button']}>
                     <img
                         src={post['thumbnail_image']}
                         alt={post['thumbnail_image']}
                     />
                     <div onClick={() => savePost(post._id)}>
-                    {post.isSave
-                        ?<BookmarkIcon className={styles['bookmark-icon']} />
-                        :<BookmarkBorderIcon className={styles['bookmark-icon']} />}
+                        {post.isSave
+                            ? <BookmarkIcon className={styles['bookmark-icon']} />
+                            : <BookmarkBorderIcon className={styles['bookmark-icon']} />}
                     </div>
 
 
                 </div>
 
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {post['title']}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        {getDescription()}
-                    </Typography>
+                <div className={styles['content-more']}>
+                    <p>
+                        {formatTitle(post['title'])}
+                    </p>
+                    <div className={styles['container-avatar-user']}>
+                        <img 
+                            src={post['id_author']['avatar']}
+                        />
+                        <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
+                    </div>
                     <div className={`${styles['btn-heart']} ${post['isLike'] ? styles['active'] : ''}`}
                         onClick={() => reactPost(post._id)}
                     >
                         <FavoriteIcon style={{ color: "#FF0000", fontSize: "12px" }} />
                         <span>{post["numberLike"]}</span>
                     </div>
-                </CardContent>
+                </div>
 
             </Card>
         </div>

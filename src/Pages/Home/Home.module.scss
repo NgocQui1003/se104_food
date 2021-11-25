@@ -1,16 +1,18 @@
 @import '../../config.scss';
 
 .container {
-    margin: 0px 4%;
+    margin-top: 16px;
+    margin: 0px 8%;
     .block-2 {
         justify-content: center;
         align-items: center;
         flex-direction: column;
         display: flex;
         padding: 8px;
+        margin: 40px 0px;
         // background-color: red;
         button {
-            padding: 8px 16px;
+            padding: 16px 32px;
             border-radius: 6px;
             outline-style: none;
             background-color: $mainColor;
@@ -23,19 +25,114 @@
             background-color: #b55143;
         }
         span {
-            font-size: 20px;
             color: $mainColor;
             font-weight: 600;
             margin: 8px
         }
-        input {
-            padding: 8px;
-            line-height: 20px;
-            max-lines: 160px;
-            border-radius: 6px;
-            outline-style: none;
-            border: solid $mainColor 2px;
-            margin: 8px;
+
+        .search-bar {
+            width: 560px;
+            padding: 4px 4px 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #bbbbbb;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            input {
+                border: none;
+                outline: none;
+                padding: 8px 16px;
+                margin: 0px 8px;
+                width: 100%;
+            }
+            .icon-search {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                width: 80px;
+                height: 40px;
+                background-color: #EB4A36;
+            }
+        }
+        .more-search-bar {
+            font-size: 14px;
+            p {
+                margin-top: 24px;
+                margin-bottom: 6px;
+                color: #333;
+            }
+            width: 560px;
+            span {
+                cursor: pointer;
+                margin: 0px;
+                padding: 0px 16px 0px 0px;
+                color: #76b6ef;
+            }
+        }
+
+    }
+    .container-btn-0 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .title {
+            margin: 8px 0px;
+            font-weight: 600;
+            font-size: 32px;
+            color: #333;
+            letter-spacing: 4px;
+        }
+        .description {
+            color: #EB4A36;
+            font-weight: 500;
+            font-size: 18px;
+            text-transform: uppercase;
         }
     }
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0px;
+}
+
+
+.container-viewmore {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn-viewmore {
+        cursor: pointer;
+        padding: 8px 40px;
+        border: 2px solid #333;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        .block-2 {
+            .search-bar {
+                width: 100%;
+            }        
+        }
+    }
+
+    .more-search-bar {
+        display: none;
+    }
+
+} 
+

@@ -124,6 +124,22 @@ ul {
   display: none;
 }
 
+.container-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+  }
+  span {
+    margin-left: 8px;
+  }
+}
+.logout {
+  display: none;
+}
 @media screen and (max-width: 990px) {
   .nav-menu {
     display: flex;
@@ -135,7 +151,12 @@ ul {
     opacity: 1;
     transition: all 0.5s ease;
   }
-
+  .login-success {
+    display: none;
+  }
+  .logout {
+    display: flex;
+  }
   .navbar {
     justify-content: left;
   }

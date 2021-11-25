@@ -22,7 +22,7 @@ const userApi = {
     },
 
     logout: () => {
-        localStorage.removeItem('user');
+        localStorage.removeItem('token');
     }
 
 }

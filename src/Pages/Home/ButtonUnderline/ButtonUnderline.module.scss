@@ -1,0 +1,17 @@
+@import '../../../config.scss';
+
+.container {
+    text-transform: uppercase;
+    margin: 8px;
+    margin-bottom: 16px;
+    padding: 8px 4px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    background-color: white;
+}
+.active {
+    color: #EB4A36;
+    border-bottom: 2px solid #EB4A36;
+}

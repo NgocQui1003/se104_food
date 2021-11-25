@@ -1,7 +1,5 @@
 import { userContants } from "../Contants/userContants";
 
-let user = JSON.parse(localStorage.getItem('user'));
-
 const initialState = {};
 
 const User = (state = initialState, action) => {

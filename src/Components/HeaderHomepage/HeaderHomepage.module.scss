@@ -76,7 +76,7 @@
   color: #CA5A4B;
 }
 
-.nav-links-mobile {
+.nav-links-mobile{
   color: #CA5A4B;
   display: flex;
   align-items: center;
@@ -96,7 +96,29 @@
   display: none;
 }
 
+.container-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+  }
+  span {
+    margin-left: 8px;
+  }
+}
+.logout {
+  display: none;
+}
 @media screen and (max-width: 990px) {
+  .login-success {
+    display: none;
+  }
+  .logout {
+    display: flex;
+  }
   .nav-menu {
     display: flex;
     flex-direction: column;
