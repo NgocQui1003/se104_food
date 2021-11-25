@@ -5,6 +5,7 @@ import styles from '../UserMenu/UserMenu.module.scss';
 import logo from '../../Assets/100x100.png';
 
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import EditIcon from '@mui/icons-material/Edit';
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -29,6 +30,16 @@ function UserMenu() {
                         </div>
                         <div className={styles['menu-item__name']}>
                             Thông tin người dùng
+                        </div>
+                    </NavLink>
+                </li>
+                <li className={styles['menu-item']}>
+                    <NavLink to="/doi-thong-tin" className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                        <div className={styles['menu-item__icon']}>
+                            <EditIcon />
+                        </div>
+                        <div className={styles['menu-item__name']}>
+                            Đổi thông tin người dùng
                         </div>
                     </NavLink>
                 </li>

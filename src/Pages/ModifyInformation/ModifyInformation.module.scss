@@ -1,0 +1,301 @@
+@import '../../config.scss';
+
+.ModifyInformation-container {
+    margin: 20px 10px;
+}
+
+.ModifyInformation-container-tile {
+    text-align: center;
+    color: $mainColor;
+}
+
+.ModifyInformation-container-format {
+    width: 75%;
+    margin: 10px;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+
+    display: inline-block;
+    float: right;
+
+    .ModifyInformation-container-img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .ModifyInformation-container-img-thumbnail{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+
+    //Chỉnh nội dung trong form 
+
+    .ModifyInformation-container-form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2%;
+
+        .ModifyInformation-form{
+            width: max-content;
+            font-size: 18px;
+            color: $mainColor;
+
+            input {
+                display: flexbox;
+            }
+
+            .ModifyInformation-label-input{
+                display: inline-block;
+            }
+        }
+        
+        .ModifyInformation-form-input:first-child{
+            display: inline-block;
+        }
+
+        .ModifyInformation-form-input{
+            margin-bottom: 20px;
+    
+            input {
+                //border
+                border-color: $mainColor;
+                border-radius: 5px;
+                background-color: $placeholder-bg;
+                border: 0px solid;
+                height: 30px;
+                float: right;
+                font-size: 16px;
+                outline: none;
+            }
+
+            .input__inline {
+                display: inline-block;
+            }
+
+            //chỉnh khoảng cách những tên
+
+            .ModifyInformation-label-input{
+                margin: 0 10px;
+                width: 65px;
+                text-align: right;
+            }
+
+            //cho chiều dài của input
+
+            .ModifyInformation-register-input{
+                width: 250px;
+                padding-left: 10px;
+            }
+
+            //chỉnh giới tính
+
+            .ModifyInformation-form-radio-input{
+                display: inline;
+                line-height: 32px;
+                & .ModifyInformation-label-input {
+                    display: inline-block;
+                }
+            }
+
+            //xem xét chỉnh nút input
+
+            input[type="radio"]:checked {
+                border: 5px solid $mainColor;
+                background-color: $mainColor !important;
+            }
+        }
+    }
+}
+
+form .ModifyInformation-button{
+    height: 45px;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}
+
+//kích thước button
+.ModifyInformation-cancel input{
+    height: 40px;
+    width: 80px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.ModifyInformation-confirm input{
+    height: 40px;
+    width: 110px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+//chỉnh màu và độ chuyển màu
+
+.ModifyInformation-button-cancel{
+    margin-right: 10px;
+    color: #fff;
+    background-color: rgb(65, 65, 65);
+    transition: all 1s ease;
+}
+
+.ModifyInformation-button-confirm{
+    background-color: $mainColor;
+    font-weight: 500;
+    color: #fff;
+    transition: all 1s ease;
+}
+
+//hiệu ứng button
+
+.ModifyInformation-button-cancel:hover{
+    background-color: #fff;
+    color: black;
+    font-weight: 500;
+    border: 1px solid rgb(65, 65, 65);
+}
+
+.ModifyInformation-button-confirm:hover{
+    background-color: #fff;
+    color: $mainColor;
+    font-weight: 500;
+    border: 1px solid $mainColor;
+}
+
+//button chọn ảnh
+
+.ModifyInformation-choose-img input{
+    height: 40px;
+    width: 100px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.ModifyInformation-choose-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2% 0;
+
+    .ModifyInformation-button-choose-mig{
+        background-color: $mainColor;
+        font-weight: 500;
+        color: #fff;
+        transition: all 0.5s ease;
+    }
+
+    .ModifyInformation-button-choose-mig:hover{
+        background-color: rgb(158, 52, 52);
+        color: #fff;
+        font-weight: 500;
+    }
+}
+
+// Responsive
+
+@media (max-width:860px) {
+    .ModifyInformation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .ModifyInformation-container-img{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .ModifyInformation-container-img-thumbnail{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin-bottom: 3%;
+            }
+        }
+    }
+
+}
+
+@media (max-width:530px) {
+
+    .ModifyInformation-container-tile {
+        font-size: 24px
+    }
+
+    .ModifyInformation-form-input {
+        font-size: 15px;
+    }
+
+    .ModifyInformation-container-img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .ModifyInformation-container-img-thumbnail{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 5%;
+        }
+    }
+
+    .ModifyInformation-label-input {
+        //display: flex;
+        width: fit-content;
+        line-height: 32px;
+        text-align: left;
+    }
+
+    .ModifyInformation-form-input input{
+        width: fit-content;
+        font-size: 13px;
+    }
+
+    .ModifyInformation-choose-img input{
+        height: 38px;
+        width: 100px;
+        margin-bottom: 2%;
+        outline: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 5px;
+        letter-spacing: 1px;
+    }
+
+    .ModifyInformation-cancel input{
+        height: 38px;
+        width: 70px;
+        outline: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 5px;
+        letter-spacing: 1px;
+    }
+    
+    .ModifyInformation-confirm input{
+        height: 38px;
+        width: 100px;
+        outline: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 5px;
+        letter-spacing: 1px;
+    }
+}
+
+    

@@ -5,7 +5,10 @@ import Profile from './Pages/Profile';
 import Recipe from './Pages/Recipe';
 import ForgotPassword from './Pages/ForgotPassword';
 import SavedPostList from './Pages/SavedPostList';
-import InformationUser from './Pages/InfomationUser';
+import InformationUser from './Pages/InformationUser';
+import ModifyPassword from './Pages/ModifyPassword';
+import ModifyInformation from './Pages/ModifyInformation';
+
 export const routes = [
     {
         path: '/',
@@ -38,6 +41,14 @@ export const routes = [
     {
         path: '/nguoi-dung',
         component: InformationUser,
+    },
+    {
+        path: '/doi-mat-khau',
+        component: ModifyPassword,
+    },
+    {
+        path: '/doi-thong-tin',
+        component: ModifyInformation,
     }
 
 ];
