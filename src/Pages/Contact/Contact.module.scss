@@ -1,2 +1,80 @@
 @import '../../config.scss';
 
+.container {
+    display: flex;
+    text-align: center;
+
+    .about-us {
+        width: 50%;
+    }
+
+    .contact {
+        width: 50%;
+        text-align: center;
+
+        .contact__content {
+            margin-left: 150px;
+
+
+            p {
+                text-align: left;
+                
+            }
+
+            margin-right: 0px;
+            .content-bold {
+                font-weight: bold;
+            }
+
+            .content-center {
+                text-align: center;
+            }
+
+            .content-via {
+                text-align: left;
+
+                a:visited {
+                    color: black;
+                }
+
+                a:hover {
+                    color: $mainColor;
+                }
+
+                .content-via__icon {
+                    display: inline-block;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media  screen and (max-width:900px) {
+    .container {
+        .about-us {
+
+        }
+
+        .contact {
+            .contact__content {
+                margin-left: 50px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .container {
+        h1 {
+            font-size: 20px;
+        }
+
+        .contact {
+            .contact__content  {
+                margin-left: 10px;
+                font-size: 12px;
+            }
+        }
+    }
+}
