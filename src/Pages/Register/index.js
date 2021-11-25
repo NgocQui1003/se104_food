@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
 
 function Register() {
+
+    useEffect(() => {
+        document.title = "Đăng kí tài khoản - Nomnom"
+    })
 
     const [registerValue, setRegisterValue] = useState({
         firstname: '',
