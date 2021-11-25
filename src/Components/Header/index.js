@@ -21,19 +21,20 @@ function Navbar({ loggedIn, user }) {
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    const changeBackground = () => {
-        if (window.scrollY >= 80) {
-            setNavbar(true);
-        } else {
-            setNavbar(false);
-        }
-    }
+    // const changeBackground = () => {
+    //     if (window.scrollY >= 80) {
+    //         setNavbar(true);
+    //     } else {
+    //         setNavbar(false);
+    //     }
+    // }
 
     // window.addEventListener('scroll', changeBackground);
     const AvatarUser = () => (
         <div className={styles['container-avatar']}>
             <img
                 src={user.avatar}
+                alt='avatar-user'
             ></img>
             <span>{user.firstname}</span>
         </div>
@@ -51,7 +52,7 @@ function Navbar({ loggedIn, user }) {
                     <div className={styles['navbar-container']}>
                         <div className={styles['navbar-col']}>
                             <Link to='/' className='navbar-logo'>
-                                <img src={logo} />
+                                <img src={logo} alt='logo'/>
                             </Link>
                         </div>
                         <div className={styles['navbar-col']}>
@@ -127,7 +128,7 @@ function Navbar({ loggedIn, user }) {
                     <div className={styles['navbar-container']}>
                         <div className={styles['navbar-col']}>
                             <Link to='/' className='navbar-logo'>
-                                <img src={logo} />
+                                <img src={logo} alt='logo'/>
                             </Link>
                         </div>
                         <div className={styles['navbar-col']}>

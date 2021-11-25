@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
 import FacebookLogin from '../../Components/FacebookLogin';
 import GoogleLogin from '../../Components/GoogleLogin';
 
+import userApi from '../../Api/userApi';
+import { userActions } from '../../Redux/Actions/userActions';
+import Auth from '../../Utils/Auth';
+
 function Register() {
+    const history = useHistory();
+    const dispatch = useDispatch()
 
     const [registerValue, setRegisterValue] = useState({
         firstname: '',
@@ -25,15 +33,22 @@ function Register() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
         setRegisterValue({
             ...registerValue,
             [name]: value
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const data = await userApi.register(registerValue);
+
+        if (data.success) {
+            Auth.setToken(data.accessToken)
+            const res = await userApi.getProfile()
+            dispatch(userActions.setProfile(res.data))
+            history.goBack()
+        }
     }
 
     return (
@@ -85,7 +100,7 @@ function Register() {
                             <input type="radio" value="Nam"
                                 name="gender"
                                 id="gender-1"
-                                value={registerValue.gender}
+                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                         <label className={styles["label-input"]} for="gender">
@@ -93,7 +108,7 @@ function Register() {
                             <input type="radio" value="Nữ"
                                 name="gender"
                                 id="gender-0"
-                                value={registerValue.gender}
+                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                     </div>

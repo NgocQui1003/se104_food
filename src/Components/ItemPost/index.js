@@ -2,9 +2,6 @@ import React from 'react';
 import styles from './ItemPost.module.scss';
 
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Avatar from '@mui/material/Avatar';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -41,6 +38,7 @@ function ItemPost({ post, savePost, reactPost }) {
                     <div className={styles['container-avatar-user']}>
                         <img 
                             src={post['id_author']['avatar']}
+                            alt='avatar-user'
                         />
                         <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
                     </div>

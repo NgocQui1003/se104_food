@@ -37,7 +37,6 @@ function Home() {
     }, [])
 
     const savePost = (id) => {
-        console.log('save post: ', id);
         const newPosts = posts.map(ele => {
             if (ele._id === id) {
                 ele.isSave = !ele.isSave;
@@ -48,7 +47,6 @@ function Home() {
         setPosts(newPosts)
     }
     const reactPost = (id) => {
-        console.log('react post: ', id);
         const newPosts = posts.map(ele => {
             if (ele._id === id) {
                 if (ele.isLike) {
