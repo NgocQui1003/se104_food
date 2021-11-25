@@ -69,7 +69,7 @@ function SavedPostList() {
                 <div className={styles['list-container']}>
                     <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
                     <div className={styles['list-btn']}>
-                        <button className={styles['menu-btn__edit']}>Chỉnh sửa</button>
+                        <button className={styles['menu-btn__edit']}>Xóa chọn lọc</button>
                         <button className={styles['menu-btn__delete']}>Xóa tất cả</button>
                     </div>
                     {
