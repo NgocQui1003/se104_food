@@ -8,6 +8,11 @@ import SavedPostList from './Pages/SavedPostList';
 import InformationUser from './Pages/InformationUser';
 import ModifyPassword from './Pages/ModifyPassword';
 import ModifyInformation from './Pages/ModifyInformation';
+import NotFound from './Pages/NotFound';
+
+import InformationUser from './Pages/InfomationUser';
+import Contact from './Pages/Contact';
+import Random from './Pages/Random';
 
 export const routes = [
     {
@@ -49,6 +54,14 @@ export const routes = [
     {
         path: '/doi-thong-tin',
         component: ModifyInformation,
+        path: '/lien-he',
+        component: Contact,
+    },
+    {
+        path: '/random-mon-an',
+        component: Random,
+    },
+    {
+        component: NotFound,
     }
-
 ];

@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Login.module.scss';
 
 import ValidateInput from '../../Utils/ValidateInput';
 import userApi from '../../Api/userApi';
 
 function Login() {
+    useEffect(() => {
+        document.title = "Đăng nhập"
+    })
+
     const [loginData, setLoginData] = useState({
         email: "",
         password: "",

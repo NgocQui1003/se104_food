@@ -6,22 +6,22 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 import logo from "../../Assets/100x100.png";
-import { style } from "@mui/system";
+
 function Navbar() {
     const [click, setClick] = useState(false);
     const [navbar, setNavbar] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    const changeBackground = () => {
-        if (window.scrollY >= 80) {
-            setNavbar(true);
-        } else {
-            setNavbar(false);
-        }
-    }
+    // const changeBackground = () => {
+    //     if (window.scrollY >= 80) {
+    //         setNavbar(true);
+    //     } else {
+    //         setNavbar(false);
+    //     }
+    // }
 
-    // window.addEventListener('scroll', changeBackground);
+    // // window.addEventListener('scroll', changeBackground);
 
     return (
         <>

@@ -5,7 +5,7 @@ const userApi = {
         const url = '/login';
         return axiosClient.post(url, data);
     },
-    
+
     register: (data) => {
         const url = '/register';
         return axiosClient.post(url, data);
@@ -15,7 +15,6 @@ const userApi = {
         const url = '/forgot-password';
         return axiosClient.post(url, data);
     },
-
 }
 
 export default userApi;

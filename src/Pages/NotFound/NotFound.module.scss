@@ -1,0 +1,15 @@
+@import '../../config.scss';
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+
+    .not-found-container__img img {
+        width: 150px;
+    }
+
+    .not-found-container__noti {
+        font-weight: bold;
+        font-size: 50px;
+    }
+}

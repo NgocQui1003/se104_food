@@ -1,0 +1,19 @@
+@import '../../config.scss';
+
+.container {
+    text-align: center;
+
+    .random-btn {
+
+        padding: 16px 32px;
+        border-radius: 6px;
+        outline-style: none;
+        background-color: $mainColor;
+        border-style: none;
+        color: #fff;
+        font-size: 20px;
+
+        margin-top: 50px;
+        cursor: pointer;
+    }
+}
