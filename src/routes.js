@@ -9,8 +9,6 @@ import InformationUser from './Pages/InformationUser';
 import ModifyPassword from './Pages/ModifyPassword';
 import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
-
-import InformationUser from './Pages/InfomationUser';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
 
