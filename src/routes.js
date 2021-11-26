@@ -5,6 +5,9 @@ import Profile from './Pages/Profile';
 import Recipe from './Pages/Recipe';
 import ForgotPassword from './Pages/ForgotPassword';
 import SavedPostList from './Pages/SavedPostList';
+import InformationUser from './Pages/InformationUser';
+import ModifyPassword from './Pages/ModifyPassword';
+import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 
 import InformationUser from './Pages/InfomationUser';
@@ -45,6 +48,12 @@ export const routes = [
         component: InformationUser,
     },
     {
+        path: '/doi-mat-khau',
+        component: ModifyPassword,
+    },
+    {
+        path: '/doi-thong-tin',
+        component: ModifyInformation,
         path: '/lien-he',
         component: Contact,
     },

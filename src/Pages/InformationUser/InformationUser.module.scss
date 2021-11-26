@@ -1,0 +1,166 @@
+@import '../../config.scss';
+
+.InformationUser-container {
+    margin: 20px 10px;
+}
+
+.InformationUser-container-tile {
+    text-align: center;
+    color: $mainColor;
+}
+
+.InformationUser-container-format {
+    width: 75%;
+    margin: 10px;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+
+    display: inline-block;
+    float: right;
+
+    .InformationUser-container-img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .InformationUser-container-img-thumbnail{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+
+    //Chỉnh nội dung trong form 
+
+    .InformationUser-container-form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2%;
+
+        .InformationUser-form{
+            width: max-content;
+            font-size: 18px;
+            color: $mainColor;
+
+            input {
+                display: flexbox;
+            }
+
+            .InformationUser-label-input{
+                display: inline-block;
+            }
+        }
+        
+        .InformationUser-form-input:first-child{
+            display: inline-block;
+        }
+
+        .InformationUser-form-input{
+            margin-bottom: 20px;
+    
+            input {
+                //border
+                border-color: $mainColor;
+                border-radius: 5px;
+                background-color: $placeholder-bg;
+                border: 0px solid;
+                height: 30px;
+                float: right;
+                font-size: 16px;
+                outline: none;
+            }
+
+            .input__inline {
+                display: inline-block;
+            }
+
+            //chỉnh khoảng cách những tên
+
+            .InformationUser-label-input{
+                margin: 0 10px;
+                width: 65px;
+                text-align: right;
+            }
+
+            //cho chiều dài của input
+
+            .InformationUser-register-input{
+                width: 250px;
+                padding-left: 10px;
+            }
+
+            //chỉnh giới tính
+
+            .InformationUser-form-radio-input{
+                display: inline;
+                line-height: 32px;
+                & .InformationUser-label-input {
+                    display: inline-block;
+                }
+            }
+
+            //xem xét chỉnh nút input
+
+            input[type="radio"]:checked {
+                border: 5px solid $mainColor;
+                background-color: $mainColor !important;
+            }
+        }
+    }
+}
+
+// Responsive
+
+@media (max-width:860px) {
+    .InformationUser-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .InformationUser-container-img{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .InformationUser-container-img-thumbnail{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin-bottom: 3%;
+            }
+        }
+    }
+
+}
+
+@media (max-width:530px) {
+
+    /*.InformationUser-form-input {
+        font-size: 15px;
+    }*/
+
+    .InformationUser-container-img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .InformationUser-container-img-thumbnail{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 5%;
+        }
+    }
+
+    .InformationUser-label-input {
+        //display: flex;
+        width: fit-content;
+        line-height: 32px;
+        text-align: left;
+    }
+
+    .InformationUser-register-input {
+        width: fit-content;
+        font-size: 15px;
+    }
+}
+
+    
