@@ -16,7 +16,7 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(async (config) => {
     if (Auth.getToken() != null)
-        config.headers.Authorization = `${Auth.getToken()}`;
+        config.headers.Authorization = `Bearer ${Auth.getToken()}`;
     return config;
 });
 
