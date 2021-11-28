@@ -10,7 +10,7 @@ import logo from "../../Assets/100x100.png";
 import { userActions } from '../../Redux/Actions/userActions';
 import userApi from '../../Api/userApi';
 import { useDispatch } from 'react-redux';
-
+import DropMenu from "../DropMenu";
 
 
 function Navbar({ loggedIn, user }) {
@@ -18,6 +18,7 @@ function Navbar({ loggedIn, user }) {
     const history = useHistory();
     const [click, setClick] = useState(false);
     const [navbar, setNavbar] = useState(false);
+    const [menuTrigger, setMenuTrigger] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -63,8 +64,8 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/lien-he' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Liên hệ
+                                    <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Dọn tủ lạnh
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -102,14 +103,16 @@ function Navbar({ loggedIn, user }) {
                                         </Link>
                                     </li>
                                 </div>
-                                <li className={`${styles['nav-item']} ${styles['login-success']}`}>
-                                    <Link to='/dang-nhap' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        <AvatarUser />
-                                    </Link>
+                                <li onClick={() => setMenuTrigger(!menuTrigger)} className={`${styles['nav-item']} ${styles['login-success']}`}>
+                                    {/* <Link to='/nguoi-dung' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
+                                        
+                                    </Link> */}
+                                    <AvatarUser />
                                 </li>
+                                <DropMenu trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
                                 <li className={`${styles['nav-item']} ${styles['logout']}`}>
                                     <div className={styles['nav-links-mobile']} onClick={logout}>
-                                        Dang xuat
+                                        Đăng xuất
                                     </div>
                                 </li>
                             </ul>
@@ -139,8 +142,8 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/lien-he' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Liên hệ
+                                    <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Dọn tủ lạnh
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>

@@ -7,12 +7,11 @@ import Header from '../Header';
 function RootHeader() {
     const userState = useSelector((state) => state.User);
     const location = useLocation();
-    
     return (
         <div>
-            {location.pathname === '/' 
-                ?<HeaderHomepage  loggedIn={userState.loggedIn} user={userState.user}/>
-                :<Header loggedIn={userState.loggedIn} user={userState.user}/>}
+            {location.pathname === '/'
+                ? <HeaderHomepage loggedIn={userState.loggedIn} user={userState.user} />
+                : <Header loggedIn={userState.loggedIn} user={userState.user} />}
         </div>
     )
 }

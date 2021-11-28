@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./HeaderHomepage.module.scss";
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import logo from "../../Assets/100x100.png";
 import { userActions } from '../../Redux/Actions/userActions';
 import userApi from '../../Api/userApi';
+import DropMenu from "../DropMenu";
 
 function Navbar({ loggedIn, user }) {
     const dispatch = useDispatch()
@@ -17,17 +18,11 @@ function Navbar({ loggedIn, user }) {
     const [click, setClick] = useState(false);
     const [navbar, setNavbar] = useState(false);
 
+    const [menuTrigger, setMenuTrigger] = useState(false);
+
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    // const changeBackground = () => {
-    //     if (window.scrollY >= 80) {
-    //         setNavbar(true);
-    //     } else {
-    //         setNavbar(false);
-    //     }
-    // }
 
-    // window.addEventListener('scroll', changeBackground);
     const AvatarUser = () => (
         <div className={styles['container-avatar']}>
             <img
@@ -44,6 +39,7 @@ function Navbar({ loggedIn, user }) {
         closeMobileMenu()
         history.push('/')
     }
+
     return user && loggedIn
         ? (
             <>
@@ -66,7 +62,7 @@ function Navbar({ loggedIn, user }) {
 
                         <div className={styles['navbar-col']}>
                             <Link to='/' className='navbar-logo'>
-                                <img src={logo} alt='logo'/>
+                                <img src={logo} alt='logo' />
                             </Link>
                         </div>
 
@@ -102,17 +98,19 @@ function Navbar({ loggedIn, user }) {
                                 </div>
                                 <li className={`${styles['nav-item']} ${styles['login-success']}`}>
                                     <Link to='/dang-bai-viet' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        Dang bai viet
+                                        Đăng bài viết
                                     </Link>
                                 </li>
-                                <li className={`${styles['nav-item']} ${styles['login-success']}`}>
-                                    <Link to='/profile' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        <AvatarUser ></AvatarUser>
-                                    </Link>
+                                <li className={`${styles['nav-item']} ${styles['login-success']}`} onClick={() => setMenuTrigger(!menuTrigger)}>
+                                    {/* <a onClick={() => setMenuTrigger(true)} className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
+
+                                    </a> */}
+                                    <AvatarUser></AvatarUser>
                                 </li>
+                                <DropMenu trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
                                 <li className={`${styles['nav-item']} ${styles['logout']}`}>
                                     <div className={styles['nav-links-mobile']} onClick={logout}>
-                                        Dang xuat
+                                        Đăng xuất
                                     </div>
                                 </li>
                             </ul>
@@ -146,7 +144,7 @@ function Navbar({ loggedIn, user }) {
 
                         <div className={styles['navbar-col']}>
                             <Link to='/' className='navbar-logo'>
-                                <img src={logo} alt='logo'/>
+                                <img src={logo} alt='logo' />
                             </Link>
                         </div>
 
