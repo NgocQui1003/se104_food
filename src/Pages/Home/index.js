@@ -69,7 +69,7 @@ function Home() {
         setPosts(newPosts)
     }
 
-    const suggestions = ["Basnh A", "Banh B", "Banh C", "Banh D"];
+    const suggestions = ["Bánh A", "Bánh B", "Bánh C", "Bánh D"];
 
     return (
         <div className={styles['container']}>
@@ -95,9 +95,9 @@ function Home() {
 
             <div className={styles['container-btn-0']}>
                 {/* Component 0 */}
-                <ButtonUnderline key={""} title={"Com ga Ngo Quyen"} active={true} onClick={""} />
-                <ButtonUnderline key={""} title={"Hu tieu Sa Dec"} active={false} onClick={""} />
-                <ButtonUnderline key={""} title={"Bun dau mam tom"} active={false} onClick={""} />
+                <ButtonUnderline key={""} title={"Cơm gà Ngô Quyền"} active={true} onClick={""} />
+                <ButtonUnderline key={""} title={"Hủ tiếu Sa Đéc"} active={false} onClick={""} />
+                <ButtonUnderline key={""} title={"Bún đậu mắm tôm"} active={false} onClick={""} />
 
             </div>
 

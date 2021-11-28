@@ -6,6 +6,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
+import logo from '../../Assets/100x100.png';
+
 function ItemPost({ post, savePost, reactPost }) {
 
     const formatTitle = (title) => {
@@ -35,13 +37,26 @@ function ItemPost({ post, savePost, reactPost }) {
                     <p>
                         {formatTitle(post['title'])}
                     </p>
-                    <div className={styles['container-avatar-user']}>
-                        <img 
-                            src={post['id_author']['avatar']}
-                            alt='avatar-user'
-                        />
-                        <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
-                    </div>
+                    {
+                        (post.id_author != null) ? (
+                            <div className={styles['container-avatar-user']}>
+                                <img
+                                    src={post['id_author']['avatar']}
+                                    alt='avatar-user'
+                                />
+                                <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
+                            </div>
+                        ) : (
+                            <div className={styles['container-avatar-user']}>
+                                <img
+                                    src={logo}
+                                    alt='avatar-user'
+                                />
+                                <span>Deleted Author</span>
+                            </div>
+                        )
+                    }
+
                     <div className={`${styles['btn-heart']} ${post['isLike'] ? styles['active'] : ''}`}
                         onClick={() => reactPost(post._id)}
                     >
