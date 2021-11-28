@@ -52,6 +52,8 @@ export const routes = [
     {
         path: '/doi-thong-tin',
         component: ModifyInformation,
+    },
+    {
         path: '/lien-he',
         component: Contact,
     },
