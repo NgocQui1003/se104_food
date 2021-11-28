@@ -2,24 +2,19 @@ import React, { Component, useState } from 'react';
 
 import UserMenu from '../../Components/UserMenu';
 import styles from '../ModifyInformation/ModifyInformation.module.scss';
-import avatar from '../../Assets/ava.png'
+import { useSelector } from 'react-redux';
+import NotLoggedIn from '../../Components/NotLoggedIn';
 
 function ModifyInformation() {
+    const { loggedIn, user } = useSelector(state => state.User);
 
-    const user = {
-        firstname: "Nguyễn",
-        lastname: "Ngọc Quí",
-        gender: "Nam",
-        email: "nguyenngocqui@gmail.com"
-    }
-
-    return (
+    return user && loggedIn ? (
         <div className={[styles['ModifyInformation-container'], styles['auth']].join(' ')}>
-            <UserMenu />
+            <UserMenu user={user} />
             <div className={styles['ModifyInformation-container-format']}>
                 <h1 className={styles['ModifyInformation-container-tile']}>Đổi Thông Tin Người Dùng</h1>
                 <div className={styles['ModifyInformation-container-img']}>
-                    <img className={styles['ModifyInformation-container-img-thumbnail']} src={avatar} />
+                    <img className={styles['ModifyInformation-container-img-thumbnail']} src={user.avatar} />
                 </div>
                 <div className={styles["ModifyInformation-choose-img"]}>
                     <input className={styles["ModifyInformation-button-choose-mig"]} type="submit" value="Chọn ảnh" />
@@ -85,7 +80,7 @@ function ModifyInformation() {
                 </div>
             </div>
         </div >
-    )
+    ) : <NotLoggedIn />
 }
 
 export default ModifyInformation;

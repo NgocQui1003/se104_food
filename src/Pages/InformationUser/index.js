@@ -1,27 +1,36 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 
 import UserMenu from '../../Components/UserMenu';
 import styles from '../InformationUser/InformationUser.module.scss';
 
-import avatar from '../../Assets/ava.png'
+// import avatar from '../../Assets/ava.png'
+import { useSelector } from 'react-redux';
 
+// Redux
+import { userActions } from '../../Redux/Actions/userActions';
+
+// Api
+import userApi from '../../Api/userApi';
+import NotLoggedIn from '../../Components/NotLoggedIn';
 
 function InformationUser() {
 
-    const user = {
-        firstname: "Nguyễn",
-        lastname: "Ngọc Quí",
-        gender: "Nam",
-        email: "nguyenngocqui@gmail.com"
-    }
+    // const user = {
+    //     firstname: "Nguyễn",
+    //     lastname: "Ngọc Quí",
+    //     gender: "Nam",
+    //     email: "nguyenngocqui@gmail.com"
+    // }
 
-    return (
+    const { loggedIn, user } = useSelector(state => state.User);
+
+    return user && loggedIn ? (
         <div className={[styles['InformationUser-container'], styles['auth']].join(' ')}>
-            <UserMenu />
+            <UserMenu user={user} />
             <div className={styles['InformationUser-container-format']}>
                 <h1 className={styles['InformationUser-container-tile']}>Thông Tin Người Dùng</h1>
                 <div className={styles['InformationUser-container-img']}>
-                    <img className={styles['InformationUser-container-img-thumbnail']} src={avatar} />
+                    <img className={styles['InformationUser-container-img-thumbnail']} src={user.avatar} />
                 </div>
                 <div className={styles['InformationUser-container-form']}>
                     <form className={styles['InformationUser-form']}>
@@ -58,7 +67,7 @@ function InformationUser() {
                                     <input type="radio" value="Nam"
                                         name="gender"
                                         id="gender-1"
-                                        
+
                                     />
                                 </label>
                                 <label className={styles["InformationUser-label-input"]} for="gender">
@@ -85,7 +94,7 @@ function InformationUser() {
                 </div>
             </div>
         </div >
-    )
+    ) : <NotLoggedIn />
 }
 
 export default InformationUser;

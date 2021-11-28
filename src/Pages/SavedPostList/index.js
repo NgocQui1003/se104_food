@@ -4,11 +4,21 @@ import styles from '../SavedPostList/SavedPostList.module.scss';
 import UserMenu from '../../Components/UserMenu';
 import savedPostApi from '../../Api/savedPostApi';
 import { useSelector, useDispatch } from 'react-redux';
+import NotLoggedIn from '../../Components/NotLoggedIn';
+
+// Redux
+import { userActions } from '../../Redux/Actions/userActions';
+
+// Api
+import userApi from '../../Api/userApi';
 
 function SavedPostList() {
-
     const saved = useSelector(state => state.savedList);
+    const { loggedIn, user } = useSelector(state => state.User);
+
+    // console.log("State User: ", loggedIn, user);
     const dispatch = useDispatch();
+
 
     // Post item Component
     const postItem = ({ item, idx }) => {
@@ -62,9 +72,9 @@ function SavedPostList() {
         }
     }
 
-    return (
+    return user && loggedIn ? (
         <div className={styles['container']}>
-            <UserMenu />
+            <UserMenu user={user} />
             {(saved && saved.count) ? (
                 <div className={styles['list-container']}>
                     <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
@@ -90,7 +100,6 @@ function SavedPostList() {
                 </div>
             )}
         </div >
-    )
+    ) : <NotLoggedIn />
 }
-
 export default SavedPostList;

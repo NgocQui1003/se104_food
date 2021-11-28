@@ -1,4 +1,6 @@
 import React, { Component, useState } from 'react';
+import { useSelector } from 'react-redux';
+import NotLoggedIn from '../../Components/NotLoggedIn';
 
 import UserMenu from '../../Components/UserMenu';
 import styles from '../ModifyPassword/ModifyPassword.module.scss';
@@ -6,9 +8,11 @@ import styles from '../ModifyPassword/ModifyPassword.module.scss';
 
 function ModifyPassword() {
 
-    return (
+    const { loggedIn, user } = useSelector(state => state.User);
+
+    return user && loggedIn ? (
         <div className={[styles['ModifyPassWordContainer-container'], styles['auth']].join(' ')}>
-            <UserMenu />
+            <UserMenu user={user} />
             <div className={styles['ModifyPassWordContainer-container-format']}>
                 <h1 className={styles['ModifyPassWordContainer-container-tile']}>Đổi Mật Khẩu</h1>
                 <div className={styles['ModifyPassWordContainer-Father']}>
@@ -17,15 +21,15 @@ function ModifyPassword() {
                             <div className={styles["ModifyPassWord-user-details"]}>
                                 <div className={styles["ModifyPassWord-input-box"]}>
                                     <lable className={styles["ModifyPassWord-input-box-details"]}>Mật khẩu cũ:</lable>
-                                    <input className={styles["ModifyPassWord-register-input"]} type="text"  required />
+                                    <input className={styles["ModifyPassWord-register-input"]} type="text" required />
                                 </div>
                                 <div className={styles["ModifyPassWord-input-box"]}>
                                     <lable className={styles["ModifyPassWord-input-box-details"]}>Mật khẩu mới:</lable>
-                                    <input className={styles["ModifyPassWord-register-input"]} type="text"  required />
+                                    <input className={styles["ModifyPassWord-register-input"]} type="text" required />
                                 </div>
                                 <div className={styles["ModifyPassWord-input-box"]}>
                                     <lable className={styles["ModifyPassWord-input-box-details"]}>Nhập lại mật khẩu:</lable>
-                                    <input className={styles["ModifyPassWord-register-input"]} type="text"  required />
+                                    <input className={styles["ModifyPassWord-register-input"]} type="text" required />
                                 </div>
                             </div>
                             <div className={styles["ModifyPassWord-button"]}>
@@ -41,7 +45,7 @@ function ModifyPassword() {
                 </div>
             </div>
         </div >
-    )
+    ) : <NotLoggedIn />
 }
 
 export default ModifyPassword;
