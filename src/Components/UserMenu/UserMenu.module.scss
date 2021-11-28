@@ -15,6 +15,12 @@
         font-weight: bold;
     }
 
+    .user-avatar img {
+        margin: 30px 0;
+        max-width: 80px;
+        border-radius: 50%;
+    }
+
     .menu-list {
         list-style: none;
         color: black;
