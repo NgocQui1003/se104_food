@@ -59,8 +59,8 @@ function Navbar({ loggedIn, user }) {
                         <div className={styles['navbar-col']}>
                             <ul className={styles['nav-menu']}>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Tìm kiếm công thức
+                                    <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Random món ăn
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -137,8 +137,8 @@ function Navbar({ loggedIn, user }) {
                         <div className={styles['navbar-col']}>
                             <ul className={styles['nav-menu']}>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Tìm kiếm công thức
+                                    <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Random món ăn
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
