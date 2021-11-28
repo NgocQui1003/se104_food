@@ -67,7 +67,7 @@ function Register() {
                         </label>
                         <input type="text" className={styles["register-input"]}
                             name="lastname"
-                            value={registerValue.firstname}
+                            value={registerValue.lastname}
                             onChange={handleChange}
                             onBlur={(e) => {
                                 let error = ValidateInput.userLastName(e.target.value);
@@ -87,7 +87,7 @@ function Register() {
                         </label>
                         <input type="text" className={styles["register-input"]}
                             name="firstname"
-                            value={registerValue.lastname}
+                            value={registerValue.firstname}
                             onChange={handleChange}
                             onBlur={(e) => {
                                 let error = ValidateInput.userFirstName(e.target.value);
