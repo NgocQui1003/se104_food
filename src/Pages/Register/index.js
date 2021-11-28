@@ -62,11 +62,11 @@ function Register() {
                 <h2>ĐĂNG KÍ</h2>
                 <div className={styles["form-input"]}>
                     <div>
-                        <label for="firstname" className={styles["label-input"]}>
+                        <label for="lastname" className={styles["label-input"]}>
                             Họ:
                         </label>
                         <input type="text" className={styles["register-input"]}
-                            name="firstname"
+                            name="lastname"
                             value={registerValue.firstname}
                             onChange={handleChange}
                             onBlur={(e) => {
@@ -82,11 +82,11 @@ function Register() {
                         <div className={styles['form-error']}>{error.lastname}</div>
                     }
                     <div>
-                        <label for="lastname" className={styles["label-input"]}>
+                        <label for="firstname" className={styles["label-input"]}>
                             Tên:
                         </label>
                         <input type="text" className={styles["register-input"]}
-                            name="lastname"
+                            name="firstname"
                             value={registerValue.lastname}
                             onChange={handleChange}
                             onBlur={(e) => {
