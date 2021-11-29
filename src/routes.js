@@ -11,6 +11,7 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
+import DeleteUsers from './Pages/DeleteUsers';
 
 export const routes = [
     {
@@ -60,6 +61,10 @@ export const routes = [
     {
         path: '/random-mon-an',
         component: Random,
+    },
+    {
+        path: '/xoa-nguoi-dung',
+        component: DeleteUsers,
     },
     {
         component: NotFound,
