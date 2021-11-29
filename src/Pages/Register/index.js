@@ -32,7 +32,8 @@ function Register() {
         lastname: '',
         gender: '',
         email: '',
-        password: ''
+        password: '',
+        register: '',
     });
 
     const handleChange = (e) => {
@@ -49,10 +50,17 @@ function Register() {
         const data = await userApi.register(registerValue);
 
         if (data.success) {
-            Auth.setToken(data.accessToken)
-            const res = await userApi.getProfile()
-            dispatch(userActions.setProfile(res.data))
-            history.goBack()
+            Auth.setToken(data.accessToken);
+            const res = await userApi.getProfile();
+            dispatch(userActions.setProfile(res.data));
+            history.goBack('/');
+        } else {
+            setError({ ...error, register: data.message });
+            if (data.message == 'Email exist') {
+                alert("Đăng kí thất bại. Email đã tồn tại.");
+            } else {
+                alert("Đăng kí thất bại.")
+            }
         }
     }
 
@@ -111,7 +119,6 @@ function Register() {
                             <input type="radio" value="Nam"
                                 name="gender"
                                 id="gender-1"
-                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                         <label className={styles["label-input"]} for="gender">
@@ -119,7 +126,6 @@ function Register() {
                             <input type="radio" value="Nữ"
                                 name="gender"
                                 id="gender-0"
-                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                     </div>
