@@ -54,7 +54,7 @@ function ModifyInformation() {
                                     <input type="radio" value="Nam"
                                         name="gender"
                                         id="gender-1"
-
+                                        checked={user.gender == "Nam"}
                                     />
                                 </label>
                                 <label className={styles["ModifyInformation-label-input"]} for="gender">
@@ -62,7 +62,7 @@ function ModifyInformation() {
                                     <input type="radio" value="Nữ"
                                         name="gender"
                                         id="gender-0"
-
+                                        checked={user.gender == "Nữ"}
                                     />
                                 </label>
                             </div>
