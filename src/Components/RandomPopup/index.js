@@ -1,39 +1,82 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import styles from './RandomPopup.module.scss';
-import foodImg from '../../Assets/changangamsatac.jpg';
-import logo from '../../Assets/100x100.png';
-
 import CancelIcon from '@mui/icons-material/Cancel';
+import postApi from '../../Api/postApi';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function RandomPopup(props) {
+    const history = useHistory();
+    const { trigger, setTrigger } = props;
+    const [loading, setLoading] = useState(false)
+    const [postRandom, setPostRandom] = useState({})
 
-    return (props.trigger) ? (
+    const fetchRandomPost = async () => {
+        setLoading(true);
+        const response = await postApi.getPostRandom();
+        if (response && response.data) {
+            const { _id, thumbnail_image, id_author, title } = response.data;
+            const { data } = await postApi.getPostDetail(_id);
+            const { description } = data;
+            setPostRandom({ _id, thumbnail_image, title, id_author, description });
+        }
+        setLoading(false);
+    }
+    useEffect(() => {
+        fetchRandomPost()
+    }, [])
+
+    const handleCancel = () => {
+        setTrigger(false);
+        fetchRandomPost()
+    }
+
+    const Loading = () => (
+        <div className={styles['container-loading']}>
+            <CircularProgress />
+            <p>Đang tìm kiếm món ăn phù hợp với bạn nhất!</p>
+        </div>
+    )
+    return trigger ? (
         <div className={styles['popup-container']}>
+
             <div className={styles['popup-inner']}>
-                <div className={styles['close-btn']}>
-                    <CancelIcon onClick={() => props.setTrigger(false)} />
-                </div>
-                <div className={styles['random-title']}>
-                    <Link to='/'>
-                        Chân gà sả tắc
-                    </Link>
-                </div>
-                <div className={styles['random-image']}>
-                    <Link to="/">
-                        <img src={foodImg} />
-                    </Link>
-                </div>
-                <div className={styles['random-author']}>
-                    <span className={styles['bold']}>Người nấu: </span>@ndklien
-                </div>
-                <div className={styles['random-description']}>
-                    Chân gà ngâm sả tắc là món ăn vặt rất thích hợp để nhâm nhi cùng bạn bè và gia đình.
-                    Bài viết dưới đây sẽ cùng vào bếp hướng dẫn bạn 3 cách làm chân gà sả tắc ngon giòn hấp dẫn,
-                    thấm vị cực đã tại nhà nhé!
-                </div>
+                {loading
+                    ? <Loading />
+                    : <>
+                        <div className={styles['close-btn']}>
+                            <CancelIcon onClick={() => handleCancel()} />
+                        </div>
+                        <div className={styles['random-title']}>
+                            <Link to={`/bai-viet/${postRandom['_id']}`}>
+                                {postRandom['title']}
+                            </Link>
+                        </div>
+                        <div className={styles['random-image']}>
+                            <Link to={`/bai-viet/${postRandom['_id']}`}>
+                                <img src={postRandom['thumbnail_image']} />
+                            </Link>
+                        </div>
+                        {postRandom['id_author']
+                            ?<div 
+                                className={styles['random-author']}
+                                onClick={() => history.push(`/user/${postRandom['id_author']['_id']}`)}
+                            >
+                                <span className={styles['bold']}>Người nấu: </span>
+                                {`${postRandom['id_author']['lastname']} ${postRandom['id_author']['firstname']}`}
+                            </div>
+                            : ""}
+                        <div className={styles['random-description']}>
+                            {postRandom['description']}
+                        </div>
+
+                    </>
+                }
+
             </div>
+
         </div>
     ) : null
 }
