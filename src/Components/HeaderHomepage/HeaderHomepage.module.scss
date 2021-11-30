@@ -1,6 +1,9 @@
 @import "../../config.scss";
 
-
+.container {
+  position: relative;
+  z-index: 2;
+}
 .navbar {
   background: transparent;
   display: flex;

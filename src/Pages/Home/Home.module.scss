@@ -39,7 +39,9 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            
             input {
+                font-size: 0.9375rem;
                 border: none;
                 outline: none;
                 padding: 8px 16px;
@@ -47,6 +49,7 @@
                 width: 100%;
             }
             .icon-search {
+                cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -57,11 +60,11 @@
             }
         }
         .more-search-bar {
-            font-size: 14px;
+            font-size: 0.9375rem;
             p {
-                margin-top: 24px;
+                color: $mainColor;
+                margin-top: 8px;
                 margin-bottom: 6px;
-                color: #333;
             }
             width: 560px;
             span {

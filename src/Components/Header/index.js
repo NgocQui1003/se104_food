@@ -48,7 +48,7 @@ function Navbar({ loggedIn, user }) {
     }
     return loggedIn && user
         ? (
-            <>
+            <div className={styles['container']}>
                 <nav className={navbar ? [styles['navbar'], styles['active']].join(' ') : styles['navbar']}>
                     <div className={styles['navbar-container']}>
                         <div className={styles['navbar-col']}>
@@ -123,7 +123,7 @@ function Navbar({ loggedIn, user }) {
                         </div>
                     </div>
                 </nav>
-            </>
+            </div>
         )
         : (
             <>
