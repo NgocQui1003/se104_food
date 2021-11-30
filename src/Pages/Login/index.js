@@ -9,8 +9,8 @@ import Auth from '../../Utils/Auth';
 
 import userApi from '../../Api/userApi';
 
-import FacebookLogin from '../../Components/FacebookLogin';
-import GoogleLogin from '../../Components/GoogleLogin';
+import ThirdPartyFacebook from '../../Components/ThirdPartyFacebook';
+import ThirdPartyGoogle from '../../Components/ThirdPartyGoogle';
 
 import { userActions } from '../../Redux/Actions/userActions';
 
@@ -106,8 +106,8 @@ function Login() {
                 <button type="submit" className={styles['submit-btn']}>Đăng nhập</button>
             </form>
             <p>Hoặc</p>
-            <FacebookLogin />
-            <GoogleLogin />
+            <ThirdPartyFacebook />
+            <ThirdPartyGoogle />
         </div>
     )
 }

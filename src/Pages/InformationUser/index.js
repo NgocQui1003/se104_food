@@ -14,14 +14,6 @@ import userApi from '../../Api/userApi';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
 function InformationUser() {
-
-    // const user = {
-    //     firstname: "Nguyễn",
-    //     lastname: "Ngọc Quí",
-    //     gender: "Nam",
-    //     email: "nguyenngocqui@gmail.com"
-    // }
-
     const { loggedIn, user } = useSelector(state => state.User);
 
     return user && loggedIn ? (

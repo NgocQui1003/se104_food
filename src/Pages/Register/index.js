@@ -4,12 +4,13 @@ import { useDispatch } from 'react-redux';
 
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
-import FacebookLogin from '../../Components/FacebookLogin';
-import GoogleLogin from '../../Components/GoogleLogin';
+import ThirdPartyFacebook from '../../Components/ThirdPartyFacebook';
+import ThirdPartyGoogle from '../../Components/ThirdPartyGoogle';
 
 import userApi from '../../Api/userApi';
 import { userActions } from '../../Redux/Actions/userActions';
 import Auth from '../../Utils/Auth';
+
 
 function Register() {
     const history = useHistory();
@@ -181,8 +182,8 @@ function Register() {
 
             <p className={styles.center}>Hoặc</p>
             <div className={styles["thirdparty-login"]}>
-                <FacebookLogin />
-                <GoogleLogin />
+                <ThirdPartyFacebook />
+                <ThirdPartyGoogle />
             </div>
 
         </div >

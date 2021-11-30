@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from '../SavedPostList/SavedPostList.module.scss';
+
+// Components
 import UserMenu from '../../Components/UserMenu';
-import savedPostApi from '../../Api/savedPostApi';
-import { useSelector, useDispatch } from 'react-redux';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
 // Redux
@@ -11,17 +12,36 @@ import { userActions } from '../../Redux/Actions/userActions';
 
 // Api
 import userApi from '../../Api/userApi';
+import savedPostApi from '../../Api/savedPostApi';
 
 function SavedPostList() {
-    const saved = useSelector(state => state.savedList);
     const { loggedIn, user } = useSelector(state => state.User);
-
-    // console.log("State User: ", loggedIn, user);
     const dispatch = useDispatch();
 
+    const [savedList, setSavedList] = useState([]);
+    console.log(savedList);
 
-    // Post item Component
-    const postItem = ({ item, idx }) => {
+    const fetchSavedList = async () => {
+        const params = {
+            userID: user._id
+        }
+        const response = await savedPostApi.getAll(params);
+        setSavedList(response.data);
+    }
+
+    const deletePost = (id) => {
+
+        // setSavedList(response.data);
+    }
+
+    useEffect(() => {
+        fetchSavedList();
+        deletePost();
+    }, [])
+
+
+
+    function PostItem({ item, idx }) {
         return (
             <div className={styles['list-item']} key={idx}>
                 <div className={styles['list-item__checkbox']}>
@@ -44,38 +64,16 @@ function SavedPostList() {
                     </div>
                 </div>
                 <div className={styles['menu-btn']}>
-                    <button className={styles['menu-btn__delete']} >Xóa</button>
+                    <button onClick={deletePost(item.id_post)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
             </div>
-        )
-    }
-
-    const [savedList, setSavedList] = useState();
-
-
-    useEffect(() => {
-        const fetchSavedList = async () => {
-            try {
-                const response = await savedPostApi.getAll();
-                console.log(response);
-            } catch (error) {
-                console.log("Failed to fetch saved list: " + error);
-            }
-        }
-
-        fetchSavedList();
-    }, [])
-
-    const deletePost = (id) => {
-        if (window.confirm("Bạn có muốn xóa bài viết")) {
-
-        }
-    }
+        );
+    };
 
     return user && loggedIn ? (
         <div className={styles['container']}>
             <UserMenu user={user} />
-            {(saved && saved.count) ? (
+            {(savedList && savedList.length > 0) ? (
                 <div className={styles['list-container']}>
                     <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
                     <div className={styles['list-btn']}>
@@ -83,8 +81,8 @@ function SavedPostList() {
                         <button className={styles['menu-btn__delete']}>Xóa tất cả</button>
                     </div>
                     {
-                        saved.items.map((item, idx) => {
-                            return <postItem item={item} idx={idx}></postItem>
+                        savedList.map((item, idx) => {
+                            return <PostItem item={item} idx={idx} />
                         })
                     }
                 </div>

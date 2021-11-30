@@ -1,17 +1,17 @@
 import axiosClient from "./axiosClient";
 
 const savedPostApi = {
-    getAll: (data) => {
+    getAll: (params) => {
         const url = "/save_post";
-        return axiosClient.get(url);
+        return axiosClient.get(url, { params });
     },
     deleteOne: (id) => {
         const url = "/unsaved";
         return axiosClient.delete(url, id);
     },
-    deleteMany: (id) => {
+    deleteMany: (ids) => {
         const url = "/many_unsaved";
-        return axiosClient.delete(url, id);
+        return axiosClient.delete(url, ids);
     },
     deleteAll: (data) => {
         const url = "/all_unsaved";

@@ -49,11 +49,12 @@
                 display: flex;
                 text-align: center;
                 margin: 10px 20px;
+            }
 
-                .thumbnail {
-                    max-width: 150px;
-                    max-height: 200px;
-                }
+            .list-item__thumbnail img {
+                width: 150px;
+                height: 100px;
+                object-fit: cover;
             }
     
             .list-item__content {
