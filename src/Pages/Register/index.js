@@ -57,7 +57,7 @@ function Register() {
             history.goBack('/');
         } else {
             setError({ ...error, register: data.message });
-            if (data.message == 'Email exist') {
+            if (data.message === "Email exist") {
                 alert("Đăng kí thất bại. Email đã tồn tại.");
             } else {
                 alert("Đăng kí thất bại.")

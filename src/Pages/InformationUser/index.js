@@ -28,23 +28,23 @@ function InformationUser() {
                     <form className={styles['InformationUser-form']}>
                         <div className={styles["InformationUser-form-input"]}>
                             <div>
-                                <label for="firstname" className={styles["InformationUser-label-input"]}>
+                                <label for="lastname" className={styles["InformationUser-label-input"]}>
                                     Họ:
                                 </label>
                                 <input type="text" className={styles["InformationUser-register-input"]}
-                                    name="firstname"
-                                    value={user.firstname}
+                                    name="lastname"
+                                    value={user.lastname}
                                     readOnly
                                 />
                             </div>
                             <br />
                             <div>
-                                <label for="lastname" className={styles["InformationUser-label-input"]}>
+                                <label for="firstname" className={styles["InformationUser-label-input"]}>
                                     Tên:
                                 </label>
                                 <input type="text" className={styles["InformationUser-register-input"]}
-                                    name="lastname"
-                                    value={user.lastname}
+                                    name="firstname"
+                                    value={user.firstname}
                                     readOnly
                                 />
                             </div>

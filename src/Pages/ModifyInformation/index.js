@@ -23,23 +23,23 @@ function ModifyInformation() {
                     <form className={styles['ModifyInformation-form']}>
                         <div className={styles["ModifyInformation-form-input"]}>
                             <div>
-                                <label for="firstname" className={styles["ModifyInformation-label-input"]}>
+                                <label for="lastname" className={styles["ModifyInformation-label-input"]}>
                                     Họ:
                                 </label>
                                 <input type="text" className={styles["ModifyInformation-register-input"]}
-                                    name="firstname"
-                                    value={user.firstname}
+                                    name="lastname"
+                                    value={user.lastname}
                                     readOnly
                                 />
                             </div>
                             <br />
                             <div>
-                                <label for="lastname" className={styles["ModifyInformation-label-input"]}>
+                                <label for="firstname" className={styles["ModifyInformation-label-input"]}>
                                     Tên:
                                 </label>
                                 <input type="text" className={styles["ModifyInformation-register-input"]}
-                                    name="lastname"
-                                    value={user.lastname}
+                                    name="firstname"
+                                    value={user.firstname}
                                     readOnly
                                 />
                             </div>
