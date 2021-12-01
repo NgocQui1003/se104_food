@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styles from '../SavedPostList/SavedPostList.module.scss';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Components
 import UserMenu from '../../Components/UserMenu';
@@ -16,27 +17,37 @@ import savedPostApi from '../../Api/savedPostApi';
 
 function SavedPostList() {
     const { loggedIn, user } = useSelector(state => state.User);
-    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
 
     const [savedList, setSavedList] = useState([]);
-    console.log(savedList);
+    // console.log(savedList);
 
     const fetchSavedList = async () => {
+        setLoading(true);
         const params = {
             userID: user._id
         }
         const response = await savedPostApi.getAll(params);
         setSavedList(response.data);
+        setLoading(false);
     }
 
-    const deletePost = (id) => {
-
-        // setSavedList(response.data);
+    const deletePost = (item) => {
+        // const newList = savedList.filter((item) => item._id !== id);
+        // setSavedList(newList);
+        // savedPostApi.deleteOne(id);
+        console.log("Deleted item: ", item);
     }
+
+    const Loading = () => (
+        <div className={styles['container-loading']}>
+            <CircularProgress />
+            <p>Đang tải danh sách bạn đã lưu</p>
+        </div>
+    )
 
     useEffect(() => {
         fetchSavedList();
-        deletePost();
     }, [])
 
 
@@ -64,7 +75,7 @@ function SavedPostList() {
                     </div>
                 </div>
                 <div className={styles['menu-btn']}>
-                    <button onClick={deletePost(item.id_post)} className={styles['menu-btn__delete']} >Xóa</button>
+                    <button onClick={() => deletePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
             </div>
         );
@@ -73,30 +84,38 @@ function SavedPostList() {
     return user && loggedIn ? (
         <div className={styles['container']}>
             <UserMenu user={user} />
-            {(savedList && savedList.length > 0) ? (
-                <div className={styles['list-container']}>
-                    <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
-                    <div className={styles['list-btn']}>
-                        <button className={styles['menu-btn__edit']}>Xóa chọn lọc</button>
-                        <button className={styles['menu-btn__delete']}>Xóa tất cả</button>
-                    </div>
-                    {
-                        savedList.map((item, idx) => {
-                            return <PostItem item={item} idx={idx} />
-                        })
-                    }
-                </div>
+            <div className={styles['list-container']}>
+                <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
 
-            ) : ( //If the list is Empty
-                <div className={styles['list-container']}>
-                    <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
-                    <div className={styles['list-item__null']}>
-                        <p>
-                            Bạn chưa lưu bài viết nào.
-                        </p>
-                    </div>
-                </div>
-            )}
+                {
+                    loading ? <Loading /> : (
+                        <>
+                            {savedList && savedList.length > 0 ?
+                                (
+                                    <>
+                                        <div className={styles['list-btn']}>
+                                            <button className={styles['menu-btn__edit']}>Xóa chọn lọc</button>
+                                            <button className={styles['menu-btn__delete']}>Xóa tất cả</button>
+                                        </div>
+                                        {
+                                            savedList.map((item, idx) => {
+                                                return <PostItem item={item} idx={idx} />
+                                            })
+                                        }
+                                    </>
+                                ) : (
+                                    <div className={styles['list-item__null']}>
+                                        <p>
+                                            Bạn chưa lưu bài viết nào.
+                                        </p>
+                                    </div>
+                                )
+                            }
+                        </>
+                    )
+
+                }
+            </div>
         </div >
     ) : <NotLoggedIn />
 }
