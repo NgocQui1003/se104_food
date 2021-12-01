@@ -60,8 +60,8 @@ function ItemPost({ post, savePost, reactPost }) {
                 <p>Bạn vui lòng đăng nhập để thực hiện chức năng này.</p>
 
                 <div className={styles['cnt-btn']}>
-                    <button onClick={() => history.push('/dang-nhap')}>Dang nhap</button>
-                    <button onClick={handleClose}>Huy</button>
+                    <button onClick={() => history.push('/dang-nhap')}>Đăng nhập</button>
+                    <button onClick={handleClose}>Hủy</button>
                 </div>
             </div>
         </Modal>
