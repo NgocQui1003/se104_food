@@ -82,9 +82,6 @@ function Home() {
         }
     }
 
-<<<<<<< HEAD
-    const suggestions = ["Bánh A", "Bánh B", "Bánh C", "Bánh D"];
-=======
     const sortValue = [
         {
             key: 'all',
@@ -105,7 +102,6 @@ function Home() {
         if (search != '')
             history.push(`/danh-sach-san-pham?q=${search}`)
     }
->>>>>>> baebbc1a4ab5e7b41931c34be7ca3d95f0cc9138
 
     return (
         <div className={styles['container']}>
@@ -114,13 +110,13 @@ function Home() {
                 <RandomPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
                 </RandomPopup>
                 <span>hoặc</span>
-                <span>dọn tủ lạnh nhà bạn bằng cách nhập nguyên liệu còn thừa dưới đây</span>
+                <span>Dọn tủ lạnh nhà bạn bằng cách nhập nguyên liệu còn thừa dưới đây</span>
                 <div className={styles['search-bar']}>
                     <LocalDiningIcon sx={{ color: '#EB4A36' }} />
-                    <input placeholder="Cà chua, trứng" 
+                    <input placeholder="Cà chua, trứng"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        onKeyDown={(e) => {if (e.key === 'Enter') redirectListPost()}}
+                        onKeyDown={(e) => { if (e.key === 'Enter') redirectListPost() }}
                     />
                     <div className={styles['icon-search']}
                         onClick={redirectListPost}
@@ -133,38 +129,6 @@ function Home() {
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div className={styles['container-btn-0']}>
-                {/* Component 0 */}
-                <ButtonUnderline key={""} title={"Cơm gà Ngô Quyền"} active={true} onClick={""} />
-                <ButtonUnderline key={""} title={"Hủ tiếu Sa Đéc"} active={false} onClick={""} />
-                <ButtonUnderline key={""} title={"Bún đậu mắm tôm"} active={false} onClick={""} />
-
-            </div>
-
-
-            <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-            >
-                <Grid container spacing={4} lg={12}>
-                    {postTitles.map((post, index) =>
-                        <Grid item lg={3} md={4} sm={6} xs={12} key={index}>
-                            <ItemPost post={post} savePost={savePost} reactPost={reactPost} />
-                        </Grid>
-                    )}
-                </Grid>
-            </Box>
-            <div className={styles['container-viewmore']}>
-                <button className={styles['btn-viewmore']}>Xem thêm</button>
-            </div>
-
-            <br />
-            <br />
-
-=======
->>>>>>> baebbc1a4ab5e7b41931c34be7ca3d95f0cc9138
             <div className={styles['heading']}>
                 <p className={styles['title']}>CÔNG THỨC NẤU ĂN</p>
                 <span className={styles['description']}>Ăn đã, mọi chuyện khác để sau.</span>
