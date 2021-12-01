@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import styles from './DropMenu.module.scss';
@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 function DropMenu(props) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const dropdownRef = useRef(null);
 
     const logout = () => {
         userApi.logout();
@@ -21,22 +22,39 @@ function DropMenu(props) {
         history.push('/');
     }
 
+    useEffect(() => {
+        const pageClickEvent = (e) => {
+            if (dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
+                props.setMenuTrigger(!props.trigger);
+            }
+        };
+        // If the item is active (ie open) then listen for clicks
+        if (props.trigger) {
+            window.addEventListener('click', pageClickEvent);
+        }
+
+        return () => {
+            window.removeEventListener('click', pageClickEvent);
+        }
+
+    }, [props.trigger]);
+
     return (props.trigger) ? (
-        <div className={styles['drop-menu']}>
+        <div ref={dropdownRef} className={styles['drop-menu']}>
             <div className={styles['menu-content']}>
-                <div className={styles['menu-content-items']}>
+                <div className={styles['menu-content-items']} >
                     <PersonOutlineIcon fontSize="small" />
                     <Link to='/nguoi-dung'>
                         Tài khoản
                     </Link>
                 </div>
-                <div className={styles['menu-content-items']}>
+                <div className={styles['menu-content-items']} >
                     <BookmarkBorderIcon fontSize="small" />
                     <Link to='/luu' >
                         Bài viết đã lưu
                     </Link>
                 </div>
-                <div className={styles['menu-content-items']}>
+                <div className={styles['menu-content-items']} >
                     <SettingsIcon fontSize='small' />
                     <Link to='/cai-dat' >
                         Cài đặt
