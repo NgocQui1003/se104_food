@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
@@ -10,11 +10,14 @@ import ThirdPartyGoogle from '../../Components/ThirdPartyGoogle';
 import userApi from '../../Api/userApi';
 import { userActions } from '../../Redux/Actions/userActions';
 import Auth from '../../Utils/Auth';
+import LogoutToUse from '../../Components/LogoutToUse';
 
 
 function Register() {
     const history = useHistory();
     const dispatch = useDispatch()
+
+    const { loggedIn, user } = useSelector(state => state.User);
 
     useEffect(() => {
         document.title = "Đăng kí tài khoản - Nomnom"
@@ -65,7 +68,9 @@ function Register() {
         }
     }
 
-    return (
+    return loggedIn && user ? (
+        <LogoutToUse />
+    ) : (
         <div>
             <form className={styles['register-form']} onSubmit={handleSubmit} >
                 <h2>ĐĂNG KÍ</h2>
