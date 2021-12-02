@@ -5,18 +5,18 @@ const savedPostApi = {
         const url = "/save_post";
         return axiosClient.get(url, id);
     },
-    unsavedMany: ([id_list]) => {
+    unsavedMany: (id_list) => {
         const data = {
-            list_post: [id_list]
+            list_post: id_list
         }
-        const url = "/many_unsaved";
+        const url = "save_post/many_unsaved";
         return axiosClient.post(url, data);
     },
     unsavedAll: (id_user) => {
         const data = {
             id_user: id_user
         }
-        const url = "/all_unsaved";
+        const url = "save_post/all_unsaved";
         return axiosClient.delete(url, data);
     },
 
