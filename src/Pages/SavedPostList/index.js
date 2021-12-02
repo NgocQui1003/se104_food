@@ -20,7 +20,6 @@ function SavedPostList() {
     const [loading, setLoading] = useState(false);
 
     const [savedList, setSavedList] = useState([]);
-    // console.log(savedList);
 
     const fetchSavedList = async () => {
         setLoading(true);
@@ -29,14 +28,53 @@ function SavedPostList() {
         }
         const response = await savedPostApi.getAll(params);
         setSavedList(response.data);
+        const newPost = response.data.map((e) => {
+            e.checked = false;
+            return e;
+        });
+        setSavedList(newPost);
         setLoading(false);
     }
 
-    const deletePost = (item) => {
-        // const newList = savedList.filter((item) => item._id !== id);
-        // setSavedList(newList);
-        // savedPostApi.deleteOne(id);
-        console.log("Deleted item: ", item);
+    const unsavedOnePost = (post) => {
+        let currentList = savedList;
+        currentList = currentList.filter(itm => itm.id_post !== post.id_post);
+        setSavedList(currentList);
+        console.log('current list: ', currentList);
+        // savedPostApi.unsavedPost(post.id_post);
+    }
+
+    const fetchCheckedPost = (e) => {
+        let currentList = savedList;
+        currentList = currentList.map((post) => {
+            if (e.target.value == post.id_post) {
+                post.checked = !post.checked;
+            }
+            return post;
+        });
+        setSavedList(currentList);
+    }
+
+    const unsavedMultiple = async () => {
+        let checkedList = savedList;
+        let arrayids = [];
+        checkedList.forEach((post) => {
+            if (post.checked) {
+                arrayids.push(post.id_post)
+            }
+        })
+        checkedList = checkedList.filter((post) => post.checked == false);
+        setSavedList(checkedList);
+        // const res = await savedPostApi.unsavedMany(arrayids);
+    };
+
+    const selectAll = (e) => {
+        let currentList = savedList;
+        currentList = currentList.map((post) => {
+            return { ...post, checked: true };
+        })
+        setSavedList(currentList);
+        // console.log("temp: ", currentList);
     }
 
     const Loading = () => (
@@ -56,7 +94,10 @@ function SavedPostList() {
         return (
             <div className={styles['list-item']} key={idx}>
                 <div className={styles['list-item__checkbox']}>
-                    <input type="checkbox" />
+                    <input type="checkbox" value={item.id_post}
+                        onChange={fetchCheckedPost}
+                        defaultChecked={item.checked}
+                    />
                 </div>
                 <div className={styles['list-item__container']}>
                     <div className={styles['list-item__thumbnail']}>
@@ -75,7 +116,7 @@ function SavedPostList() {
                     </div>
                 </div>
                 <div className={styles['menu-btn']}>
-                    <button onClick={() => deletePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
+                    <button onClick={() => unsavedOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
             </div>
         );
@@ -94,8 +135,14 @@ function SavedPostList() {
                                 (
                                     <>
                                         <div className={styles['list-btn']}>
-                                            <button className={styles['menu-btn__edit']}>Xóa chọn lọc</button>
-                                            <button className={styles['menu-btn__delete']}>Xóa tất cả</button>
+                                            <button className={styles['menu-btn__edit']}
+                                                onClick={selectAll}>
+                                                Chọn tất cả
+                                            </button>
+                                            <button className={styles['menu-btn__delete']}
+                                                onClick={unsavedMultiple}>
+                                                Xóa chọn lọc
+                                            </button>
                                         </div>
                                         {
                                             savedList.map((item, idx) => {
