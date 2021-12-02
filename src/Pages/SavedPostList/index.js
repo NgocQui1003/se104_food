@@ -28,11 +28,13 @@ function SavedPostList() {
         }
         const response = await savedPostApi.getAll(params);
         setSavedList(response.data);
-        const newPost = response.data.map((e) => {
-            e.checked = false;
-            return e;
-        });
-        setSavedList(newPost);
+        if (response.data) {
+            const newPost = response.data.map((e) => {
+                e.checked = false;
+                return e;
+            });
+            setSavedList(newPost);
+        }
         setLoading(false);
     }
 
@@ -41,7 +43,7 @@ function SavedPostList() {
         currentList = currentList.filter(itm => itm.id_post !== post.id_post);
         setSavedList(currentList);
         console.log('current list: ', currentList);
-        // savedPostApi.unsavedPost(post.id_post);
+        savedPostApi.unsavedPost(post.id_post);
     }
 
     const fetchCheckedPost = (e) => {
@@ -65,7 +67,7 @@ function SavedPostList() {
         })
         checkedList = checkedList.filter((post) => post.checked == false);
         setSavedList(checkedList);
-        // const res = await savedPostApi.unsavedMany(arrayids);
+        const res = await savedPostApi.unsavedMany(arrayids);
     };
 
     const selectAll = (e) => {

@@ -19,7 +19,6 @@ const savedPostApi = {
         const url = "save_post/all_unsaved";
         return axiosClient.delete(url, data);
     },
-
     savedPost: (id) => {
         const data = {
             id_post: id
