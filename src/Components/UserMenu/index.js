@@ -10,6 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 // import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 
 // Redux
@@ -75,6 +76,16 @@ function UserMenu({ user }) {
                         </div>
                         <div className={styles['menu-item__name']}>
                             Đổi mật khẩu
+                        </div>
+                    </NavLink>
+                </li>
+                <li className={styles['menu-item']}>
+                    <NavLink to="/danh-sach-bai-dang" className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                        <div className={styles['menu-item__icon']}>
+                            <ListAltIcon />
+                        </div>
+                        <div className={styles['menu-item__name']}>
+                            Danh sách bài đăng
                         </div>
                     </NavLink>
                 </li>

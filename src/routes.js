@@ -11,6 +11,7 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
+import UserPosts from './Pages/UserPosts';
 
 export const routes = [
     {
@@ -60,6 +61,10 @@ export const routes = [
     {
         path: '/random-mon-an',
         component: Random,
+    },
+    {
+        path: '/danh-sach-bai-dang',
+        component: UserPosts,
     },
     {
         component: NotFound,

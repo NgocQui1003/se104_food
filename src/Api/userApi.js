@@ -23,8 +23,24 @@ const userApi = {
 
     logout: () => {
         localStorage.removeItem('token');
+    },
+    getPosts: () => {
+        const url = '/post/post_management';
+        return axiosClient.get(url);
+    },
+    deleteOneUpload: (id) => {
+        const url = `/post/delete/${id}`
+        return axiosClient.delete(url);
+    },
+    deleteManyUpload: (id_list) => {
+        const data = {
+            data: {
+                list_post: id_list
+            }
+        }
+        const url = '/post/delete-many';
+        return axiosClient.delete(url, data);
     }
-
 }
 
 export default userApi;
