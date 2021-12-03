@@ -26,6 +26,7 @@ function Home() {
     const fetchPostList = async () => {
         const params = {
             limit: 20,
+            q: sortType,
         }
         const response = await postApi.getPost(params);
         setPosts(response.data)
@@ -33,7 +34,7 @@ function Home() {
 
     useEffect(() => {
         fetchPostList();
-    }, [])
+    }, [sortType])
 
     const updateSortType = (key) => {
         setSortType(key)
@@ -88,7 +89,7 @@ function Home() {
             value: 'Tất cả',
         },
         {
-            key: 'news',
+            key: 'new',
             value: 'Mới nhất',
         },
         {

@@ -22,6 +22,7 @@ const ValidateInput = {
     },
 
     password: (password) => {
+        return '';
         const re = '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/';
         if (password.trim() === '') {
             return 'Vui lòng nhập password';
