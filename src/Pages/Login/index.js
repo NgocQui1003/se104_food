@@ -62,7 +62,7 @@ function Login() {
             Auth.setToken(data.accessToken)
             const res = await userApi.getProfile();
             dispatch(userActions.setProfile(res.data))
-            history.goBack('/')
+            history.push('/');
         } else {
             setError({ ...error, login: data.message })
         }

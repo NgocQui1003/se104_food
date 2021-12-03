@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from "./Register.module.scss";
@@ -57,7 +57,8 @@ function Register() {
             Auth.setToken(data.accessToken);
             const res = await userApi.getProfile();
             dispatch(userActions.setProfile(res.data));
-            history.goBack('/');
+            history.push('/')
+            window.location.reload(true);
         } else {
             setError({ ...error, register: data.message });
             if (data.message === "Email exist") {
