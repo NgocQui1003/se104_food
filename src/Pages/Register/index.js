@@ -23,6 +23,7 @@ function Register() {
         document.title = "Đăng kí tài khoản - Nomnom"
     })
 
+
     const [registerValue, setRegisterValue] = useState({
         firstname: '',
         lastname: '',
@@ -52,7 +53,6 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await userApi.register(registerValue);
-
         if (data.success) {
             Auth.setToken(data.accessToken);
             const res = await userApi.getProfile();
@@ -64,7 +64,7 @@ function Register() {
             if (data.message === "Email exist") {
                 alert("Đăng kí thất bại. Email đã tồn tại.");
             } else {
-                alert("Đăng kí thất bại.")
+                alert("Đăng kí thất bại. ");
             }
         }
     }
@@ -173,7 +173,7 @@ function Register() {
                         }} />
                 </div>
                 {error.password == '' ? null :
-                    <div className={styles['form-error']}>{error.password}</div>
+                    <div className={styles['form-error']}>{error.register}</div>
                 }
                 <div className={styles["form-via"]}>
                     <Link to="/quen-mat-khau" className={styles["form-link"]}>Quên mật khẩu</Link>
@@ -188,8 +188,8 @@ function Register() {
 
             <p className={styles.center}>Hoặc</p>
             <div className={styles["thirdparty-login"]}>
-                <ThirdPartyFacebook />
-                <ThirdPartyGoogle />
+                <ThirdPartyFacebook onSubmit={handleSubmit} />
+                <ThirdPartyGoogle onSubmit={handleSubmit} />
             </div>
 
         </div >
