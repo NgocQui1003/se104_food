@@ -8,14 +8,6 @@
     text-align: center;
 }
 
-a {
-    color: black;
-}
-
-a:visited {
-    color: black;
-}
-
 .list-container {
     width: 75%;
     margin: 10px;
@@ -98,6 +90,10 @@ a:visited {
             display: inline-block;
             margin-top: auto;
             margin-bottom: auto;
+
+            .menu-btn__nav {
+                color: black;
+            }
         }
         
     }
@@ -226,12 +222,13 @@ a:visited {
         
                     .list-item__name {
                         font-weight: bold;
-                        font-size: 10px;
+                        font-size: 15px;
                         margin: 0 10px;   
                     }
     
                     .list-item__author {
-                        margin: 0 32px;
+                        margin: 0 10px;
+                        font-size: 10px;
                     }
         
                     .list-item__description {
