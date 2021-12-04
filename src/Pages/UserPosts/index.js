@@ -132,7 +132,7 @@ function SavedPostList() {
                 </div>
 
                 <div className={styles['menu-btn']}>
-                    <Link to='/'>
+                    <Link className={styles['menu-btn__nav']} to='/'>
                         <div className={styles['menu-btn__editpost']}><Edit /></div>
                     </Link>
 
