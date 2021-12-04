@@ -12,11 +12,13 @@ function ThirdPartyGoogle() {
     const dispatch = useDispatch();
     const responseSuccessGoogle = (response) => {
         let tokenId = response.tokenId
-        dispatch(thirdpartyApi.requestGoogle(tokenId))
+        dispatch(thirdpartyApi.requestGoogle(tokenId));
+        alert('Đăng nhập bằng Google thành công');
     }
 
     const responseErrorGoogle = (res) => {
         console.log(res);
+        alert('Đăng nhập bằng Google thất bại');
     }
 
 

@@ -66,8 +66,8 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Dọn tủ lạnh
+                                    <Link to='/danh-sach-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Danh sách món ăn
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -151,8 +151,8 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Dọn tủ lạnh
+                                    <Link to='/danh-sach-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Danh sách món ăn
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -178,13 +178,18 @@ function Navbar({ loggedIn, user }) {
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
+                                        <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Dọn tủ lạnh
+                                        </Link>
+                                    </li>
+                                    <li className={styles['nav-item']}>
                                         <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Tìm kiếm công thức
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Dọn tủ lạnh
+                                        <Link to='/danh-sach-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Danh sách món ăn
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>

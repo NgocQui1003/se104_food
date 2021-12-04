@@ -2,13 +2,16 @@ import axiosClient from "./axiosClient";
 
 const thirdpartyApi = {
     requestFacebook: ({ accessToken, userID }) => {
-        const url = 'api/login-facebook';
+        const url = '/api/auth/login-facebook';
         return axiosClient.post(url, { accessToken, userID });
     },
 
     requestGoogle: (tokenId) => {
-        const url = 'api/login-google';
-        return axiosClient.post(url, tokenId);
+        const data = {
+            tokenId: tokenId
+        }
+        const url = '/api/auth/login-google';
+        return axiosClient.post(url, data);
     }
 }
 
