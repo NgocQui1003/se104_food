@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import styles from './UserPosts.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
+import EditIcon from '@mui/icons-material/Edit';
 
 // Components
 import UserMenu from '../../Components/UserMenu';
@@ -13,6 +15,7 @@ import { userActions } from '../../Redux/Actions/userActions';
 
 // Api
 import userApi from '../../Api/userApi';
+import Edit from '@mui/icons-material/Edit';
 
 function SavedPostList() {
     const { loggedIn, user } = useSelector(state => state.User);
@@ -127,7 +130,12 @@ function SavedPostList() {
                         </div>
                     </div>
                 </div>
+
                 <div className={styles['menu-btn']}>
+                    <Link to='/'>
+                        <div className={styles['menu-btn__editpost']}><Edit /></div>
+                    </Link>
+
                     <button onClick={() => deleteOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
             </div>
