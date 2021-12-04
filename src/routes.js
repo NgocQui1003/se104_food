@@ -12,6 +12,8 @@ import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
 import UserPosts from './Pages/UserPosts';
+import ResetPassword from './Pages/ResetPassword';
+import PostList from './Pages/PostList';
 
 export const routes = [
     {
@@ -65,6 +67,14 @@ export const routes = [
     {
         path: '/danh-sach-bai-dang',
         component: UserPosts,
+    },
+    {
+        path: '/reset-password',
+        component: ResetPassword,
+    },
+    {
+        path: '/tim-kiem',
+        component: PostList,  
     },
     {
         component: NotFound,

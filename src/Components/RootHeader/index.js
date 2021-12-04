@@ -1,5 +1,5 @@
-import React from 'react'
-import { useLocation } from "react-router-dom";
+import React, { useState } from 'react'
+import { useLocation, useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 import HeaderHomepage from '../HeaderHomepage';
@@ -10,8 +10,14 @@ function RootHeader() {
     return (
         <div>
             {location.pathname === '/'
-                ? <HeaderHomepage loggedIn={userState.loggedIn} user={userState.user} />
-                : <Header loggedIn={userState.loggedIn} user={userState.user} />}
+                ? <HeaderHomepage 
+                    loggedIn={userState.loggedIn} 
+                    user={userState.user} 
+                />
+                : <Header 
+                    loggedIn={userState.loggedIn} 
+                    user={userState.user} 
+                />}
         </div>
     )
 }

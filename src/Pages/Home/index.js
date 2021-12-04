@@ -7,6 +7,7 @@ import savedPostApi from '../../Api/savedPostApi';
 import reactionApi from '../../Api/reactionApi';
 
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
@@ -18,6 +19,7 @@ import RandomPopup from '../../Components/RandomPopup';
 
 function Home() {
     const history = useHistory();
+    const userState = useSelector((state) => state.User);
     const [buttonPopup, setButtonPopup] = useState(false);
     const [posts, setPosts] = useState([])
     const [sortType, setSortType] = useState('all');
@@ -34,7 +36,7 @@ function Home() {
 
     useEffect(() => {
         fetchPostList();
-    }, [sortType])
+    }, [sortType, userState])
 
     const updateSortType = (key) => {
         setSortType(key)
@@ -101,7 +103,7 @@ function Home() {
     const redirectListPost = () => {
         console.log(search);
         if (search != '')
-            history.push(`/danh-sach-san-pham?q=${search}`)
+            history.push(`/tim-kiem?q=${search}`)
     }
 
     return (
@@ -158,7 +160,7 @@ function Home() {
                 </Grid>
             </Box>
             <div className={styles['container-viewmore']}
-                onClick={() => history.push('/danh-sach-san-pham')}
+                onClick={() => history.push('/tim-kiem')}
             >
                 <button className={styles['btn-viewmore']}>Xem thêm</button>
             </div>

@@ -20,17 +20,19 @@ function Navbar({ loggedIn, user }) {
     const [navbar, setNavbar] = useState(false);
     const [menuTrigger, setMenuTrigger] = useState(false);
 
+
+    const [search, setSearch] = useState('')
+
+    const handleSearch = () => {
+        if (search.trim() != '') {
+            history.push(`/tim-kiem?q=${search}`)  
+        }
+        window.location.reload()
+    }
+
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    // const changeBackground = () => {
-    //     if (window.scrollY >= 80) {
-    //         setNavbar(true);
-    //     } else {
-    //         setNavbar(false);
-    //     }
-    // }
 
-    // window.addEventListener('scroll', changeBackground);
     const AvatarUser = () => (
         <div className={styles['container-avatar']}>
             <img
@@ -69,7 +71,14 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <input type="search" className={styles['nav-searchbar']} placeholder="Tìm kiếm công thức" />
+                                    <input 
+                                        type="search" 
+                                        className={styles['nav-searchbar']} 
+                                        placeholder="Tìm kiếm công thức" 
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        onKeyDown={(e) => { if (e.key === 'Enter') handleSearch()}}
+                                    />
                                 </li>
                             </ul>
                         </div>
@@ -147,7 +156,15 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <input type="search" className={styles['nav-searchbar']} placeholder="Tìm kiếm công thức" />
+                                    <input 
+                                        type="search" 
+                                        className={styles['nav-searchbar']} 
+                                        placeholder="Tìm kiếm công thức" 
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        onKeyDown={(e) => { if (e.key === 'Enter') handleSearch()}}
+
+                                    />
                                 </li>
                             </ul>
                         </div>

@@ -4,7 +4,7 @@ import './App.css';
 import { routes } from './routes';
 
 import RootHeader from './Components/RootHeader';
-
+import Footer from './Components/Footer';
 function App() {
 
   return (
@@ -21,6 +21,7 @@ function App() {
             />
           )}
         </Switch>
+        <Footer />
       </Router>
     </>
   );
