@@ -12,16 +12,11 @@ import { useDispatch } from 'react-redux';
 function ThirdPartyFacebook() {
     const dispatch = useDispatch();
 
-    const responseFacebook = (response) => {
-        console.log('response facebooks: ');
-        console.log(response);
-        console.log(response.accessToken);
+    const responseFacebook = async (response) => {
         let accessToken = response.accessToken;
         let userID = response.userID;
-        // dispatch(thirdpartyApi.requestFacebook({ accessToken, userID }));
+        const res = await dispatch(thirdpartyApi.requestFacebook({ accessToken, userID }));
     }
-
-
 
     return (
         <div className={styles['container']}>
@@ -31,7 +26,7 @@ function ThirdPartyFacebook() {
             </div> */}
 
             <FacebookLogin
-                appId="181077507495514"
+                appId="624728648681236"
                 autoLoad={false}
                 fields="name, email, gender, picture"
                 cssClass={styles['btn-login-facebook']}
