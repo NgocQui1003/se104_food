@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from './UserPosts.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
+import { Pagination } from '@mui/material';
 
 // Components
 import UserMenu from '../../Components/UserMenu';
@@ -15,7 +16,6 @@ import { userActions } from '../../Redux/Actions/userActions';
 
 // Api
 import userApi from '../../Api/userApi';
-import Edit from '@mui/icons-material/Edit';
 
 function SavedPostList() {
     const { loggedIn, user } = useSelector(state => state.User);
@@ -23,19 +23,30 @@ function SavedPostList() {
 
     const [uploadList, setUploadList] = useState([]);
 
+    // Pagination setup
+    const [currentpage, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
+    const numRows = 8;
+
     const fetchUploadList = async () => {
         setLoading(true);
         const params = {
-            userID: user._id
+            limit: numRows,
+            page: currentpage
         }
         const response = await userApi.getPosts(params);
-        setUploadList(response.data);
+
+        // pagination
+        setTotalPage(Math.ceil((response.paging.total) / numRows));
+
         if (response.data) {
             const newPost = response.data.map((e) => {
                 e.checked = false;
                 return e;
             });
             setUploadList(newPost);
+        } else {
+            setUploadList(response.data);
         }
         setLoading(false);
     }
@@ -45,10 +56,7 @@ function SavedPostList() {
         currentList = currentList.filter(itm => itm._id !== post._id);
         setUploadList(currentList);
 
-        const res = await userApi.deleteOneUpload(post._id);
-        // if (res && res.message == 'Delete Success') {
-        //     alert('Xóa thành công');
-        // }
+        await userApi.deleteOneUpload(post._id);
     }
 
     // Fetch checked list
@@ -75,12 +83,10 @@ function SavedPostList() {
         })
         console.log('array: ', arrayids);
 
-        // let deleteList = checkedList.filter((post) => post.checked == true);
-
         // Remaining danh sách
         checkedList = checkedList.filter((post) => post.checked == false);
         setUploadList(checkedList);
-        const res = await userApi.deleteManyUpload(arrayids);
+        await userApi.deleteManyUpload(arrayids);
     };
 
     const selectAll = () => {
@@ -89,7 +95,6 @@ function SavedPostList() {
             return { ...post, checked: true };
         })
         setUploadList(currentList);
-        // console.log("temp: ", currentList);
     }
 
     const Loading = () => (
@@ -99,11 +104,14 @@ function SavedPostList() {
         </div>
     )
 
+    const handlePageChange = (value) => {
+        setPage(value);
+        window.scrollTo(0, 0);
+    }
+
     useEffect(() => {
         fetchUploadList();
-    }, [])
-
-
+    }, [currentpage])
 
     function PostItem({ item, idx }) {
         return (
@@ -133,7 +141,7 @@ function SavedPostList() {
 
                 <div className={styles['menu-btn']}>
                     <Link className={styles['menu-btn__nav']} to='/'>
-                        <div className={styles['menu-btn__editpost']}><Edit /></div>
+                        <div className={styles['menu-btn__editpost']}><EditIcon /></div>
                     </Link>
 
                     <button onClick={() => deleteOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
@@ -169,6 +177,14 @@ function SavedPostList() {
                                                 return <PostItem item={item} idx={idx} />
                                             })
                                         }
+                                        <div className={styles['list-pagination']}>
+                                            <Pagination
+                                                count={totalPage}
+                                                page={currentpage}
+                                                // e.target.textContent la kieu string
+                                                onChange={(e, page) => handlePageChange(page)}
+                                            ></Pagination>
+                                        </div>
                                     </>
                                 ) : (
                                     <div className={styles['list-item__null']}>

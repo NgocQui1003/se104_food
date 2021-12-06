@@ -36,9 +36,14 @@ const userApi = {
     logout: () => {
         localStorage.removeItem('token');
     },
-    getPosts: () => {
-        const url = '/post/post_management';
-        return axiosClient.get(url);
+    getPosts: (data) => {
+        const url = `/post/post_management/`;
+        return axiosClient.get(url, {
+            params: {
+                limit: data.limit,
+                page: data.page
+            }
+        });
     },
     deleteOneUpload: (id) => {
         const url = `/post/delete/${id}`

@@ -27,6 +27,15 @@
         margin-bottom: 10px;
     }
 
+    .list-pagination {
+        text-align: center;
+        margin: 15px 0;
+
+        ul {
+            justify-content: center;
+        }
+    }
+
     .list-item {
         display: flex;
 
