@@ -1,42 +1,32 @@
-import React, { useState } from "react";
-import axios from 'axios';
 
+import React, { useEffect, useState } from 'react'
 import styles from './ForgotPassword.module.scss';
-const localhost = 'http://localhost:3000/';
-axios.defaults.withCredentials = true
+
+
+import ValidateInput from '../../Utils/ValidateInput';
+
+import userApi from '../../Api/userApi';
+
 function ForgotPassword() {
+    useEffect(() => {
+        document.title = "Quên mật khẩu"
+    })
     const [email, setEmail] = useState('')
 
     const [error, setError] = useState({
         email: '',
     })
-    const validateEmail = text => {
-        const re = /\S+@\S+\.\S+/;
-        if (text === ''){
-            return 'Vui lòng điền email'
-        }
-        else {
-            if (!re.test(text)) return 'Vui lòng nhập đúng định dạng Email';
-        }
-    
-        return '';
-    }
-    const forgotFassword = async (email) => {
-        const URL = localhost + `user/forgot-password`;
-        return axios.post(URL, email)
-    }
     const submitHandler = async (e) => {
         e.preventDefault();
-        await forgotFassword({email})
-        .then(res => res.data)
-        .then(data => {
-            console.log(data);
-        })
-        .catch(err => console.log(err))
-    }
+        await userApi.forgotPassword({email})
+            .then(res => res.data)
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.log(err))
 
+    }
     return (
-        <div className={styles['container']}>
         <div className={styles["forgotpass"]}>
             <h3>Quên mật khẩu</h3>
 
@@ -50,7 +40,7 @@ function ForgotPassword() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 onBlur={
                                     (e) => {
-                                        let err = validateEmail(e.target.value);
+                                        let err = ValidateInput.email(e.target.value);
                                         setError({ ...error, email: err })
                                     }
                                 }
@@ -59,6 +49,15 @@ function ForgotPassword() {
                             />
                         </td>
                     </tr>
+
+                    {(error.email == '') ? null :
+                        <tr>
+                            <td colspan="2" className={styles["center"]}>
+                                {error.email}
+                            </td>
+                        </tr>
+                    }
+
                     <tr height="50">
                         <td colspan="2" className={styles["center"]}>
                             <input name="button" type="submit" className={styles["button"]} />
@@ -67,8 +66,7 @@ function ForgotPassword() {
                 </table>
             </form>
         </div>
-
-        </div>
     )
 }
+
 export default ForgotPassword;

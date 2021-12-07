@@ -31,6 +31,17 @@ const ValidateInput = {
         }
         else return 'Mật khẩu phải có tổi thiểu 8 kí tự, bao gồm chữ số và một số kí tự đặc biệt.';
     },
+    validateConfPassWord: (checkingText, password) => {
+
+        if (checkingText === '' && password !== '')
+            return 'Vui lòng nhập lại password';
+        else {
+            if (checkingText !== password)
+                return 'Sai password'
+        }
+    
+        return '';
+    },
 }
 
 export default ValidateInput;
