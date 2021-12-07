@@ -12,6 +12,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 import CancelIcon from '@mui/icons-material/Cancel';
 import Modal from '@mui/material/Modal';
+import { HistoryOutlined } from '@mui/icons-material';
 
 function ItemPost({ post, savePost, reactPost }) {
     const history = useHistory()
@@ -66,6 +67,9 @@ function ItemPost({ post, savePost, reactPost }) {
             </div>
         </Modal>
     }
+    const onClickAvatar = (id) => {
+        history.push(`/danh-sach-bai-viet-ng-dung/${id}`)
+    }
     return (
         <div className={styles['container']}>
             <ModelCustom />
@@ -88,7 +92,9 @@ function ItemPost({ post, savePost, reactPost }) {
                     <p>
                         {formatTitle(post['title'])}
                     </p>
-                    <div className={styles['container-avatar-user']}>
+                    <div className={styles['container-avatar-user']}
+                        onClick={() => onClickAvatar(post['id_author']['_id'])}
+                    >
                         <img
                             src={post['id_author']['avatar']}
                             alt='avatar-user'
