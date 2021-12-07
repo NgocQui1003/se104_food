@@ -12,6 +12,7 @@ import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
 import UserPosts from './Pages/UserPosts';
+import PostDetail from './Pages/PostDetail';
 
 export const routes = [
     {
@@ -65,6 +66,10 @@ export const routes = [
     {
         path: '/danh-sach-bai-dang',
         component: UserPosts,
+    },
+    {
+        path: '/bai-dang/:_id',
+        component: PostDetail,
     },
     {
         component: NotFound,
