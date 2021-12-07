@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import axios from 'axios';
-import { useParams} from 'react-router-dom'
+// import "../ForgotPassword/ForgotPassword.scss";
 
-import styles from './ResetPassword.module.scss';
+import { useParams, useHistory} from 'react-router-dom'
+import ValidateInput from '../../Utils/ValidateInput';
+import userApi from '../../Api/userApi';
 
-function ResetPassword() {
-    const localhost = 'http://localhost:3000/';
+function ResetPass() {
+    const history = useHistory();
     const { token } = useParams();
     const [resetPass, setResetPass] = useState({
         password: '',
@@ -18,38 +19,23 @@ function ResetPassword() {
         confirmPassword: ''
     })
 
-    const resetPassword = async ({token, password}) => {
-        console.log(token, password);
-        const URL = localhost + `user/reset-password/${token}`
-        console.log(URL);
-        return await axios.post(URL, {password})
-    }
     const submitHandler = e => {
-        //
-    }
-
-    const validatePassWord = text => {
-        const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        if (text === '')
-            return 'Vui lòng nhập password';
-        else {
-            if (!text.match(re))
-                return 'Mật khẩu phải có ít nhất 8 ký tự, trong đó có chứa ít nhất 1 số và 1 chữ cái'
-            else return ''
+        e.preventDefault();
+        if (error.error===''&&error.password===''&&error.confirmPassword===''){
+            console.log('RESET PASSWORD');
+            userApi.resetPassword({token, password: resetPass.password})
+            .then(res => res.data)
+            .then(data => {
+                if (data.status){
+                    history.push('/dang-nhap')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
     }
-    const validateConfPassWord = (checkingText, password) => {
 
-        if (checkingText === '' && password !== '')
-            return 'Vui lòng nhập lại password';
-        else {
-            if (checkingText !== password)
-                return 'Sai password'
-        }
-    
-        return '';
-    }
-   
     return (
         <div className="forgotpass">
         <h3>Đặt lại mật khẩu</h3>
@@ -65,7 +51,7 @@ function ResetPassword() {
                         setResetPass({ ...resetPass, password: e.target.value })
                     }}
                     onBlur={(e) => {
-                        let err = validatePassWord(e.target.value);
+                        let err = ValidateInput.password(e.target.value);
                         setError({ ...error, password: err })
                     }} 
                     required  />
@@ -79,12 +65,12 @@ function ResetPassword() {
                     onChange={(e) => {
                         setResetPass({ ...resetPass, confirmPassWord: e.target.value })
                         if (e.target.value.length>=resetPass.password.length){
-                            let err = validateConfPassWord(e.target.value, resetPass.password);
+                            let err = ValidateInput.validateConfPassWord(e.target.value, resetPass.password);
                             setError({ ...error, confirmPassword: err })    
                         }
                     }}
                     onBlur={(e) => {
-                        let err = validateConfPassWord(e.target.value, resetPass.password);
+                        let err = ValidateInput.validateConfPassWord(e.target.value, resetPass.password);
                         setError({ ...error, confirmPassword: err })
                     }}
                     required  />
@@ -100,4 +86,4 @@ function ResetPassword() {
     </div>
     )
 }
-export default ResetPassword;
+export default ResetPass

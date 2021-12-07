@@ -16,9 +16,15 @@ const userApi = {
         return axiosClient.get(url);
     },
 
-    forgotPassword: (data) => {
-        const url = '/forgot-password';
-        return axiosClient.post(url, data);
+    forgotPassword: (email) => {
+        const url = '/api/user/forgot-password';
+        return axiosClient.post(url, email);
+    },
+    resetPassword: ({token, password}) => {
+        console.log(token, password);
+        const URL = `api/user/reset-password/${token}`
+        console.log(URL);
+        return axiosClient.post(URL, {password})
     },
 
     changePassword: (data) => {

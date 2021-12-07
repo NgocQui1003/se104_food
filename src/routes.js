@@ -12,8 +12,9 @@ import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
 import UserPosts from './Pages/UserPosts';
-import ResetPassword from './Pages/ResetPassword';
+import ResetPass from './Pages/ResetPassword';
 import PostList from './Pages/PostList';
+import PostByUser from './Pages/PostByUser';
 
 export const routes = [
     {
@@ -39,6 +40,10 @@ export const routes = [
     {
         path: '/quen-mat-khau',
         component: ForgotPassword,
+    },
+    {
+        path: '/dat-lai-mat-khau',
+        component: ResetPass,
     },
     {
         path: '/luu',
@@ -70,11 +75,15 @@ export const routes = [
     },
     {
         path: '/reset-password',
-        component: ResetPassword,
+        component: ResetPass,
     },
     {
         path: '/tim-kiem',
         component: PostList,  
+    },
+    {
+        path: '/danh-sach-bai-viet-ng-dung/:id',
+        component: PostByUser,
     },
     {
         component: NotFound,
