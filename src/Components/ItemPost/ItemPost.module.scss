@@ -71,6 +71,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-decoration: none;
+    color: black;
+
     img {
         width: 24px;
         height: 24px;
@@ -116,4 +119,12 @@
         justify-content: flex-end;
         align-items: flex-end;
     }
+}
+
+.content-link {
+    text-decoration: none;   
+}
+
+.content-link:hover {
+    text-decoration: none;
 }

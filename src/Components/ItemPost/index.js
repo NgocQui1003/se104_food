@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import styles from './ItemPost.module.scss';
 
@@ -70,31 +70,36 @@ function ItemPost({ post, savePost, reactPost }) {
         <div className={styles['container']}>
             <ModelCustom />
             <Card>
-                <div className={styles['container-img-button']}>
-                    <img
-                        src={post['thumbnail_image']}
-                        alt={post['thumbnail_image']}
-                    />
-                    <div onClick={handleSavePost}>
-                        {post.isSaved
-                            ? <BookmarkIcon className={styles['bookmark-icon']} />
-                            : <BookmarkBorderIcon className={styles['bookmark-icon']} />}
+                <Link to={`/bai-dang/${id}`}>
+                    <div className={styles['container-img-button']}>
+                        <img
+                            src={post['thumbnail_image']}
+                            alt={post['thumbnail_image']}
+                        />
+                        <div onClick={handleSavePost}>
+                            {post.isSaved
+                                ? <BookmarkIcon className={styles['bookmark-icon']} />
+                                : <BookmarkBorderIcon className={styles['bookmark-icon']} />}
+                        </div>
+
+
                     </div>
-
-
-                </div>
+                </Link>
 
                 <div className={styles['content-more']}>
-                    <p>
-                        {formatTitle(post['title'])}
-                    </p>
-                    <div className={styles['container-avatar-user']}>
+                    <Link to={`/bai-dang/${id}`} className={styles['content-link']}>
+                        <p>
+                            {formatTitle(post['title'])}
+                        </p>
+                    </Link>
+                    <Link to={`danh-sach-bai-viet-ng-dung/${post.id_author._id}`} className={styles['container-avatar-user']}>
                         <img
                             src={post['id_author']['avatar']}
                             alt='avatar-user'
                         />
                         <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
-                    </div>
+                    </Link>
+
                     <div className={`${styles['btn-like']} ${post['isLike'] ? styles['active'] : ''}`}
                         onClick={handleReactPost}
                     >
