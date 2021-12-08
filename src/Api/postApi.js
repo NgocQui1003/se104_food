@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const postApi = {
     getPost: (params) => {
-        const url = '/post';
+        const url = `/post?page=1&limit=${params.limit}`;
         return axiosClient.get(url, { params });
     },
 
