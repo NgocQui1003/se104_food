@@ -6,12 +6,8 @@ import logo from '../../Assets/100x100.png';
 
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import EditIcon from '@mui/icons-material/Edit';
-import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-
-// import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 // components
 import NotLoggedIn from '../NotLoggedIn';
@@ -29,9 +25,17 @@ function AdminMenu({ user }) {
             </div>
             <ul className={styles['menu-list']}>
                 <li className={styles['menu-item']}>
-                    <NavLink to="/admin/danh-sach-nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                    <NavLink to='/admin/ho-so' className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
                             <PersonOutlineIcon />
+                        </div>
+                        <div className={styles['menu-item__name']}>
+                            Thông tin Admin
+                        </div>
+                    </NavLink>
+                    <NavLink to="/admin/danh-sach-nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                        <div className={styles['menu-item__icon']}>
+                            <ListAltIcon />
                         </div>
                         <div className={styles['menu-item__name']}>
                             Danh sách người dùng
@@ -43,6 +47,14 @@ function AdminMenu({ user }) {
                         </div>
                         <div className={styles['menu-item__name']}>
                             Thêm người dùng mới
+                        </div>
+                    </NavLink>
+                    <NavLink to='/admin/danh-sach-bai-viet' className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                        <div className={styles['menu-item__icon']}>
+                            <FormatListBulletedIcon />
+                        </div>
+                        <div className={styles['menu-item__name']}>
+                            Danh sách bài viết
                         </div>
                     </NavLink>
                 </li>
