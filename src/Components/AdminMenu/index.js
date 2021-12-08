@@ -24,12 +24,12 @@ function AdminMenu() {
             </div>
             <ul className={styles['menu-list']}>
                 <li className={styles['menu-item']}>
-                    <NavLink to="/xoa-nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                    <NavLink to="/danh-sach-nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
                             <PersonOutlineIcon />
                         </div>
                         <div className={styles['menu-item__name']}>
-                            Xóa người dùng
+                            Danh sách người dùng
                         </div>
                     </NavLink>
                 </li>

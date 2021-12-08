@@ -11,7 +11,7 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
-import DeleteUsers from './Pages/DeleteUsers';
+import Listusers from './Pages/Listusers';
 
 export const routes = [
     {
@@ -63,8 +63,8 @@ export const routes = [
         component: Random,
     },
     {
-        path: '/xoa-nguoi-dung',
-        component: DeleteUsers,
+        path: '/danh-sach-nguoi-dung',
+        component: Listusers,
     },
     {
         component: NotFound,
