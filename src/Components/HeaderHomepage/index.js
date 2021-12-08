@@ -101,9 +101,9 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={`${styles['nav-item']} ${styles['login-success']}`} onClick={() => setMenuTrigger(!menuTrigger)}>
-                                    <AvatarUser></AvatarUser>
+                                    <AvatarUser />
                                 </li>
-                                <DropMenu trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
+                                <DropMenu role={user.role.role_name} trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
                                 <li className={`${styles['nav-item']} ${styles['logout']}`}>
                                     <div className={styles['nav-links-mobile']} onClick={logout}>
                                         Đăng xuất

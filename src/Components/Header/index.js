@@ -20,7 +20,6 @@ function Navbar({ loggedIn, user }) {
     const [navbar, setNavbar] = useState(false);
     const [menuTrigger, setMenuTrigger] = useState(false);
 
-
     const [search, setSearch] = useState('')
 
     const handleSearch = () => {
@@ -113,12 +112,9 @@ function Navbar({ loggedIn, user }) {
                                     </li>
                                 </div>
                                 <li onClick={() => setMenuTrigger(!menuTrigger)} className={`${styles['nav-item']} ${styles['login-success']}`}>
-                                    {/* <Link to='/nguoi-dung' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        
-                                    </Link> */}
                                     <AvatarUser />
                                 </li>
-                                <DropMenu trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
+                                <DropMenu role={user.role.role_name} trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
                                 <li className={`${styles['nav-item']} ${styles['logout']}`}>
                                     <div className={styles['nav-links-mobile']} onClick={logout}>
                                         Đăng xuất
