@@ -21,6 +21,8 @@ function CreateUser() {
     const { user, loggedIn } = useSelector(state => state.User);
     const history = useHistory();
     const dispatch = useDispatch();
+    const isAdmin = "admin" === user.role.role_name;
+    console.log(isAdmin);
 
     useEffect(() => {
         document.title = "Admin Đăng kí - Nomnom"
@@ -71,7 +73,7 @@ function CreateUser() {
         }
     }
 
-    return user && loggedIn ? (
+    return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>
             <AdminMenu user={user}></AdminMenu>
             <div className={styles['container-register']}>

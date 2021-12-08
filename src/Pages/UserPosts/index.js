@@ -35,14 +35,16 @@ function SavedPostList() {
             page: currentpage
         }
         const response = await userApi.getPosts(params);
+        console.log(response);
 
-        if (response) {
+        if (response.data) {
             const newPost = response.data.map((e) => {
                 e.checked = false;
                 return e;
             });
             setUploadList(newPost);
-            setTotalPage(Math.ceil((response.length) / numRows));
+            //pagination
+            setTotalPage(Math.ceil((response.data.length) / numRows));
         } else {
             setUploadList(response.data);
         }
