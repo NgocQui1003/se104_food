@@ -136,13 +136,13 @@ function PostDetail() {
                     <div className={styles['food_title']}>
                         <h1>{post.title}</h1>
                     </div>
-                    <div className={styles['container-avatar-user']}>
+                    <Link to={`danh-sach-bai-viet-ng-dung/${post.id_author._id}`} className={styles['container-avatar-user']}>
                         <img
                             src={post.id_author.avatar}
                             alt='avatar-user'
                         />
                         <span>{post.id_author.firstname} {post.id_author.lastname} </span>
-                    </div>
+                    </Link>
                     <div className={styles['food_description']}>
                         <div className={styles['food-description_title']}>
                             <h2>Mô tả:</h2>
@@ -173,7 +173,7 @@ function PostDetail() {
                     </div>
                 </div>
                 <div className={styles['food_btn']}>
-                    <button className={styles['btn_save']} onClick={handleSavePost}><i class={save ? "fas fa-bookmark" : "far fa-bookmark"}></i></button>
+                    <button className={styles['btn_save']} onClick={handleSavePost}><i class={post.isSaved ? "fas fa-bookmark" : "far fa-bookmark"}></i></button>
                     <button className={styles['btn_like']} onClick={handleReactPost}>{like ? like : post.numberLike} <i class={post.isLike ? "fas fa-heart" : "far fa-heart"}></i></button>
                 </div>
             </div>

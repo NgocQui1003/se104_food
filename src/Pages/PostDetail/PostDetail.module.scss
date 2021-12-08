@@ -104,6 +104,8 @@ img {
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-decoration: none;
+
     img {
         width: 4%;
         height: 4%;
@@ -112,6 +114,7 @@ img {
     span {
         font-size: 20px;
         margin-left: 4px;
+        color: black;
     }
 }
 
