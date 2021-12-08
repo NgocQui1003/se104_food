@@ -9,8 +9,13 @@ const adminApi = {
         const url = '/api/user/profile';
         return axiosClient.get(url);
     },
-    getAllUsers: () => {
-        const url = '/api/admin/get-users';
+    getAllUsers: (params) => {
+        let url = `/api/admin/get-users?page=${params.page}&limit=${params.limit}`;
+        return axiosClient.get(url);
+    },
+    getUserProfile: (id) => {
+        const url = `/api/admin/user/${id}`;
+        console.log(url);
         return axiosClient.get(url);
     },
     deleteOne: (id) => {
