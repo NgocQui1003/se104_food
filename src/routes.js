@@ -14,8 +14,10 @@ import Random from './Pages/Random';
 import DeleteUsers from './Pages/DeleteUsers';
 import UserPosts from './Pages/UserPosts';
 import ResetPass from './Pages/ResetPassword';
-import PostList from './Pages/PostList';
+import Search from './Pages/Search';
 import PostByUser from './Pages/PostByUser';
+import ListPost from './Pages/ListPost';
+import AdminListPost from './Pages/AdminListPost';
 
 export const routes = [
     {
@@ -43,12 +45,16 @@ export const routes = [
         component: ForgotPassword,
     },
     {
-        path: '/dat-lai-mat-khau',
+        path: '/dat-lai-mat-khau/:token',
         component: ResetPass,
     },
     {
         path: '/luu',
         component: SavedPostList,
+    },
+    {
+        path: '/danh-sach-bai-viet',
+        component: ListPost,
     },
     {
         path: '/nguoi-dung',
@@ -84,11 +90,15 @@ export const routes = [
     },
     {
         path: '/tim-kiem',
-        component: PostList,  
+        component: Search,  
     },
     {
         path: '/danh-sach-bai-viet-ng-dung/:id',
         component: PostByUser,
+    },
+    {
+        path: '/admin/danh-sach-bai-viet',
+        component: AdminListPost,
     },
     {
         component: NotFound,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "../ForgotPassword/ForgotPassword.scss";
+import styles from '../ForgotPassword/ForgotPassword.module.scss';
 
 import { useParams, useHistory} from 'react-router-dom'
 import ValidateInput from '../../Utils/ValidateInput';
@@ -37,16 +37,16 @@ function ResetPass() {
     }
 
     return (
-        <div className="forgotpass">
+        <div className={styles["forgotpass"]}>
         <h3>Đặt lại mật khẩu</h3>
 
         <form onSubmit={submitHandler} >
         <table cellspacings = "5">
             <tr>
-                <td className="user">Mật khẩu mới</td>
+                <td className={styles["user"]}>Mật khẩu mới</td>
                 <td>
                     <input type='password'
-                    className="textbox"
+                    className={styles["textbox"]}
                     onChange={(e) => {
                         setResetPass({ ...resetPass, password: e.target.value })
                     }}
@@ -58,10 +58,10 @@ function ResetPass() {
                 </td>
             </tr>
             <tr>
-                <td className="user">Nhập lại mật khẩu</td>
+                <td className={styles["user"]}>Nhập lại mật khẩu</td>
                 <td>
                     <input type='password' 
-                    className="textbox"
+                    className={styles["textbox"]}
                     onChange={(e) => {
                         setResetPass({ ...resetPass, confirmPassWord: e.target.value })
                         if (e.target.value.length>=resetPass.password.length){
@@ -77,8 +77,8 @@ function ResetPass() {
                 </td>
             </tr>
             <tr height="50">
-                <td colspan="2" className="center">
-                    <input name="button" type="submit" className="button" />
+                <td colspan="2" className={styles["center"]}>
+                    <input name="button" type="submit" className={styles["button"]} />
                 </td>
             </tr>
         </table>
