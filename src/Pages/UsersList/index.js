@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import styles from '../SavedPostList/SavedPostList.module.scss';
+import styles from './UsersList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
 
 // Components
@@ -22,6 +22,7 @@ function UsersList() {
         const response = await adminApi.getAllUsers();
         console.log("Users List: ", response);
         setUserList(response.data);
+        console.log(response);
         if (response.data) {
             const newPost = response.data.map((e) => {
                 e.checked = false;
@@ -29,6 +30,7 @@ function UsersList() {
             });
             setUserList(newPost);
         }
+
         setLoading(false);
     }
 
@@ -97,17 +99,17 @@ function UsersList() {
                 </div>
                 <div className={styles['list-item__container']}>
                     <div className={styles['list-item__thumbnail']}>
-                        <img src={item.thumbnail_image} className={styles['thumnail']} />
+                        <img src={item.avatar} className={styles['thumnail']} />
                     </div>
                     <div className={styles['list-item__content']}>
                         <div className={styles['list-item__name']}>
-                            {item.title}
+                            Họ tên: {item.lastname} {item.firstname}
                         </div>
                         <div className={styles['list-item__author']}>
-                            {item.author}
+                            Email: {item.email}
                         </div>
                         <div className={styles['list-item__description']}>
-                            {item.description}
+                            Role: {item.role}
                         </div>
                     </div>
                 </div>
