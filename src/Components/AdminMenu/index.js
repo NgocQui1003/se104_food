@@ -29,7 +29,7 @@ function AdminMenu({ user }) {
             </div>
             <ul className={styles['menu-list']}>
                 <li className={styles['menu-item']}>
-                    <NavLink to="/admin/xoa-nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
+                    <NavLink to="/admin/danh-sach-nguoi-dung" className={styles['menu-item__link']} activeClassName={styles['picked']}>
                         <div className={styles['menu-item__icon']}>
                             <PersonOutlineIcon />
                         </div>

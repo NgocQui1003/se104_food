@@ -11,16 +11,12 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
-<<<<<<< HEAD
-import Listusers from './Pages/Listusers';
-=======
 import UsersList from './Pages/UsersList';
 import UserPosts from './Pages/UserPosts';
 import ResetPass from './Pages/ResetPassword';
 import PostList from './Pages/PostList';
 import CreateUser from './Pages/CreateUser';
 import PostByUser from './Pages/PostByUser';
->>>>>>> 38a079981eb9e30218f1d9aaeead03bfd55d6d8d
 
 export const routes = [
     {
@@ -92,7 +88,7 @@ export const routes = [
         component: CreateUser,
     },
     {
-        path: '/admin/xoa-nguoi-dung',
+        path: '/admin/danh-sach-nguoi-dung',
         component: UsersList,
     },
     {
