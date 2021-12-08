@@ -14,6 +14,7 @@ import Random from './Pages/Random';
 import UserPosts from './Pages/UserPosts';
 import ResetPassword from './Pages/ResetPassword';
 import PostList from './Pages/PostList';
+import CreateUser from './Pages/CreateUser';
 
 export const routes = [
     {
@@ -74,7 +75,11 @@ export const routes = [
     },
     {
         path: '/tim-kiem',
-        component: PostList,  
+        component: PostList,
+    },
+    {
+        path: '/admin/tao-account',
+        component: CreateUser,
     },
     {
         component: NotFound,
