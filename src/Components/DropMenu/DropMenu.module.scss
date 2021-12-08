@@ -1,0 +1,45 @@
+@import '../../config.scss';
+
+
+.drop-menu {
+    position: relative;
+    display: inline-block;
+    top: 70px;
+    font-weight: normal;
+    transition: height 0.3s ease-in;
+
+    .menu-content {
+        // display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 180px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .menu-content-items {
+        margin: 10px;
+        text-align: left;
+
+        svg {
+            margin: 0 10px;
+        }
+    }
+
+    .menu-content-authItem {
+        border-top: 1px solid;
+        padding: 10px 0;
+    }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+        padding-bottom: 1px;
+        color: black;
+    }
+
+    a:visited {
+        color: black;
+    }
+}

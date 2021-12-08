@@ -37,7 +37,7 @@ function Contact() {
                 <h1>LIÊN HỆ</h1>
                 <div className={styles['contact__content']}>
                     <p><span className={styles['content-bold']}>Số điện thoại: </span>0909.999.999</p>
-                    <p><span className={styles['content-bold']}>Địa chỉ: </span> Số 1 Hàn Thuyên, TP. Thủ Đức</p>
+                    <p><span className={styles['content-bold']}>Địa chỉ: </span> Số 1 Hàn (T)Huyên, TP. Thủ Đức</p>
                     <p><span className={styles['content-bold']}>Email: </span>info@nomnom.com</p>
                     <div className={styles['content-via']}>
                         <p className={styles['content-bold']}>Liên hệ via</p>

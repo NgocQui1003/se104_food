@@ -1,11 +1,14 @@
 @import '../../config.scss';
 
 .container {
-    text-align: center;
-    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
 
     .not-found-container__img img {
-        width: 150px;
+        max-width: 150px;
     }
 
     .not-found-container__noti {

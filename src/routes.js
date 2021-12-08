@@ -11,7 +11,16 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
+<<<<<<< HEAD
 import Listusers from './Pages/Listusers';
+=======
+import UsersList from './Pages/UsersList';
+import UserPosts from './Pages/UserPosts';
+import ResetPass from './Pages/ResetPassword';
+import PostList from './Pages/PostList';
+import CreateUser from './Pages/CreateUser';
+import PostByUser from './Pages/PostByUser';
+>>>>>>> 38a079981eb9e30218f1d9aaeead03bfd55d6d8d
 
 export const routes = [
     {
@@ -39,6 +48,10 @@ export const routes = [
         component: ForgotPassword,
     },
     {
+        path: '/dat-lai-mat-khau',
+        component: ResetPass,
+    },
+    {
         path: '/luu',
         component: SavedPostList,
     },
@@ -63,8 +76,28 @@ export const routes = [
         component: Random,
     },
     {
-        path: '/danh-sach-nguoi-dung',
-        component: Listusers,
+        path: '/danh-sach-bai-dang',
+        component: UserPosts,
+    },
+    {
+        path: '/reset-password',
+        component: ResetPass,
+    },
+    {
+        path: '/tim-kiem',
+        component: PostList,
+    },
+    {
+        path: '/admin/tao-account',
+        component: CreateUser,
+    },
+    {
+        path: '/admin/xoa-nguoi-dung',
+        component: UsersList,
+    },
+    {
+        path: '/danh-sach-bai-viet-ng-dung/:id',
+        component: PostByUser,
     },
     {
         component: NotFound,

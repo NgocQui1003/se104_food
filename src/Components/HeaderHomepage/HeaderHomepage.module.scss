@@ -1,6 +1,9 @@
 @import "../../config.scss";
 
-
+.container {
+  position: relative;
+  z-index: 2;
+}
 .navbar {
   background: transparent;
   display: flex;
@@ -50,7 +53,6 @@
   display: grid;
   grid-template-columns: repeat(4, auto);
   text-align: center;
-
 }
 
 .nav-item {
@@ -72,8 +74,10 @@
 }
 
 .nav-links:hover {
-  color: #84af25;
+  // color: #84af25;
   transition: all 0.2s ease-out;
+  border: 1.5px solid $mainColor;
+  border-radius: 5px;
 }
 
 .fa-bars {
@@ -88,8 +92,10 @@
 }
 
 .nav-links-mobile:hover {
-  color: #84af25;
+  // color: #84af25;
   transition: all 0.2s ease-out;
+  border: 1.5px solid $mainColor;
+  border-radius: 5px;
 }
 
 .menu-icon {
@@ -104,6 +110,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  
   img {
     border-radius: 50%;
     width: 32px;
@@ -132,6 +140,7 @@
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
+    z-index: 1;
   }
 
   .navbar {
@@ -161,9 +170,10 @@
 
   .nav-links:hover {
     background-color: #fff;
-    color: #84af25;
+    // color: #84af25;
     border-radius: 0;
     border-bottom: 0;
+    border: none;
   }
 
   .navbar-logo {

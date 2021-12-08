@@ -4,7 +4,7 @@
     cursor: pointer;
 }
 
-.btn-heart {
+.btn-like {
     cursor: pointer;
     margin-top: 8px;
     display: flex;
@@ -13,20 +13,18 @@
     width: fit-content;
     padding: 4px;
     border-radius: 9999px;
-    background-color: #ECEBE9;
+    // background-color: #ECEBE9;
 
     span {
         margin-left: 4px;
     }
 }
-.btn-heart:hover {
-    background-color: #c5c1b8;
+.btn-like:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 .active {
-    border: 1px solid #E25727;
-    background-color: #FDF1E2;
     span {
-        color: #E25727;
+        color: #2078F4;
     }
 }
 .active:hover {
@@ -73,6 +71,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-decoration: none;
+    color: black;
+
     img {
         width: 24px;
         height: 24px;
@@ -81,4 +82,49 @@
     span {
         margin-left: 4px;
     }
+}
+
+.container-modal {
+    position: absolute;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+    background-color: white;
+    padding: 16px 32px;
+    border-radius: 4px;
+
+    h2 {
+        font-size: 16px;
+    }
+    p {
+        font-size: 14px;
+    }
+
+    .cnt-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        button {
+            cursor: pointer;
+            width: 50%;
+            padding: 10px;
+            margin: 4px;
+        }
+    }
+
+    .close-btn {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+}
+
+.content-link {
+    text-decoration: none;   
+}
+
+.content-link:hover {
+    text-decoration: none;
 }

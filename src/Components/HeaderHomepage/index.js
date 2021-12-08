@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./HeaderHomepage.module.scss";
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import logo from "../../Assets/100x100.png";
 import { userActions } from '../../Redux/Actions/userActions';
 import userApi from '../../Api/userApi';
+import DropMenu from "../DropMenu";
 
 function Navbar({ loggedIn, user }) {
     const dispatch = useDispatch()
@@ -17,17 +18,11 @@ function Navbar({ loggedIn, user }) {
     const [click, setClick] = useState(false);
     const [navbar, setNavbar] = useState(false);
 
+    const [menuTrigger, setMenuTrigger] = useState(false);
+
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    // const changeBackground = () => {
-    //     if (window.scrollY >= 80) {
-    //         setNavbar(true);
-    //     } else {
-    //         setNavbar(false);
-    //     }
-    // }
 
-    // window.addEventListener('scroll', changeBackground);
     const AvatarUser = () => (
         <div className={styles['container-avatar']}>
             <img
@@ -44,16 +39,17 @@ function Navbar({ loggedIn, user }) {
         closeMobileMenu()
         history.push('/')
     }
+
     return user && loggedIn
         ? (
-            <>
+            <div className={styles['container']}>
                 <nav className={navbar ? [styles['navbar'], styles['active']].join(' ') : styles['navbar']}>
                     <div className={styles['navbar-container']}>
                         <div className={styles['navbar-col']}>
                             <ul className={styles['nav-menu']}>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Tìm kiếm công thức
+                                    <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Danh sách bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -66,7 +62,7 @@ function Navbar({ loggedIn, user }) {
 
                         <div className={styles['navbar-col']}>
                             <Link to='/' className='navbar-logo'>
-                                <img src={logo} alt='logo'/>
+                                <img src={logo} alt='logo' />
                             </Link>
                         </div>
 
@@ -78,15 +74,14 @@ function Navbar({ loggedIn, user }) {
                                             Xin chào, {user.firstname}.
                                         </p>
                                     </li>
-
                                     <li className={styles['nav-item']}>
-                                        <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Random món ăn
+                                        <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Danh sách bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Tìm kiếm công thức
+                                        <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Random món ăn
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
@@ -102,17 +97,16 @@ function Navbar({ loggedIn, user }) {
                                 </div>
                                 <li className={`${styles['nav-item']} ${styles['login-success']}`}>
                                     <Link to='/dang-bai-viet' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        Dang bai viet
+                                        Đăng bài viết
                                     </Link>
                                 </li>
-                                <li className={`${styles['nav-item']} ${styles['login-success']}`}>
-                                    <Link to='/profile' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        <AvatarUser ></AvatarUser>
-                                    </Link>
+                                <li className={`${styles['nav-item']} ${styles['login-success']}`} onClick={() => setMenuTrigger(!menuTrigger)}>
+                                    <AvatarUser></AvatarUser>
                                 </li>
+                                <DropMenu trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
                                 <li className={`${styles['nav-item']} ${styles['logout']}`}>
                                     <div className={styles['nav-links-mobile']} onClick={logout}>
-                                        Dang xuat
+                                        Đăng xuất
                                     </div>
                                 </li>
                             </ul>
@@ -123,7 +117,7 @@ function Navbar({ loggedIn, user }) {
                         </div>
                     </div>
                 </nav>
-            </>
+            </div>
         )
         : (
             <>
@@ -132,8 +126,8 @@ function Navbar({ loggedIn, user }) {
                         <div className={styles['navbar-col']}>
                             <ul className={styles['nav-menu']}>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Tìm kiếm công thức
+                                    <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Danh sách bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -146,7 +140,7 @@ function Navbar({ loggedIn, user }) {
 
                         <div className={styles['navbar-col']}>
                             <Link to='/' className='navbar-logo'>
-                                <img src={logo} alt='logo'/>
+                                <img src={logo} alt='logo' />
                             </Link>
                         </div>
 
@@ -154,13 +148,13 @@ function Navbar({ loggedIn, user }) {
                             <ul className={click ? [styles['nav-menu'], styles['active']].join(' ') : styles['nav-menu']}>
                                 <div className={click ? styles['nav-item-remove'] : [styles['nav-item-remove'], styles['active']].join(' ')}>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Random món ăn
+                                        <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Danh sách bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Tìm kiếm công thức
+                                        <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Random món ăn
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>

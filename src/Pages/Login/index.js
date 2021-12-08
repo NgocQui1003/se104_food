@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react'
 import styles from './Login.module.scss';
 
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ValidateInput from '../../Utils/ValidateInput';
 import Auth from '../../Utils/Auth';
 
 import userApi from '../../Api/userApi';
 
-import FacebookLogin from '../../Components/FacebookLogin';
-import GoogleLogin from '../../Components/GoogleLogin';
+import ThirdPartyFacebook from '../../Components/ThirdPartyFacebook';
+import ThirdPartyGoogle from '../../Components/ThirdPartyGoogle';
+import LogoutToUse from '../../Components/LogoutToUse';
 
 import { userActions } from '../../Redux/Actions/userActions';
 
 function Login() {
+    const { loggedIn, user } = useSelector(state => state.User);
+
     useEffect(() => {
         document.title = "Đăng nhập"
     })
@@ -59,12 +62,14 @@ function Login() {
             Auth.setToken(data.accessToken)
             const res = await userApi.getProfile();
             dispatch(userActions.setProfile(res.data))
-            history.goBack()
+            history.push('/');
         } else {
             setError({ ...error, login: data.message })
         }
     }
-    return (
+    return loggedIn && user ? (
+        <LogoutToUse />
+    ) : (
         <div className={styles['container']}>
             <form onSubmit={handleSubmit} className={styles['login-form']}>
                 <h2>ĐĂNG NHẬP</h2>
@@ -106,8 +111,8 @@ function Login() {
                 <button type="submit" className={styles['submit-btn']}>Đăng nhập</button>
             </form>
             <p>Hoặc</p>
-            <FacebookLogin />
-            <GoogleLogin />
+            <ThirdPartyFacebook />
+            <ThirdPartyGoogle />
         </div>
     )
 }

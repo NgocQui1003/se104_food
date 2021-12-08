@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, useHistory, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from "./Register.module.scss";
 import ValidateInput from '../../Utils/ValidateInput';
-import FacebookLogin from '../../Components/FacebookLogin';
-import GoogleLogin from '../../Components/GoogleLogin';
+import ThirdPartyFacebook from '../../Components/ThirdPartyFacebook';
+import ThirdPartyGoogle from '../../Components/ThirdPartyGoogle';
 
 import userApi from '../../Api/userApi';
 import { userActions } from '../../Redux/Actions/userActions';
 import Auth from '../../Utils/Auth';
+import LogoutToUse from '../../Components/LogoutToUse';
+
 
 function Register() {
     const history = useHistory();
     const dispatch = useDispatch()
 
+    const { loggedIn, user } = useSelector(state => state.User);
+
     useEffect(() => {
         document.title = "Đăng kí tài khoản - Nomnom"
     })
+
 
     const [registerValue, setRegisterValue] = useState({
         firstname: '',
@@ -32,7 +37,8 @@ function Register() {
         lastname: '',
         gender: '',
         email: '',
-        password: ''
+        password: '',
+        register: '',
     });
 
     const handleChange = (e) => {
@@ -47,16 +53,25 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await userApi.register(registerValue);
-
         if (data.success) {
-            Auth.setToken(data.accessToken)
-            const res = await userApi.getProfile()
-            dispatch(userActions.setProfile(res.data))
-            history.goBack()
+            Auth.setToken(data.accessToken);
+            const res = await userApi.getProfile();
+            dispatch(userActions.setProfile(res.data));
+            history.push('/')
+            window.location.reload(true);
+        } else {
+            setError({ ...error, register: data.message });
+            if (data.message === "Email exist") {
+                alert("Đăng kí thất bại. Email đã tồn tại.");
+            } else {
+                alert("Đăng kí thất bại. ");
+            }
         }
     }
 
-    return (
+    return loggedIn && user ? (
+        <LogoutToUse />
+    ) : (
         <div>
             <form className={styles['register-form']} onSubmit={handleSubmit} >
                 <h2>ĐĂNG KÍ</h2>
@@ -111,7 +126,6 @@ function Register() {
                             <input type="radio" value="Nam"
                                 name="gender"
                                 id="gender-1"
-                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                         <label className={styles["label-input"]} for="gender">
@@ -119,7 +133,6 @@ function Register() {
                             <input type="radio" value="Nữ"
                                 name="gender"
                                 id="gender-0"
-                                // value={registerValue.gender}
                                 onChange={handleChange} />
                         </label>
                     </div>
@@ -160,7 +173,7 @@ function Register() {
                         }} />
                 </div>
                 {error.password == '' ? null :
-                    <div className={styles['form-error']}>{error.password}</div>
+                    <div className={styles['form-error']}>{error.register}</div>
                 }
                 <div className={styles["form-via"]}>
                     <Link to="/quen-mat-khau" className={styles["form-link"]}>Quên mật khẩu</Link>
@@ -175,8 +188,8 @@ function Register() {
 
             <p className={styles.center}>Hoặc</p>
             <div className={styles["thirdparty-login"]}>
-                <FacebookLogin />
-                <GoogleLogin />
+                <ThirdPartyFacebook onSubmit={handleSubmit} />
+                <ThirdPartyGoogle onSubmit={handleSubmit} />
             </div>
 
         </div >
