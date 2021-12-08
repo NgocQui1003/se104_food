@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import styles from './UsersList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -13,49 +14,50 @@ import NotLoggedIn from '../../Components/NotLoggedIn';
 import adminApi from '../../Api/adminApi';
 
 function UsersList() {
-    const { loggedIn, user } = useSelector(state => state.User);
+    const { user, loggedIn } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
-    const [admin, setAdmin] = useState(false);
     const [userList, setUserList] = useState([]);
 
     // Pagination setup
     const [currentpage, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
-    const numRows = 8;
+    const numRows = 10;
+    const isAdmin = 'admin' == user.role.role_name;
 
     const fetchUserList = async () => {
         setLoading(true);
-        const response = await adminApi.getAllUsers();
-        console.log("Users List: ", response);
+        const params = {
+            page: currentpage,
+            limit: numRows,
+        }
+        const response = await adminApi.getAllUsers(params);
         setUserList(response.data);
-        console.log(response);
         if (response.data) {
-            const newPost = response.data.map((e) => {
+            const newList = response.data.map((e) => {
                 e.checked = false;
                 return e;
             });
-            setUserList(newPost);
-            setAdmin(true);
-            setTotalPage(Math.ceil((response.data.length) / numRows));
+            setUserList(newList);
+            setTotalPage(Math.ceil((response.paging.total) / numRows));
         }
+        window.scrollTo(0, 0);
         setLoading(false);
     }
 
-    const deleteOne = (user) => {
+    const deleteOne = async (user) => {
         let currentList = userList;
-        currentList = currentList.filter(itm => itm.id_post !== user.id_post);
+        currentList = currentList.filter(itm => itm._id !== user._id);
         setUserList(currentList);
-        console.log('current list: ', currentList);
-        adminApi.deleteOne(user._id);
+        await adminApi.deleteOne(user._id);
     }
 
     const fetchCheckedUser = (e) => {
         let currentList = userList;
-        currentList = currentList.map((post) => {
-            if (e.target.value == post.id_post) {
-                post.checked = !post.checked;
+        currentList = currentList.map((user) => {
+            if (e.target.value == user._id) {
+                user.checked = !user.checked;
             }
-            return post;
+            return user;
         });
         setUserList(currentList);
     }
@@ -63,20 +65,20 @@ function UsersList() {
     const deleteMultiple = async () => {
         let checkedList = userList;
         let arrayids = [];
-        checkedList.forEach((post) => {
-            if (post.checked) {
-                arrayids.push(post.id_post)
+        checkedList.forEach((user) => {
+            if (user.checked) {
+                arrayids.push(user._id)
             }
         })
-        checkedList = checkedList.filter((post) => post.checked == false);
+        checkedList = checkedList.filter((user) => user.checked == false);
         setUserList(checkedList);
-        const res = await adminApi.deleteMultiple(arrayids);
+        await adminApi.deleteMultiple(arrayids);
     };
 
     const selectAll = (e) => {
         let currentList = userList;
-        currentList = currentList.map((post) => {
-            return { ...post, checked: true };
+        currentList = currentList.map((user) => {
+            return { ...user, checked: true };
         })
         setUserList(currentList);
         // console.log("temp: ", currentList);
@@ -96,7 +98,7 @@ function UsersList() {
 
     useEffect(() => {
         fetchUserList();
-    }, [])
+    }, [currentpage])
 
 
 
@@ -104,27 +106,31 @@ function UsersList() {
         return (
             <div className={styles['list-item']} key={idx}>
                 <div className={styles['list-item__checkbox']}>
-                    <input type="checkbox" value={item.id_post}
+                    <input type="checkbox" value={item._id}
                         onChange={fetchCheckedUser}
                         defaultChecked={item.checked}
                     />
                 </div>
+
                 <div className={styles['list-item__container']}>
-                    <div className={styles['list-item__thumbnail']}>
-                        <img src={item.avatar} className={styles['thumnail']} />
-                    </div>
-                    <div className={styles['list-item__content']}>
-                        <div className={styles['list-item__name']}>
-                            Họ tên: {item.lastname} {item.firstname}
+                    <Link to={`/admin/thong-tin/${item._id}`} className={styles['list-item__link']}>
+                        <div className={styles['list-item__thumbnail']}>
+                            <img src={item.avatar} className={styles['thumnail']} />
                         </div>
-                        <div className={styles['list-item__author']}>
-                            Email: {item.email}
+                        <div className={styles['list-item__content']}>
+                            <div className={styles['list-item__name']}>
+                                Họ tên: {item.lastname} {item.firstname}
+                            </div>
+                            <div className={styles['list-item__author']}>
+                                Email: {item.email}
+                            </div>
+                            <div className={styles['list-item__description']}>
+                                Role: {item.role.role_name}
+                            </div>
                         </div>
-                        <div className={styles['list-item__description']}>
-                            Role: {item.role}
-                        </div>
-                    </div>
+                    </Link>
                 </div>
+
                 <div className={styles['menu-btn']}>
                     <button onClick={() => deleteOne(item)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
@@ -132,7 +138,7 @@ function UsersList() {
         );
     };
 
-    return user && loggedIn && admin ? (
+    return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>
             <AdminMenu user={user} />
             <div className={styles['list-container']}>
