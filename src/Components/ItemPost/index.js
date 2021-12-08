@@ -70,21 +70,23 @@ function ItemPost({ post, savePost, reactPost }) {
         <div className={styles['container']}>
             <ModelCustom />
             <Card>
-                <Link to={`/bai-dang/${id}`}>
-                    <div className={styles['container-img-button']}>
+
+                <div className={styles['container-img-button']}>
+                    <Link to={`/bai-dang/${id}`}>
                         <img
                             src={post['thumbnail_image']}
                             alt={post['thumbnail_image']}
                         />
-                        <div onClick={handleSavePost}>
-                            {post.isSaved
-                                ? <BookmarkIcon className={styles['bookmark-icon']} />
-                                : <BookmarkBorderIcon className={styles['bookmark-icon']} />}
-                        </div>
-
-
+                    </Link>
+                    <div onClick={handleSavePost}>
+                        {post.isSaved
+                            ? <BookmarkIcon className={styles['bookmark-icon']} />
+                            : <BookmarkBorderIcon className={styles['bookmark-icon']} />}
                     </div>
-                </Link>
+
+
+                </div>
+
 
                 <div className={styles['content-more']}>
                     <Link to={`/bai-dang/${id}`} className={styles['content-link']}>
