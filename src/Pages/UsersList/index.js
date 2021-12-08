@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './UsersList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Pagination } from '@mui/material';
 
 // Components
 import AdminMenu from '../../Components/AdminMenu';
@@ -14,8 +15,13 @@ import adminApi from '../../Api/adminApi';
 function UsersList() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
-
+    const [admin, setAdmin] = useState(false);
     const [userList, setUserList] = useState([]);
+
+    // Pagination setup
+    const [currentpage, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
+    const numRows = 8;
 
     const fetchUserList = async () => {
         setLoading(true);
@@ -29,8 +35,9 @@ function UsersList() {
                 return e;
             });
             setUserList(newPost);
+            setAdmin(true);
+            setTotalPage(Math.ceil((response.data.length) / numRows));
         }
-
         setLoading(false);
     }
 
@@ -75,6 +82,11 @@ function UsersList() {
         // console.log("temp: ", currentList);
     }
 
+    const handlePageChange = (value) => {
+        setPage(value);
+        window.scrollTo(0, 0);
+    }
+
     const Loading = () => (
         <div className={styles['container-loading']}>
             <CircularProgress />
@@ -93,7 +105,7 @@ function UsersList() {
             <div className={styles['list-item']} key={idx}>
                 <div className={styles['list-item__checkbox']}>
                     <input type="checkbox" value={item.id_post}
-                        onChange={fetchUserList}
+                        onChange={fetchCheckedUser}
                         defaultChecked={item.checked}
                     />
                 </div>
@@ -120,7 +132,7 @@ function UsersList() {
         );
     };
 
-    return user && loggedIn ? (
+    return user && loggedIn && admin ? (
         <div className={styles['container']}>
             <AdminMenu user={user} />
             <div className={styles['list-container']}>
@@ -147,6 +159,14 @@ function UsersList() {
                                                 return <UserItem item={item} idx={idx} />
                                             })
                                         }
+                                        <div className={styles['list-pagination']}>
+                                            <Pagination
+                                                count={totalPage}
+                                                page={currentpage}
+                                                // e.target.textContent la kieu string
+                                                onChange={(e, page) => handlePageChange(page)}
+                                            ></Pagination>
+                                        </div>
                                     </>
                                 ) : (
                                     <div className={styles['list-item__null']}>
