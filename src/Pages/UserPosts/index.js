@@ -20,7 +20,6 @@ import userApi from '../../Api/userApi';
 function SavedPostList() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
-
     const [uploadList, setUploadList] = useState([]);
 
     // Pagination setup
@@ -44,7 +43,7 @@ function SavedPostList() {
             });
             setUploadList(newPost);
             //pagination
-            setTotalPage(Math.ceil((response.data.length) / numRows));
+            setTotalPage(Math.ceil((response.paging.total) / numRows));
         } else {
             setUploadList(response.data);
         }
