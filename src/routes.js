@@ -11,10 +11,12 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
+import UsersList from './Pages/UsersList';
 import UserPosts from './Pages/UserPosts';
-import ResetPassword from './Pages/ResetPassword';
+import ResetPass from './Pages/ResetPassword';
 import PostList from './Pages/PostList';
 import CreateUser from './Pages/CreateUser';
+import PostByUser from './Pages/PostByUser';
 
 export const routes = [
     {
@@ -40,6 +42,10 @@ export const routes = [
     {
         path: '/quen-mat-khau',
         component: ForgotPassword,
+    },
+    {
+        path: '/dat-lai-mat-khau',
+        component: ResetPass,
     },
     {
         path: '/luu',
@@ -71,7 +77,7 @@ export const routes = [
     },
     {
         path: '/reset-password',
-        component: ResetPassword,
+        component: ResetPass,
     },
     {
         path: '/tim-kiem',
@@ -80,6 +86,14 @@ export const routes = [
     {
         path: '/admin/tao-account',
         component: CreateUser,
+    },
+    {
+        path: '/admin/xoa-nguoi-dung',
+        component: UsersList,
+    },
+    {
+        path: '/danh-sach-bai-viet-ng-dung/:id',
+        component: PostByUser,
     },
     {
         component: NotFound,

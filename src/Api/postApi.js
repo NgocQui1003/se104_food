@@ -19,6 +19,13 @@ const postApi = {
     getPostSearch: (params) => {
         const url = '/post/search';
         return axiosClient.get(url, { params });
+    },
+
+    getPostByUser: (id, params) => {
+        console.log(id, params);
+
+        const url = `/post/user/${id}`;
+        return axiosClient.get(url, { params });
     }
 }
 
