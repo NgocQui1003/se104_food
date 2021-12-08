@@ -8,7 +8,6 @@ import styles from './CreateUser.module.scss';
 
 // Components
 import NotLoggedIn from '../../Components/NotLoggedIn';
-import UserMenu from '../../Components/UserMenu';
 
 import ValidateInput from '../../Utils/ValidateInput';
 
@@ -16,6 +15,7 @@ import ValidateInput from '../../Utils/ValidateInput';
 import adminApi from '../../Api/adminApi';
 import { userActions } from '../../Redux/Actions/userActions';
 import Auth from '../../Utils/Auth';
+import AdminMenu from '../../Components/AdminMenu';
 
 function CreateUser() {
     const { user, loggedIn } = useSelector(state => state.User);
@@ -73,7 +73,7 @@ function CreateUser() {
 
     return user && loggedIn ? (
         <div className={styles['container']}>
-            <UserMenu user={user}></UserMenu>
+            <AdminMenu user={user}></AdminMenu>
             <div className={styles['container-register']}>
 
                 <form className={styles['register-form']} onSubmit={handleSubmit}>

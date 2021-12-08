@@ -11,8 +11,9 @@
     border: 1px solid $mainColor;
     border-radius: 5px;
 
-    display: block;
+    display: flex;
     float: right;
+
 
     .container-title {
         text-align: center;
