@@ -1,49 +1,50 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 
 import UserMenu from '../../Components/UserMenu';
 import styles from '../InformationUser/InformationUser.module.scss';
 
-import avatar from '../../Assets/ava.png'
+// import avatar from '../../Assets/ava.png'
+import { useSelector } from 'react-redux';
 
+// Redux
+import { userActions } from '../../Redux/Actions/userActions';
+
+// Api
+import userApi from '../../Api/userApi';
+import NotLoggedIn from '../../Components/NotLoggedIn';
 
 function InformationUser() {
+    const { loggedIn, user } = useSelector(state => state.User);
 
-    const user = {
-        firstname: "Nguyễn",
-        lastname: "Ngọc Quí",
-        gender: "Nam",
-        email: "nguyenngocqui@gmail.com"
-    }
-
-    return (
+    return user && loggedIn ? (
         <div className={[styles['InformationUser-container'], styles['auth']].join(' ')}>
-            <UserMenu />
+            <UserMenu user={user} />
             <div className={styles['InformationUser-container-format']}>
                 <h1 className={styles['InformationUser-container-tile']}>Thông Tin Người Dùng</h1>
                 <div className={styles['InformationUser-container-img']}>
-                    <img className={styles['InformationUser-container-img-thumbnail']} src={avatar} />
+                    <img className={styles['InformationUser-container-img-thumbnail']} src={user.avatar} />
                 </div>
                 <div className={styles['InformationUser-container-form']}>
                     <form className={styles['InformationUser-form']}>
                         <div className={styles["InformationUser-form-input"]}>
                             <div>
-                                <label for="firstname" className={styles["InformationUser-label-input"]}>
+                                <label for="lastname" className={styles["InformationUser-label-input"]}>
                                     Họ:
                                 </label>
                                 <input type="text" className={styles["InformationUser-register-input"]}
-                                    name="firstname"
-                                    value={user.firstname}
+                                    name="lastname"
+                                    value={user.lastname}
                                     readOnly
                                 />
                             </div>
                             <br />
                             <div>
-                                <label for="lastname" className={styles["InformationUser-label-input"]}>
+                                <label for="firstname" className={styles["InformationUser-label-input"]}>
                                     Tên:
                                 </label>
                                 <input type="text" className={styles["InformationUser-register-input"]}
-                                    name="lastname"
-                                    value={user.lastname}
+                                    name="firstname"
+                                    value={user.firstname}
                                     readOnly
                                 />
                             </div>
@@ -58,7 +59,7 @@ function InformationUser() {
                                     <input type="radio" value="Nam"
                                         name="gender"
                                         id="gender-1"
-                                        
+                                        checked={user.gender == "Nam"}
                                     />
                                 </label>
                                 <label className={styles["InformationUser-label-input"]} for="gender">
@@ -66,7 +67,7 @@ function InformationUser() {
                                     <input type="radio" value="Nữ"
                                         name="gender"
                                         id="gender-0"
-
+                                        checked={user.gender == "Nữ"}
                                     />
                                 </label>
                             </div>
@@ -85,7 +86,7 @@ function InformationUser() {
                 </div>
             </div>
         </div >
-    )
+    ) : <NotLoggedIn />
 }
 
 export default InformationUser;

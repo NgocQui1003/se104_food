@@ -2,6 +2,7 @@
 
 .container {
     margin: 20px 10px;
+    display: flex;
 }
 
 .list-name {
@@ -49,11 +50,12 @@
                 display: flex;
                 text-align: center;
                 margin: 10px 20px;
+            }
 
-                .thumbnail {
-                    max-width: 150px;
-                    max-height: 200px;
-                }
+            .list-item__thumbnail img {
+                width: 150px;
+                height: 100px;
+                object-fit: cover;
             }
     
             .list-item__content {
@@ -93,6 +95,11 @@
     }
 
     
+}
+
+.container-loading {
+    text-align: center;
+    margin: 20px 0;
 }
 
 
@@ -170,4 +177,81 @@
         }
     }
     
+}
+
+@media screen and (max-width: 420px) {
+    .container {
+        .list-item {
+            display: flex;
+    
+            .list-item__checkbox {
+                text-align: center;
+                margin: 0 5px;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+            
+    
+            .list-item__container {
+                display: flex;
+                border: 1px solid $mainColor;
+                border-radius: 2px;
+                margin: 10px 0;
+                margin-left: 0px;
+    
+                .list-item__thumbnail {
+                    display: flex;
+                    text-align: center;
+                    margin: 10px;
+                }
+    
+                .list-item__thumbnail img {
+                    width: 70px;
+                    height: 70px;
+                    object-fit: cover;
+                }
+        
+                .list-item__content {
+                    // width: 70%;
+                    display: inline-block;
+                    margin: 10px 0;
+        
+                    .list-item__name {
+                        font-weight: bold;
+                        font-size: 15px;
+                        margin: 0 10px;   
+                    }
+    
+                    .list-item__author {
+                        margin: 0 10px;
+                        font-size: 10px;
+                    }
+        
+                    .list-item__description {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;  
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        word-wrap: break-word;
+                        text-align: justify;
+    
+                        // margin: 0 32px;
+                    }
+                }
+            }
+    
+            .menu-btn {
+                display: inline-block;
+                margin-top: auto;
+                margin-bottom: auto;
+
+                .menu-btn__delete {
+                    margin: 0 10px;
+                    font-size: 10px;
+                }
+            }
+            
+        }
+    }
 }

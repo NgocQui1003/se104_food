@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 2;
 
     .popup-inner {
         position: relative;
@@ -21,12 +21,14 @@
         border-radius: 5px;
 
         .close-btn {
+            cursor: pointer;
             float: right;
             display: block;
         }
 
         a {
             text-decoration: none;
+            color: black;
         }
 
         a:visited {
@@ -44,6 +46,10 @@
         .random-author {
             margin: 10px 32px;
             display: block;
+            cursor: pointer;
+        }
+        .random-author:hover {
+            color: $mainColor;
         }
 
         .random-image {
@@ -70,6 +76,13 @@
             word-wrap: break-word;
             margin: 10px 32px;
             text-align: justify;
+        }
+        .container-loading {
+            display: flex;
+            height: 300px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
     }
 }

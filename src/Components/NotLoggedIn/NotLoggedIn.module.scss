@@ -1,0 +1,19 @@
+@import '../../config.scss';
+
+.container {
+    text-align: center;
+
+    .error-title {
+        font-weight: bold;
+        font-size: 25px;
+        margin: 20px 0;
+    }
+
+    .error-img img {
+        max-width: 200px;
+    }
+
+    .error-description {
+        margin: 20px 0;
+    }
+}

@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px 8%;
+    margin-top: 16px;
+    .header {
+        width: 100%;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 32px;
+    }
+}
+
+.text-cnt-post {
+    margin: 0px;
+    margin-bottom: 8px;
+    text-align: left;
+    width: 100%;
+    font-size: 20px;
+    padding: 4px 0px;
+    span {
+        color: #939290;
+    }
+}
+
+.container-fillter {
+    h2 {
+        color: black;
+        margin-top: 0px;
+    }
+    h3 {
+        color: black;
+        text-align: left;
+    }
+    p {
+        margin: 8px 0px;
+    }
+
+    input {
+        font-size: 0.9375rem;
+        border: 1px solid #bbbbbb;
+        outline: none;
+        padding: 8px 16px;
+        width: 100%;
+    }
+    input:hover {
+        border: 1px solid #CA5A4B;
+
+    }
+
+    button {
+        background-color: #CA5A4B;
+        color: white;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+        margin-top: 16px;
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+.pagination {
+    margin-top: 32px;
+}
+
+.container-empty-post {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+        color: #4a4a4a;
+    }
+    span {
+        color: #606060
+    }
+    .btn-create-post {
+        margin: 16px;
+        display: flex;
+        justify-content: center;
+        background-color: #CA5A4B;;
+        padding: 8px 16px;
+        border-radius: 6px;
+        button {
+            font-size: 16px;
+            margin-left: 8px;
+            padding: 4px 8px;
+            border: none;
+            outline: none;
+            color: white;
+            background-color: #CA5A4B;;
+        }
+    }
+}
+
+.container-loading-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 960px) {
+}

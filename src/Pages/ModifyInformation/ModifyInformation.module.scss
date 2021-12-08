@@ -4,6 +4,26 @@
     margin: 20px 10px;
 }
 
+.upload-image {
+    display: none;
+
+}
+
+.avatar-user-profile {
+    margin: 1rem;
+    label {
+        cursor: pointer;
+        background-color: $mainColor;
+        margin: 1rem;
+        padding: 0.6rem;
+        color: #FFFF;  
+        border-radius: 4px;  
+    }
+    label:hover{
+        background-color: $mainColor; 
+    }
+}
+
 .ModifyInformation-container-tile {
     text-align: center;
     color: $mainColor;

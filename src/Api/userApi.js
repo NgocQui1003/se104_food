@@ -16,15 +16,54 @@ const userApi = {
         return axiosClient.get(url);
     },
 
-    forgotPassword: (data) => {
-        const url = '/forgot-password';
-        return axiosClient.post(url, data);
+    forgotPassword: (email) => {
+        const url = '/api/user/forgot-password';
+        return axiosClient.post(url, email);
+    },
+    resetPassword: ({token, password}) => {
+        console.log(token, password);
+        const URL = `api/user/reset-password/${token}`
+        console.log(URL);
+        return axiosClient.post(URL, {password})
+    },
+
+    changePassword: (data) => {
+        console.log('CALL API');
+        console.log(data);
+        const url = '/api/user/changepassword';
+        return axiosClient.put(url, data)
+    },
+
+    updateProfile: (data) => {
+        const url = 'api/user/update';
+        return axiosClient.put(url, data)
     },
 
     logout: () => {
         localStorage.removeItem('token');
+    },
+    getPosts: (data) => {
+        const url = `/post/post_management/`;
+        return axiosClient.get(url, {
+            params: {
+                limit: data.limit,
+                page: data.page
+            }
+        });
+    },
+    deleteOneUpload: (id) => {
+        const url = `/post/delete/${id}`
+        return axiosClient.delete(url);
+    },
+    deleteManyUpload: (id_list) => {
+        const data = {
+            data: {
+                list_post: id_list
+            }
+        }
+        const url = '/post/delete-many';
+        return axiosClient.delete(url, data);
     }
-
 }
 
 export default userApi;
