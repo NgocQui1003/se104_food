@@ -21,8 +21,14 @@ function CreateUser() {
     const { user, loggedIn } = useSelector(state => state.User);
     const history = useHistory();
     const dispatch = useDispatch();
-    const isAdmin = "admin" === user.role.role_name;
-    console.log(isAdmin);
+    let isAdmin;
+    if (user) {
+        if (user.role && user.role.role_name === 'admin') {
+            isAdmin = true;
+        }
+    } else {
+        isAdmin = false;
+    }
 
     useEffect(() => {
         document.title = "Admin Đăng kí - Nomnom"
@@ -59,7 +65,7 @@ function CreateUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await adminApi.createAccount(registerValue);
-        console.log(data);
+        console.log("sâu nhỏ: ", data);
         if (data.success) {
             alert('Đăng kí thành công!');
             window.location.reload(true);
