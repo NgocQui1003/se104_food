@@ -155,7 +155,8 @@ function Add() {
         const res = await postApi.createPost(newPostData);
 
         if (res.status) {
-            history.push(`/bai-dang/${res.data._id}`)
+            history.push(`/danh-sach-bai-dang`);
+            setTimeout(function() { alert("Tạo bài viết thành công."); }, 1000);
         } else {
             setError({ ...error, createPost: res.message });
                 if (res.status === 0) {
