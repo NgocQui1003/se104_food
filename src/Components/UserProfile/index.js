@@ -9,7 +9,7 @@ function UserProfile({ profile }) {
         <div className={styles['InformationUser-container-format']}>
             <h1 className={styles['InformationUser-container-tile']}>Thông tin</h1>
             <div className={styles['btn-list']}>
-                <Link to='/' className={styles['user-btn__link']}>
+                <Link to={`/admin/thong-tin/ds-luu/${profile._id}`} className={styles['user-btn__link']}>
                     Xem danh sách bài lưu
                 </Link>
                 <Link to={`/danh-sach-bai-viet-ng-dung/${profile._id}`} className={styles['user-btn__link']}>

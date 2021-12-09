@@ -19,6 +19,7 @@ import CreateUser from './Pages/CreateUser';
 import PostByUser from './Pages/PostByUser';
 import UserProfilePage from './Pages/UserProfilePage';
 import PostDetail from './Pages/PostDetail';
+import UserSavedList from './Pages/UserSavedList';
 
 export const routes = [
     {
@@ -102,6 +103,10 @@ export const routes = [
         component: UserProfilePage,
         path: '/bai-dang/:_id',
         component: PostDetail,
+    },
+    {
+        path: '/admin/thong-tin/ds-luu/:id',
+        component: UserSavedList,
     },
     {
         component: NotFound,

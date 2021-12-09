@@ -27,6 +27,15 @@
         margin-bottom: 10px;
     }
 
+    .list-pagination {
+        text-align: center;
+        margin: 15px 0;
+
+        ul {
+            justify-content: center;
+        }
+    }
+
     .list-item {
         display: flex;
 
@@ -44,6 +53,12 @@
             margin: 10px 50px;
             margin-left: 0px;
             width: 70%;
+
+            .list-item__link {
+                display: flex;
+                text-decoration: none;
+                color: unset;
+            }
 
             .list-item__thumbnail {
                 display: flex;

@@ -34,9 +34,7 @@ function SavedPostList() {
             page: currentpage
         }
         const response = await userApi.getPosts(params);
-        console.log(response);
-
-        if (response.data) {
+        if (response.status === 1) {
             const newPost = response.data.map((e) => {
                 e.checked = false;
                 return e;
@@ -44,8 +42,6 @@ function SavedPostList() {
             setUploadList(newPost);
             //pagination
             setTotalPage(Math.ceil((response.paging.total) / numRows));
-        } else {
-            setUploadList(response.data);
         }
         setLoading(false);
     }
@@ -122,20 +118,22 @@ function SavedPostList() {
                     />
                 </div>
                 <div className={styles['list-item__container']}>
-                    <div className={styles['list-item__thumbnail']}>
-                        <img src={item.thumbnail_image} className={styles['thumnail']} />
-                    </div>
-                    <div className={styles['list-item__content']}>
-                        <div className={styles['list-item__name']}>
-                            {item.title}
+                    <Link to={`/bai-dang/${item._id}`} className={styles['list-item__link']}>
+                        <div className={styles['list-item__thumbnail']}>
+                            <img src={item.thumbnail_image} className={styles['thumnail']} />
                         </div>
-                        <div className={styles['list-item__author']}>
-                            {item.author}
+                        <div className={styles['list-item__content']}>
+                            <div className={styles['list-item__name']}>
+                                {item.title}
+                            </div>
+                            <div className={styles['list-item__author']}>
+                                {item.author}
+                            </div>
+                            <div className={styles['list-item__description']}>
+                                {item.description}
+                            </div>
                         </div>
-                        <div className={styles['list-item__description']}>
-                            {item.description}
-                        </div>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className={styles['menu-btn']}>
@@ -180,7 +178,6 @@ function SavedPostList() {
                                             <Pagination
                                                 count={totalPage}
                                                 page={currentpage}
-                                                // e.target.textContent la kieu string
                                                 onChange={(e, page) => handlePageChange(page)}
                                             ></Pagination>
                                         </div>

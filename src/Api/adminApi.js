@@ -15,7 +15,10 @@ const adminApi = {
     },
     getUserProfile: (id) => {
         const url = `/api/admin/user/${id}`;
-        console.log(url);
+        return axiosClient.get(url);
+    },
+    getUserSavedList: (params) => {
+        const url = `/save_post/savedPostUser/${params.userID}?limit=${params.limit}&page=${params.page}`;
         return axiosClient.get(url);
     },
     deleteOne: (id) => {

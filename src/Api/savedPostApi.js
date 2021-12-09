@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient";
 
 const savedPostApi = {
-    getAll: (id) => {
-        const url = "/save_post";
-        return axiosClient.get(url, id);
+    getAll: (params) => {
+        const url = `/save_post?page=${params.page}&limit=${params.limit}`;
+        return axiosClient.get(url, params.userID);
     },
     unsavedMany: (id_list) => {
         const data = {

@@ -24,7 +24,6 @@ function UserProfilePage() {
     const fetchUserData = async () => {
         setLoading(true);
         const response = await adminApi.getUserProfile(id);
-        console.log(response);
         if (response.data) {
             setProfile(response.data);
         }

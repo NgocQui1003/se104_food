@@ -1,20 +1,25 @@
+// User saved post list_shown by Admin only
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import styles from '../SavedPostList/SavedPostList.module.scss';
+import styles from './UserSavedList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Pagination } from '@mui/material';
 
 // Components
-import UserMenu from '../../Components/UserMenu';
+import AdminMenu from '../../Components/AdminMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
 // Api
 import savedPostApi from '../../Api/savedPostApi';
+import { useParams } from 'react-router';
+import adminApi from '../../Api/adminApi';
 
-function SavedPostList() {
+function UserSavedList() {
     const { loggedIn, user } = useSelector(state => state.User);
+    const { id } = useParams();
+    const isAdmin = 'admin' === user.role.role_name;
     const [loading, setLoading] = useState(false);
     const [savedList, setSavedList] = useState([]);
     const [current_page, setPage] = useState(1);
@@ -26,65 +31,21 @@ function SavedPostList() {
         const params = {
             limit: numRows,
             page: current_page,
-            userID: user._id
+            userID: id
         }
-        const response = await savedPostApi.getAll(params);
-        if (response.success === 1) {
-            const newPost = response.result.data.map((e) => {
-                e.checked = false;
-                return e;
-            });
-            setSavedList(newPost);
+        const response = await adminApi.getUserSavedList(params);
+        setSavedList(response.sucess);
+        if (response.sucess) {
+            setSavedList(response.result.data);
             setTotalPage(Math.ceil((response.result.total) / numRows));
         }
         setLoading(false);
     }
 
-    const unsavedOnePost = (post) => {
-        let currentList = savedList;
-        currentList = currentList.filter(itm => itm.id_post !== post.id_post);
-        setSavedList(currentList);
-        console.log('current list: ', currentList);
-        savedPostApi.unsavedPost(post.id_post);
-    }
-
-    const fetchCheckedPost = (e) => {
-        let currentList = savedList;
-        currentList = currentList.map((post) => {
-            if (e.target.value == post.id_post) {
-                post.checked = !post.checked;
-            }
-            return post;
-        });
-        setSavedList(currentList);
-    }
-
-    const unsavedMultiple = async () => {
-        let checkedList = savedList;
-        let arrayids = [];
-        checkedList.forEach((post) => {
-            if (post.checked) {
-                arrayids.push(post.id_post)
-            }
-        })
-        checkedList = checkedList.filter((post) => post.checked == false);
-        setSavedList(checkedList);
-        const res = await savedPostApi.unsavedMany(arrayids);
-    };
-
-    const selectAll = (e) => {
-        let currentList = savedList;
-        currentList = currentList.map((post) => {
-            return { ...post, checked: true };
-        })
-        setSavedList(currentList);
-        // console.log("temp: ", currentList);
-    }
-
     const Loading = () => (
         <div className={styles['container-loading']}>
             <CircularProgress />
-            <p>Đang tải danh sách bạn đã lưu</p>
+            <p>Đang tải danh sách người dùng đã lưu</p>
         </div>
     )
 
@@ -102,12 +63,6 @@ function SavedPostList() {
     function PostItem({ item, idx }) {
         return (
             <div className={styles['list-item']} key={idx}>
-                <div className={styles['list-item__checkbox']}>
-                    <input type="checkbox" value={item.id_post}
-                        onChange={fetchCheckedPost}
-                        defaultChecked={item.checked}
-                    />
-                </div>
                 <div className={styles['list-item__container']}>
                     <Link to={`/bai-dang/${item.id_post}`} className={styles['list-item__link']}>
                         <div className={styles['list-item__thumbnail']}>
@@ -118,7 +73,7 @@ function SavedPostList() {
                                 {item.title}
                             </div>
                             <div className={styles['list-item__author']}>
-                                {item.author}
+                                Tác giả: {item.author}
                             </div>
                             <div className={styles['list-item__description']}>
                                 {item.description}
@@ -126,35 +81,24 @@ function SavedPostList() {
                         </div>
                     </Link>
                 </div>
-                <div className={styles['menu-btn']}>
-                    <button onClick={() => unsavedOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
-                </div>
             </div>
         );
     };
 
-    return user && loggedIn ? (
+    return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>
-            <UserMenu user={user} />
+            <AdminMenu user={user} />
             <div className={styles['list-container']}>
                 <h1 className={styles['list-name']}>Bài viết đã lưu</h1>
-
+                <div className={styles['list-description']}>
+                    Người dùng id: {id}
+                </div>
                 {
                     loading ? <Loading /> : (
                         <>
                             {savedList && savedList.length > 0 ?
                                 (
                                     <>
-                                        <div className={styles['list-btn']}>
-                                            <button className={styles['menu-btn__edit']}
-                                                onClick={selectAll}>
-                                                Chọn tất cả
-                                            </button>
-                                            <button className={styles['menu-btn__delete']}
-                                                onClick={unsavedMultiple}>
-                                                Xóa chọn lọc
-                                            </button>
-                                        </div>
                                         {
                                             savedList.map((item, idx) => {
                                                 return <PostItem item={item} idx={idx} />
@@ -184,4 +128,4 @@ function SavedPostList() {
         </div >
     ) : <NotLoggedIn />
 }
-export default SavedPostList;
+export default UserSavedList;
