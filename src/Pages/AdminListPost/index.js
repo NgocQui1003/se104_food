@@ -11,17 +11,14 @@ import { Pagination } from '@mui/material';
 import UserMenu from '../../Components/UserMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
-
-
 // Api
-import userApi from '../../Api/userApi';
 import postApi from '../../Api/postApi';
 
 function AdminListPost() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
-
     const [uploadList, setUploadList] = useState([]);
+    const isAdmin = 'admin' === user.role.role_name;
 
     // Pagination setup
     const [currentpage, setPage] = useState(1);
@@ -34,7 +31,7 @@ function AdminListPost() {
             limit: numRows,
             page: currentpage
         }
-        const response = await postApi.getPosts(params);
+        const response = await postApi.getPost(params);
 
         // pagination
         setTotalPage(Math.ceil((response.paging.total) / numRows));
@@ -116,7 +113,7 @@ function AdminListPost() {
     function PostItem({ item, idx }) {
         return (
             <div className={styles['list-item']} key={idx}>
-                
+
                 <div className={styles['list-item__checkbox']}>
                     <input type="checkbox" value={item._id}
                         onChange={fetchCheckedPost}
@@ -141,17 +138,13 @@ function AdminListPost() {
                 </div>
 
                 <div className={styles['menu-btn']}>
-                    <Link className={styles['menu-btn__nav']} to='/'>
-                        <div className={styles['menu-btn__editpost']}><EditIcon /></div>
-                    </Link>
-
                     <button onClick={() => deleteOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
             </div>
         );
     };
 
-    return user && loggedIn ? (
+    return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>
             <UserMenu user={user} />
             <div className={styles['list-container']}>
