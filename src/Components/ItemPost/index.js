@@ -66,6 +66,10 @@ function ItemPost({ post, savePost, reactPost }) {
             </div>
         </Modal>
     }
+
+    const redirectDetailPost = id => {
+        history.push(`/bai-dang/${id}`)
+    }
     return (
         <div className={styles['container']}>
             <ModelCustom />

@@ -18,6 +18,7 @@ import PostList from './Pages/PostList';
 import CreateUser from './Pages/CreateUser';
 import PostByUser from './Pages/PostByUser';
 import UserProfilePage from './Pages/UserProfilePage';
+import PostDetail from './Pages/PostDetail';
 
 export const routes = [
     {
@@ -99,6 +100,8 @@ export const routes = [
     {
         path: '/admin/thong-tin/:id',
         component: UserProfilePage,
+        path: '/bai-dang/:_id',
+        component: PostDetail,
     },
     {
         component: NotFound,

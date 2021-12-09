@@ -10,6 +10,7 @@ import logo from "../../Assets/100x100.png";
 import { userActions } from '../../Redux/Actions/userActions';
 import userApi from '../../Api/userApi';
 import DropMenu from "../DropMenu";
+import Add from "../CreatePost/AddPost";
 
 function Navbar({ loggedIn, user }) {
     const dispatch = useDispatch()
@@ -96,9 +97,7 @@ function Navbar({ loggedIn, user }) {
                                     </li>
                                 </div>
                                 <li className={`${styles['nav-item']} ${styles['login-success']}`}>
-                                    <Link to='/dang-bai-viet' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        Đăng bài viết
-                                    </Link>
+                                    <Add className={styles['nav-links-mobile']} onClick={closeMobileMenu}></Add>
                                 </li>
                                 <li className={`${styles['nav-item']} ${styles['login-success']}`} onClick={() => setMenuTrigger(!menuTrigger)}>
                                     <AvatarUser />
