@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import styles from './ItemPost.module.scss';
 
@@ -12,7 +12,6 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 import CancelIcon from '@mui/icons-material/Cancel';
 import Modal from '@mui/material/Modal';
-import { HistoryOutlined } from '@mui/icons-material';
 
 function ItemPost({ post, savePost, reactPost }) {
     const history = useHistory()
@@ -67,18 +66,18 @@ function ItemPost({ post, savePost, reactPost }) {
             </div>
         </Modal>
     }
-    const onClickAvatar = (id) => {
-        history.push(`/danh-sach-bai-viet-ng-dung/${id}`)
-    }
     return (
         <div className={styles['container']}>
             <ModelCustom />
             <Card>
+
                 <div className={styles['container-img-button']}>
-                    <img
-                        src={post['thumbnail_image']}
-                        alt={post['thumbnail_image']}
-                    />
+                    <Link to={`/bai-dang/${id}`}>
+                        <img
+                            src={post['thumbnail_image']}
+                            alt={post['thumbnail_image']}
+                        />
+                    </Link>
                     <div onClick={handleSavePost}>
                         {post.isSaved
                             ? <BookmarkIcon className={styles['bookmark-icon']} />
@@ -88,19 +87,21 @@ function ItemPost({ post, savePost, reactPost }) {
 
                 </div>
 
+
                 <div className={styles['content-more']}>
-                    <p>
-                        {formatTitle(post['title'])}
-                    </p>
-                    <div className={styles['container-avatar-user']}
-                        onClick={() => onClickAvatar(post['id_author']['_id'])}
-                    >
+                    <Link to={`/bai-dang/${id}`} className={styles['content-link']}>
+                        <p>
+                            {formatTitle(post['title'])}
+                        </p>
+                    </Link>
+                    <Link to={`danh-sach-bai-viet-ng-dung/${post.id_author._id}`} className={styles['container-avatar-user']}>
                         <img
                             src={post['id_author']['avatar']}
                             alt='avatar-user'
                         />
                         <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
-                    </div>
+                    </Link>
+
                     <div className={`${styles['btn-like']} ${post['isLike'] ? styles['active'] : ''}`}
                         onClick={handleReactPost}
                     >

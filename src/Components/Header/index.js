@@ -20,12 +20,11 @@ function Navbar({ loggedIn, user }) {
     const [navbar, setNavbar] = useState(false);
     const [menuTrigger, setMenuTrigger] = useState(false);
 
-
     const [search, setSearch] = useState('')
 
     const handleSearch = () => {
         if (search.trim() != '') {
-            history.push(`/tim-kiem?q=${search}`)  
+            history.push(`/tim-kiem?q=${search}`)
         }
         window.location.reload()
     }
@@ -66,18 +65,18 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/danh-sach-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Danh sách món ăn
+                                    <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Danh sách bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <input 
-                                        type="search" 
-                                        className={styles['nav-searchbar']} 
-                                        placeholder="Tìm kiếm công thức" 
+                                    <input
+                                        type="search"
+                                        className={styles['nav-searchbar']}
+                                        placeholder="Tìm kiếm công thức"
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
-                                        onKeyDown={(e) => { if (e.key === 'Enter') handleSearch()}}
+                                        onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
                                     />
                                 </li>
                             </ul>
@@ -92,13 +91,13 @@ function Navbar({ loggedIn, user }) {
                                         </p>
                                     </li>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Random món ăn
+                                        <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Danh sách bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Tìm kiếm công thức
+                                        <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Random món ăn
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
@@ -113,12 +112,9 @@ function Navbar({ loggedIn, user }) {
                                     </li>
                                 </div>
                                 <li onClick={() => setMenuTrigger(!menuTrigger)} className={`${styles['nav-item']} ${styles['login-success']}`}>
-                                    {/* <Link to='/nguoi-dung' className={styles['nav-links-mobile']} onClick={closeMobileMenu}>
-                                        
-                                    </Link> */}
                                     <AvatarUser />
                                 </li>
-                                <DropMenu trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
+                                <DropMenu role={user.role.role_name} trigger={menuTrigger} setMenuTrigger={setMenuTrigger}></DropMenu>
                                 <li className={`${styles['nav-item']} ${styles['logout']}`}>
                                     <div className={styles['nav-links-mobile']} onClick={logout}>
                                         Đăng xuất
@@ -151,18 +147,18 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <Link to='/danh-sach-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Danh sách món ăn
+                                    <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                        Danh sách bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <input 
-                                        type="search" 
-                                        className={styles['nav-searchbar']} 
-                                        placeholder="Tìm kiếm công thức" 
+                                    <input
+                                        type="search"
+                                        className={styles['nav-searchbar']}
+                                        placeholder="Tìm kiếm công thức"
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
-                                        onKeyDown={(e) => { if (e.key === 'Enter') handleSearch()}}
+                                        onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
 
                                     />
                                 </li>
@@ -173,6 +169,11 @@ function Navbar({ loggedIn, user }) {
                             <ul className={click ? [styles['nav-menu'], styles['active']].join(' ') : styles['nav-menu']}>
                                 <div className={click ? styles['nav-item-remove'] : [styles['nav-item-remove'], styles['active']].join(' ')}>
                                     <li className={styles['nav-item']}>
+                                        <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
+                                            Danh sách bài viết
+                                        </Link>
+                                    </li>
+                                    <li className={styles['nav-item']}>
                                         <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Random món ăn
                                         </Link>
@@ -182,16 +183,7 @@ function Navbar({ loggedIn, user }) {
                                             Dọn tủ lạnh
                                         </Link>
                                     </li>
-                                    <li className={styles['nav-item']}>
-                                        <Link to='/tim-kiem-cong-thuc' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Tìm kiếm công thức
-                                        </Link>
-                                    </li>
-                                    <li className={styles['nav-item']}>
-                                        <Link to='/danh-sach-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Danh sách món ăn
-                                        </Link>
-                                    </li>
+
                                     <li className={styles['nav-item']}>
                                         <Link to='/lien-he' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Liên hệ

@@ -1,7 +1,7 @@
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from "./Pages/Register";
-import Profile from './Pages/Profile';
+import AdminProfile from './Pages/AdminProfile';
 import Recipe from './Pages/Recipe';
 import ForgotPassword from './Pages/ForgotPassword';
 import SavedPostList from './Pages/SavedPostList';
@@ -11,11 +11,13 @@ import ModifyInformation from './Pages/ModifyInformation';
 import NotFound from './Pages/NotFound';
 import Contact from './Pages/Contact';
 import Random from './Pages/Random';
-import DeleteUsers from './Pages/DeleteUsers';
+import UsersList from './Pages/UsersList';
 import UserPosts from './Pages/UserPosts';
 import ResetPass from './Pages/ResetPassword';
 import PostList from './Pages/PostList';
+import CreateUser from './Pages/CreateUser';
 import PostByUser from './Pages/PostByUser';
+import UserProfilePage from './Pages/UserProfilePage';
 
 export const routes = [
     {
@@ -31,8 +33,8 @@ export const routes = [
         component: Register,
     },
     {
-        path: '/ho-so',
-        component: Profile,
+        path: '/admin/ho-so',
+        component: AdminProfile,
     },
     {
         path: '/cong-thuc',
@@ -71,10 +73,6 @@ export const routes = [
         component: Random,
     },
     {
-        path: '/xoa-nguoi-dung',
-        component: DeleteUsers,
-    },
-    {
         path: '/danh-sach-bai-dang',
         component: UserPosts,
     },
@@ -84,11 +82,23 @@ export const routes = [
     },
     {
         path: '/tim-kiem',
-        component: PostList,  
+        component: PostList,
+    },
+    {
+        path: '/admin/tao-account',
+        component: CreateUser,
+    },
+    {
+        path: '/admin/danh-sach-nguoi-dung',
+        component: UsersList,
     },
     {
         path: '/danh-sach-bai-viet-ng-dung/:id',
         component: PostByUser,
+    },
+    {
+        path: '/admin/thong-tin/:id',
+        component: UserProfilePage,
     },
     {
         component: NotFound,

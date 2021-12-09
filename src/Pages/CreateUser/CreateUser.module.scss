@@ -1,0 +1,261 @@
+@import '../../config.scss';
+
+
+.container {
+    margin: 20px 10px;
+}
+
+.container-register {
+    width: 75%;
+    margin: 10px;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+
+    display: flex;
+    float: right;
+
+
+    .container-title {
+        text-align: center;
+    }
+}
+
+.register-form {
+    margin: 10px;
+    padding: 10px 220px;
+    font-size: 18px;
+    color: $mainColor;
+
+    input {
+        display: flexbox;
+    }
+
+    .label-input {
+        display: inline-block;
+    }
+
+    .form-submit {
+        text-align: center;
+    }
+
+    .form-error {
+        font-size: 15px;
+        color: black;
+        text-align: center;
+        margin: 5px 0;
+        padding-left: 40px;
+        display: block;
+    }
+}
+
+.register-form h2 {
+    text-align: center;
+    color: $mainColor;
+}
+
+.form-input:first-child {
+    display: inline-block;
+}
+
+.form-input {
+    margin-bottom: 20px;
+
+    input {
+    //border
+    border-color: $mainColor;
+    border-radius: 5px;
+    background-color: $placeholder-bg;
+    border: 0px solid;
+    height: 30px;
+    float: right;
+    }
+
+    .input__inline {
+        display: inline-block;
+    }
+
+    .label-input {
+        margin: 0 10px;
+        width: 70px;
+        text-align: right;
+    }
+
+    .register-input {
+        width: 350px;
+    }
+
+    .form-radio-input {
+        display: inline;
+        line-height: 32px;
+
+        .label-input {
+            display: inline-block;
+            width: 75px;
+        }
+    }
+
+    .form-via {
+        display: block;
+    }
+}
+
+.submit-btn {
+    background-color: $mainColor;
+    color: #fff;
+    box-shadow: none;
+    border: 1px solid $mainColor;
+
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    margin-top: 20px;
+}
+
+input[type="radio"]:checked {
+    border: 5px solid $mainColor;
+    background-color: $mainColor !important;
+}
+
+
+.form-link {
+    margin: 0px;
+    margin-left: 10px;
+    font-size: 15px;
+    float: right;
+    color: $mainColor;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1250px) {
+    .register-form {
+        padding: 10px 200px;
+
+        .register-input {
+            width: 300px;
+        }
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .register-form {
+        padding: 10px 180px;
+
+        .register-input {
+            width: 250px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .register-form {
+        padding: 10px 150px;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .register-form {
+        padding: 10px 150px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container-register {
+        width: auto;
+        float: none;
+    }
+}
+
+@media screen and (max-width: 650px) and (min-width: 600px) {
+    .register-form {
+        padding: 10px 70px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .register-form {
+        font-size: 15px;
+        padding: 10px 70px;
+
+        .register-input {
+            width: 200px;
+        }
+
+        .form-error {
+            font-size: 13px;
+        }
+    }
+
+
+    .form-input {
+        display: block;
+        margin: 10px;
+
+        .label-input {
+            width: fit-content;
+            line-height: 32px;
+        }
+
+        .register-input {
+            width: 150px;
+        }
+
+        .form-radio-input {
+            margin: 0;
+
+            .label-input {
+                width: unset;
+            }
+        }    
+
+    }
+
+
+    .form-link {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .form-input {
+        .register-input {
+            width: 200px;
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .container-title {
+        font-size: 18px;
+    }
+
+
+    .form-input {
+        .register-input {
+            width: 180px;
+        }
+    }
+}
+
+@media screen and (max-width: 350px) and (min-width: 320px) {
+    .form-input {
+        .register-input {
+            width: 120px;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    
+    .register-form {
+        padding: 0;
+    }
+    .form-input {
+        padding: 0;
+        margin: 0;
+
+        .register-input {
+            width: 110px
+        }
+    }
+}

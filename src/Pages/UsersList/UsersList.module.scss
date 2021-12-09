@@ -27,8 +27,23 @@
         margin-bottom: 10px;
     }
 
+    .list-pagination {
+        text-align: center;
+        margin: 15px 0;
+
+        ul {
+            justify-content: center;
+        }
+    }
+
     .list-item {
         display: flex;
+
+        .list-item__link {
+            display: flex;
+            color: black;
+            text-decoration: none;
+        }
 
         .list-item__checkbox {
             text-align: center;
@@ -65,11 +80,11 @@
                 .list-item__name {
                     font-weight: bold;
                     font-size: 25px;
-                    margin: 0 32px;   
+                    margin: 5px 32px;   
                 }
 
                 .list-item__author {
-                    margin: 0 32px;
+                    margin: 5px 32px;
                 }
     
                 .list-item__description {
@@ -81,7 +96,7 @@
                     word-wrap: break-word;
                     text-align: justify;
 
-                    margin: 0 32px;
+                    margin: 5px 32px;
                 }
             }
         }
@@ -163,6 +178,10 @@
                     .list-item__author {
                         font-size: 15px;
                     }
+
+                    .list-item__description {
+                        font-size: 15px;
+                    }
                 }
             }
         }
@@ -234,8 +253,8 @@
                         text-overflow: ellipsis;
                         word-wrap: break-word;
                         text-align: justify;
-    
-                        // margin: 0 32px;
+                        margin: 0 10px;
+                        font-size: 10px;
                     }
                 }
             }

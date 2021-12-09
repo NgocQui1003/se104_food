@@ -1,164 +1,153 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import styles from './UserPosts.module.scss';
+import styles from './UsersList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
-import EditIcon from '@mui/icons-material/Edit';
 import { Pagination } from '@mui/material';
 
 // Components
-import UserMenu from '../../Components/UserMenu';
+import AdminMenu from '../../Components/AdminMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
-// Redux
-import { userActions } from '../../Redux/Actions/userActions';
-
 // Api
-import userApi from '../../Api/userApi';
+import adminApi from '../../Api/adminApi';
 
-function SavedPostList() {
-    const { loggedIn, user } = useSelector(state => state.User);
+function UsersList() {
+    const { user, loggedIn } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
-    const [uploadList, setUploadList] = useState([]);
+    const [userList, setUserList] = useState([]);
 
     // Pagination setup
     const [currentpage, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
-    const numRows = 8;
+    const numRows = 10;
+    const isAdmin = 'admin' == user.role.role_name;
 
-    const fetchUploadList = async () => {
+    const fetchUserList = async () => {
         setLoading(true);
         const params = {
+            page: currentpage,
             limit: numRows,
-            page: currentpage
         }
-        const response = await userApi.getPosts(params);
-        console.log(response);
-
+        const response = await adminApi.getAllUsers(params);
+        setUserList(response.data);
         if (response.data) {
-            const newPost = response.data.map((e) => {
+            const newList = response.data.map((e) => {
                 e.checked = false;
                 return e;
             });
-            setUploadList(newPost);
-            //pagination
+            setUserList(newList);
             setTotalPage(Math.ceil((response.paging.total) / numRows));
-        } else {
-            setUploadList(response.data);
         }
+        window.scrollTo(0, 0);
         setLoading(false);
     }
 
-    const deleteOnePost = async (post) => {
-        let currentList = uploadList;
-        currentList = currentList.filter(itm => itm._id !== post._id);
-        setUploadList(currentList);
-
-        await userApi.deleteOneUpload(post._id);
+    const deleteOne = async (user) => {
+        let currentList = userList;
+        currentList = currentList.filter(itm => itm._id !== user._id);
+        setUserList(currentList);
+        await adminApi.deleteOne(user._id);
     }
 
-    // Fetch checked list
-    const fetchCheckedPost = (e) => {
-        let currentList = uploadList;
-        currentList = currentList.map((post) => {
-            if (e.target.value == post._id) {
-                post.checked = !post.checked;
+    const fetchCheckedUser = (e) => {
+        let currentList = userList;
+        currentList = currentList.map((user) => {
+            if (e.target.value == user._id) {
+                user.checked = !user.checked;
             }
-            return post;
+            return user;
         });
-        setUploadList(currentList);
+        setUserList(currentList);
     }
 
     const deleteMultiple = async () => {
-        let checkedList = uploadList;
+        let checkedList = userList;
         let arrayids = [];
-
-        // Lấy ds cần xóa
-        checkedList.forEach((post) => {
-            if (post.checked) {
-                arrayids.push(post._id)
+        checkedList.forEach((user) => {
+            if (user.checked) {
+                arrayids.push(user._id)
             }
         })
-        console.log('array: ', arrayids);
-
-        // Remaining danh sách
-        checkedList = checkedList.filter((post) => post.checked == false);
-        setUploadList(checkedList);
-        await userApi.deleteManyUpload(arrayids);
+        checkedList = checkedList.filter((user) => user.checked == false);
+        setUserList(checkedList);
+        await adminApi.deleteMultiple(arrayids);
     };
 
-    const selectAll = () => {
-        let currentList = uploadList;
-        currentList = currentList.map((post) => {
-            return { ...post, checked: true };
+    const selectAll = (e) => {
+        let currentList = userList;
+        currentList = currentList.map((user) => {
+            return { ...user, checked: true };
         })
-        setUploadList(currentList);
+        setUserList(currentList);
+        // console.log("temp: ", currentList);
     }
-
-    const Loading = () => (
-        <div className={styles['container-loading']}>
-            <CircularProgress />
-            <p>Đang tải danh sách bạn đã đăng</p>
-        </div>
-    )
 
     const handlePageChange = (value) => {
         setPage(value);
         window.scrollTo(0, 0);
     }
 
+    const Loading = () => (
+        <div className={styles['container-loading']}>
+            <CircularProgress />
+            <p>Đang tải danh sách bạn đã lưu</p>
+        </div>
+    )
+
     useEffect(() => {
-        fetchUploadList();
+        fetchUserList();
     }, [currentpage])
 
-    function PostItem({ item, idx }) {
+
+
+    function UserItem({ item, idx }) {
         return (
             <div className={styles['list-item']} key={idx}>
                 <div className={styles['list-item__checkbox']}>
                     <input type="checkbox" value={item._id}
-                        onChange={fetchCheckedPost}
+                        onChange={fetchCheckedUser}
                         defaultChecked={item.checked}
                     />
                 </div>
+
                 <div className={styles['list-item__container']}>
-                    <div className={styles['list-item__thumbnail']}>
-                        <img src={item.thumbnail_image} className={styles['thumnail']} />
-                    </div>
-                    <div className={styles['list-item__content']}>
-                        <div className={styles['list-item__name']}>
-                            {item.title}
+                    <Link to={`/admin/thong-tin/${item._id}`} className={styles['list-item__link']}>
+                        <div className={styles['list-item__thumbnail']}>
+                            <img src={item.avatar} className={styles['thumnail']} />
                         </div>
-                        <div className={styles['list-item__author']}>
-                            {item.author}
+                        <div className={styles['list-item__content']}>
+                            <div className={styles['list-item__name']}>
+                                Họ tên: {item.lastname} {item.firstname}
+                            </div>
+                            <div className={styles['list-item__author']}>
+                                Email: {item.email}
+                            </div>
+                            <div className={styles['list-item__description']}>
+                                Role: {item.role.role_name}
+                            </div>
                         </div>
-                        <div className={styles['list-item__description']}>
-                            {item.description}
-                        </div>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className={styles['menu-btn']}>
-                    <Link className={styles['menu-btn__nav']} to='/'>
-                        <div className={styles['menu-btn__editpost']}><EditIcon /></div>
-                    </Link>
-
-                    <button onClick={() => deleteOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
+                    <button onClick={() => deleteOne(item)} className={styles['menu-btn__delete']} >Xóa</button>
                 </div>
             </div>
         );
     };
 
-    return user && loggedIn ? (
+    return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>
-            <UserMenu user={user} />
+            <AdminMenu user={user} />
             <div className={styles['list-container']}>
-                <h1 className={styles['list-name']}>Bài viết đã đăng</h1>
+                <h1 className={styles['list-name']}>Danh sách người dùng</h1>
 
                 {
                     loading ? <Loading /> : (
                         <>
-                            {uploadList && uploadList.length > 0 ?
+                            {userList && userList.length > 0 ?
                                 (
                                     <>
                                         <div className={styles['list-btn']}>
@@ -172,8 +161,8 @@ function SavedPostList() {
                                             </button>
                                         </div>
                                         {
-                                            uploadList.map((item, idx) => {
-                                                return <PostItem item={item} idx={idx} />
+                                            userList.map((item, idx) => {
+                                                return <UserItem item={item} idx={idx} />
                                             })
                                         }
                                         <div className={styles['list-pagination']}>
@@ -188,7 +177,7 @@ function SavedPostList() {
                                 ) : (
                                     <div className={styles['list-item__null']}>
                                         <p>
-                                            Bạn chưa đăng bài viết nào.
+                                            Bạn chưa có người dùng nào. [lỗi rồi]
                                         </p>
                                     </div>
                                 )
@@ -201,4 +190,4 @@ function SavedPostList() {
         </div >
     ) : <NotLoggedIn />
 }
-export default SavedPostList;
+export default UsersList;
