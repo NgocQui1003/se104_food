@@ -180,7 +180,6 @@ function SavedPostList() {
                                             <Pagination
                                                 count={totalPage}
                                                 page={currentpage}
-                                                // e.target.textContent la kieu string
                                                 onChange={(e, page) => handlePageChange(page)}
                                             ></Pagination>
                                         </div>
