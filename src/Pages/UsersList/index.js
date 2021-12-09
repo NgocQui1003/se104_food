@@ -51,9 +51,9 @@ function UsersList() {
         setLoading(false);
     }
 
-    const deleteOne = async (user) => {
+    const deleteOne = async (delete_user) => {
         let currentList = userList;
-        currentList = currentList.filter(itm => itm._id !== user._id);
+        currentList = currentList.filter(itm => itm._id !== delete_user._id);
         setUserList(currentList);
         await adminApi.deleteOne(user._id);
     }
@@ -72,12 +72,12 @@ function UsersList() {
     const deleteMultiple = async () => {
         let checkedList = userList;
         let arrayids = [];
-        checkedList.forEach((user) => {
-            if (user.checked) {
-                arrayids.push(user._id)
+        checkedList.forEach((delete_user) => {
+            if (delete_user.checked) {
+                arrayids.push(delete_user._id)
             }
         })
-        checkedList = checkedList.filter((user) => user.checked == false);
+        checkedList = checkedList.filter((delete_user) => delete_user.checked == false);
         setUserList(checkedList);
         await adminApi.deleteMultiple(arrayids);
     };
