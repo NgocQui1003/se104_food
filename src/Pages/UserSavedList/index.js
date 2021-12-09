@@ -19,12 +19,19 @@ import adminApi from '../../Api/adminApi';
 function UserSavedList() {
     const { loggedIn, user } = useSelector(state => state.User);
     const { id } = useParams();
-    const isAdmin = 'admin' === user.role.role_name;
     const [loading, setLoading] = useState(false);
     const [savedList, setSavedList] = useState([]);
     const [current_page, setPage] = useState(1);
     const [total_page, setTotalPage] = useState(1);
     const numRows = 10;
+    let isAdmin;
+    if (user) {
+        if (user.role && user.role.role_name === 'admin') {
+            isAdmin = true;
+        }
+    } else {
+        isAdmin = false;
+    }
 
     const fetchSavedList = async () => {
         setLoading(true);

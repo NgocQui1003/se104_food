@@ -18,7 +18,14 @@ function AdminListPost() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
     const [uploadList, setUploadList] = useState([]);
-    const isAdmin = 'admin' === user.role.role_name;
+    let isAdmin;
+    if (user) {
+        if (user.role && user.role.role_name === 'admin') {
+            isAdmin = true;
+        }
+    } else {
+        isAdmin = false;
+    }
 
     // Pagination setup
     const [currentpage, setPage] = useState(1);
@@ -35,6 +42,7 @@ function AdminListPost() {
 
         // pagination
         setTotalPage(Math.ceil((response.paging.total) / numRows));
+        // if (user.role && user.role.role_name === 'admin') isAdmin = true;
 
         if (response.data) {
             const newPost = response.data.map((e) => {
@@ -42,6 +50,7 @@ function AdminListPost() {
                 return e;
             });
             setUploadList(newPost);
+
         } else {
             setUploadList(response.data);
         }

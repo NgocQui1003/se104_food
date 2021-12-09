@@ -22,7 +22,14 @@ function UsersList() {
     const [currentpage, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
     const numRows = 10;
-    const isAdmin = 'admin' == user.role.role_name;
+    let isAdmin;
+    if (user) {
+        if (user.role && user.role.role_name === 'admin') {
+            isAdmin = true;
+        }
+    } else {
+        isAdmin = false;
+    }
 
     const fetchUserList = async () => {
         setLoading(true);

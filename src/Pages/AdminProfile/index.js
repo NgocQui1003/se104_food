@@ -7,7 +7,14 @@ import styles from './AdminProfile.module.scss';
 
 function AdminProfile() {
     const { user, loggedIn } = useSelector(state => state.User);
-    const isAdmin = 'admin' === user.role.role_name;
+    let isAdmin;
+    if (user) {
+        if (user.role && user.role.role_name === 'admin') {
+            isAdmin = true;
+        }
+    } else {
+        isAdmin = false;
+    }
 
     return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>

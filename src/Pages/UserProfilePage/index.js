@@ -18,8 +18,15 @@ function UserProfilePage() {
     const { user, loggedIn } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState({});
-    const isAdmin = 'admin' === user.role.role_name;
     const { id } = useParams();
+    let isAdmin;
+    if (user) {
+        if (user.role && user.role.role_name === 'admin') {
+            isAdmin = true;
+        }
+    } else {
+        isAdmin = false;
+    }
 
     const fetchUserData = async () => {
         setLoading(true);
