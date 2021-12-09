@@ -330,8 +330,6 @@ function Add() {
                                     {selectedImage && (
                                         <div>
                                             <img className={styles['post_img']} alt="not fount" src={URL.createObjectURL(selectedImage)} />
-                                            <br />
-                                            <button className={styles['btn-remove']} onClick={() => setSelectedImage(null)}>Remove</button>
                                         </div>
                                     )}
                                 </div>
