@@ -66,6 +66,10 @@ function ItemPost({ post, savePost, reactPost }) {
             </div>
         </Modal>
     }
+
+    const redirectDetailPost = id => {
+        history.push(`/bai-dang/${id}`)
+    }
     return (
         <div className={styles['container']}>
             <ModelCustom />
@@ -85,7 +89,7 @@ function ItemPost({ post, savePost, reactPost }) {
                 </div>
 
                 <div className={styles['content-more']}>
-                    <p>
+                    <p onClick={() => redirectDetailPost(post['_id'])}>
                         {formatTitle(post['title'])}
                     </p>
                     <div className={styles['container-avatar-user']}>

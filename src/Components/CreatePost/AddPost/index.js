@@ -6,18 +6,14 @@ import { useDispatch } from 'react-redux';
 import CreatePost from "../../CreatePost";
 import styles from './AddPost.module.scss';
 
-import { userActions } from '../../../Redux/Actions/userActions';
-import userApi from '../../../Api/userApi';
 import postApi from '../../../Api/postApi';
-import Auth from '../../../Utils/Auth';
 import ValidateInput from '../../../Utils/ValidateInput';
 import HandleImage from '../../../Utils/HandleImage';
 
 function Add() {
-    
+
     const [selectedImage, setSelectedImage] = useState(null);
     const [open, setOpen] = useState(false);
-    
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -77,8 +73,8 @@ function Add() {
             amount: '',
         });
         setCreatePostValue({
-        ...createPostValue, 
-        ingredients: ingredient
+            ...createPostValue,
+            ingredients: ingredient
         });
     };
 
@@ -108,11 +104,11 @@ function Add() {
             step: '',
         });
         setCreatePostValue({
-        ...createPostValue, 
-        directions: direction
+            ...createPostValue,
+            directions: direction
         });
     };
- 
+
     const handleRemoveStepClick = index => {
         let direction = [...createPostValue.directions]
         direction.splice(index, 1);
@@ -127,66 +123,76 @@ function Add() {
         setSelectedImage(file);
         let url = URL.createObjectURL(e.target.files[0])
         // console.log(url);
-        
+
         HandleImage.getBase64(file)
-        .then(result => {
-            setCreatePostValue({
-                ...createPostValue,
-                thumbnails: result
-            });
-        })
+            .then(result => {
+                setCreatePostValue({
+                    ...createPostValue,
+                    thumbnails: result
+                });
+            })
         // console.log('Post value:',createPostValue);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const data = await postApi.createPost(createPostValue);
-        console.log(data);
+        const newPostData = {
+            title: createPostValue.postName,
+            description: createPostValue.postDescription,
+            ingredients: createPostValue.ingredients.map((item) => {
+                const newValue = {
+                    name: item.name,
+                    quantity: item.amount
+                }
+                return newValue;
+            }),
+            directions: createPostValue.directions.map((item) => item.step),
+            thumbnail_image: createPostValue.thumbnails,
+        }
 
-        // if (data.success) {
-        //     Auth.setToken(data.accessToken);
-        //     const res = await postApi.getPost();
-        //     dispatch(userActions.setProfile(res.data));
-        //     history.push('/')
-        //     window.location.reload(true);
-        // } else {
-        //     setError({ ...error, createPost: data.status });
-        //     if (data.status === 0) {
-        //         alert("Tạo bài viết thất bại.")
-        //     }
-        // }
+   
+        const res = await postApi.createPost(newPostData);
+
+        if (res.status) {
+            history.push(`/bai-dang/${res.data._id}`)
+        } else {
+            setError({ ...error, createPost: res.message });
+                if (res.status === 0) {
+                alert("Tạo bài viết thất bại.")
+            }
+        }
     }
 
-    
-    
+
+
 
     return (
         <>
             <div>
                 <span className={styles['nav-links-mobile']} onClick={() => setOpen(true)}>Đăng bài viết</span>
                 <CreatePost title="Thêm bài viết" onClose={() => setOpen(false)} open={open} onSubmit={handleSubmit}>
-                
+
                     <form className={styles['post_form']} >
-                    
+
                         <div className={styles['row']}>
                             <div className={styles['col-25']}>
                                 <label className={styles['post_label']} for="title">Tên món ăn:</label>
                             </div>
                             <div className={styles['col-75']}>
-                                <input type="text" 
-                                id="title" 
-                                name="postName"
-                                value={createPostValue.postName} 
-                                onChange={handleChange}
-                                placeholder="Cà chua xào trứng"
-                                onBlur={(e) => {
-                                    let error = ValidateInput.createPostName(e.target.value);
-                                    setError({
-                                        ...error,
-                                        postName: error
-                                    });
-                                }} />
+                                <input type="text"
+                                    id="title"
+                                    name="postName"
+                                    value={createPostValue.postName}
+                                    onChange={handleChange}
+                                    placeholder="Cà chua xào trứng"
+                                    onBlur={(e) => {
+                                        let error = ValidateInput.createPostName(e.target.value);
+                                        setError({
+                                            ...error,
+                                            postName: error
+                                        });
+                                    }} />
                             </div>
                             {error.postName == '' ? null :
                                 <div className={styles['form-error']}>{error.postName}</div>
@@ -198,19 +204,19 @@ function Add() {
                                 <label className={styles['post_label']} for="description">Mô tả: </label>
                             </div>
                             <div className={styles['col-75']}>
-                                <textarea 
-                                id="description" 
-                                name="postDescription"
-                                value={createPostValue.postDescription} 
-                                onChange={handleChange}
-                                placeholder="Cà chua xào với trứng..."
-                                onBlur={(e) => {
-                                    let error = ValidateInput.createPostDescription(e.target.value);
-                                    setError({
-                                        ...error,
-                                        postDescription: error
-                                    });
-                                }} ></textarea>
+                                <textarea
+                                    id="description"
+                                    name="postDescription"
+                                    value={createPostValue.postDescription}
+                                    onChange={handleChange}
+                                    placeholder="Cà chua xào với trứng..."
+                                    onBlur={(e) => {
+                                        let error = ValidateInput.createPostDescription(e.target.value);
+                                        setError({
+                                            ...error,
+                                            postDescription: error
+                                        });
+                                    }} ></textarea>
                             </div>
                             {error.postDescription == '' ? null :
                                 <div className={styles['form-error']}>{error.postDescription}</div>
@@ -222,46 +228,46 @@ function Add() {
                                 <label className={styles['post_label']} for="material">Nguyên liệu: </label>
                             </div>
                             <div className={styles['col-75']}>
-                            {createPostValue.ingredients.map((x, i) => {
+                                {createPostValue.ingredients.map((x, i) => {
                                     return (
-                                    <div className={styles['box']}>
-                                        <input
-                                            className={styles['material']}
-                                            name="name"
-                                            placeholder="Nguyên liệu"
-                                            // value={x.name}
-                                            onChange={e => handleInputChange(e, i)}
-                                            onBlur={(e) => {
-                                                let error = ValidateInput.createMaterialName(e.target.value);
-                                                setError({
-                                                    ...error,
-                                                    ingredients: error
-                                                });
-                                            }} 
-                                        />
-                                        <input
-                                            className={styles['material']}
-                                            name="amount"
-                                            placeholder="Số lượng"
-                                            // value={x.amount}
-                                            onChange={e => handleInputChange(e, i)}
-                                            onBlur={(e) => {
-                                                let error = ValidateInput.createMaterialName(e.target.value);
-                                                setError({
-                                                    ...error,
-                                                    ingredients: error
-                                                });
-                                            }} 
-                                        />
-                                        <div className={styles['btn-box']}>
-                                            {amountIngredients !== 1 && <button
-                                                className={styles['btn-remove']}
-                                                onClick={() => handleRemoveClick(i)}>Xóa</button>}
-                                            {amountIngredients - 1 === i && <button 
-                                                className={styles['btn-add']}
-                                                onClick={handleAddClick}>Thêm</button>}
+                                        <div className={styles['box']}>
+                                            <input
+                                                className={styles['material']}
+                                                name="name"
+                                                placeholder="Nguyên liệu"
+                                                // value={x.name}
+                                                onChange={e => handleInputChange(e, i)}
+                                                onBlur={(e) => {
+                                                    let error = ValidateInput.createMaterialName(e.target.value);
+                                                    setError({
+                                                        ...error,
+                                                        ingredients: error
+                                                    });
+                                                }}
+                                            />
+                                            <input
+                                                className={styles['material']}
+                                                name="amount"
+                                                placeholder="Số lượng"
+                                                // value={x.amount}
+                                                onChange={e => handleInputChange(e, i)}
+                                                onBlur={(e) => {
+                                                    let error = ValidateInput.createMaterialName(e.target.value);
+                                                    setError({
+                                                        ...error,
+                                                        ingredients: error
+                                                    });
+                                                }}
+                                            />
+                                            <div className={styles['btn-box']}>
+                                                {amountIngredients !== 1 && <button
+                                                    className={styles['btn-remove']}
+                                                    onClick={() => handleRemoveClick(i)}>Xóa</button>}
+                                                {amountIngredients - 1 === i && <button
+                                                    className={styles['btn-add']}
+                                                    onClick={handleAddClick}>Thêm</button>}
+                                            </div>
                                         </div>
-                                    </div>
                                     );
                                 })}
                                 {error.ingredients == '' ? null :
@@ -276,31 +282,31 @@ function Add() {
                             <div className={styles['col-75']}>
                                 {createPostValue.directions.map((y, i) => {
                                     return (
-                                    <div className={styles['box']}>
-                                        <input
-                                            className={styles['step']}
-                                            name="step"
-                                            placeholder="Hướng dẫn"
-                                            value={y.step}
-                                            onChange={e => handleInputStep(e, i)}
-                                            onBlur={(e) => {
-                                                let error = ValidateInput.createStepName(e.target.value);
-                                                setError({
-                                                    ...error,
-                                                    directions: error
-                                                });
-                                            }} 
-                                        />
-                                        <div className={styles['btn-box']}>
-                                            {amountSteps !== 1 && <button
-                                                className={styles['btn-remove']}
-                                                onClick={() => handleRemoveStepClick(i)}>Xóa</button>}
-                                            {amountSteps - 1 === i && <button 
-                                                className={styles['btn-add']}
-                                                onClick={handleAddStepClick}>Thêm</button>}
+                                        <div className={styles['box']}>
+                                            <input
+                                                className={styles['step']}
+                                                name="step"
+                                                placeholder="Hướng dẫn"
+                                                value={y.step}
+                                                onChange={e => handleInputStep(e, i)}
+                                                onBlur={(e) => {
+                                                    let error = ValidateInput.createStepName(e.target.value);
+                                                    setError({
+                                                        ...error,
+                                                        directions: error
+                                                    });
+                                                }}
+                                            />
+                                            <div className={styles['btn-box']}>
+                                                {amountSteps !== 1 && <button
+                                                    className={styles['btn-remove']}
+                                                    onClick={() => handleRemoveStepClick(i)}>Xóa</button>}
+                                                {amountSteps - 1 === i && <button
+                                                    className={styles['btn-add']}
+                                                    onClick={handleAddStepClick}>Thêm</button>}
+                                            </div>
+
                                         </div>
-                                        
-                                    </div>
                                     );
                                 })}
                                 {error.directions == '' ? null :
@@ -314,17 +320,17 @@ function Add() {
                                 <label className={styles['post_label']} for="title">Hình ảnh: </label>
                             </div>
                             <div className={styles['col-75']}>
-                                <input 
-                                type="file" 
-                                id="image" 
-                                name="picture" 
-                                onChange={uploadImage}/>
+                                <input
+                                    type="file"
+                                    id="image"
+                                    name="picture"
+                                    onChange={uploadImage} />
                                 <div>
                                     {selectedImage && (
                                         <div>
-                                            <img className={styles['post_img']} alt="not fount" src={URL.createObjectURL(selectedImage)}/>
+                                            <img className={styles['post_img']} alt="not fount" src={URL.createObjectURL(selectedImage)} />
                                             <br />
-                                            <button className={styles['btn-remove']} onClick={()=>setSelectedImage(null)}>Remove</button>
+                                            <button className={styles['btn-remove']} onClick={() => setSelectedImage(null)}>Remove</button>
                                         </div>
                                     )}
                                 </div>
