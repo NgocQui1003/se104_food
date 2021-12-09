@@ -40,7 +40,7 @@ function UserMenu({ user }) {
 
             </div>
             <div className={styles['user-name']}>
-                {user.firstname} {user.lastname}
+                {user.lastname} {user.firstname}
             </div>
         </>
     )
