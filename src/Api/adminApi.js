@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const adminApi = {
     createAccount: (data) => {
-        const url = '/api/auth/add-user';
+        const url = '/api/admin/add-user';
         return axiosClient.post(url, data);
     },
     getProfile: () => {
