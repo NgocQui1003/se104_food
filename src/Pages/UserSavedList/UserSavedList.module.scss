@@ -1,0 +1,245 @@
+@import '../../config.scss';
+
+.container {
+    margin: 20px 10px;
+}
+
+.list-name {
+    text-align: center;
+}
+
+.list-container {
+    width: 75%;
+    margin: 10px;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+
+    display: block;
+    float: right;
+
+    .list-item__null {
+        text-align: center;
+        padding: 10px 50px;
+        width: max-content;
+        // border: 0.5px solid $mainColor;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .list-pagination {
+        text-align: center;
+        margin: 15px 0;
+
+        ul {
+            justify-content: center;
+        }
+    }
+
+
+    .list-description {
+        text-align: center;
+    }
+
+    .list-item {
+        display: flex;
+        justify-content: center;
+        
+
+        .list-item__container {
+            display: flex;
+            border: 1px solid $mainColor;
+            border-radius: 2px;
+            margin: 10px 50px;
+            width: 70%;
+
+            .list-item__link {
+                display: flex;
+                text-decoration: none;
+                color: unset;
+            }
+
+            .list-item__thumbnail {
+                display: flex;
+                text-align: center;
+                margin: 10px 20px;
+            }
+
+            .list-item__thumbnail img {
+                width: 150px;
+                height: 100px;
+                object-fit: cover;
+            }
+    
+            .list-item__content {
+                // width: 70%;
+                display: inline-block;
+                margin: 10px 0;
+    
+                .list-item__name {
+                    font-weight: bold;
+                    font-size: 25px;
+                    margin: 0 32px;   
+                }
+
+                .list-item__author {
+                    margin: 0 32px;
+                }
+    
+                .list-item__description {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;  
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-wrap: break-word;
+                    text-align: justify;
+
+                    margin: 0 32px;
+                }
+            }
+        }
+        
+    }
+
+    
+}
+
+.container-loading {
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+
+.menu-btn__delete {
+    // display: inline-block;
+    color: white;
+    background-color: $red;
+    padding: 5px 30px;
+    border: 1px solid $red;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.menu-btn__edit {
+    color: white;
+    background-color: $green;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid $green;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.list-btn {
+    text-align: right;
+    display: block;
+    margin-right: 30px;
+    margin-bottom: 10px;
+
+    .menu-btn__delete {
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        text-align: center;
+    }
+
+    .list-container {
+        width: auto;
+        float: none;
+
+        .list-item {
+            text-align: initial;
+            width: auto;
+            
+            .list-item__container {
+                
+                .list-item__content {
+                    .list-item__name {
+                        font-size: 20px;
+                    }
+
+                    .list-item__author {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+
+        .menu-btn {
+            margin-right: 10px;
+
+            .menu-btn__delete {
+                padding: 10px 15px;
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        .list-item {
+            display: flex;
+            
+            .list-item__container {
+                display: flex;
+                border: 1px solid $mainColor;
+                border-radius: 2px;
+                margin: 10px 0;
+                margin-left: 0px;
+    
+                .list-item__thumbnail {
+                    display: flex;
+                    text-align: center;
+                    margin: 10px;
+                }
+    
+                .list-item__thumbnail img {
+                    width: 70px;
+                    height: 70px;
+                    object-fit: cover;
+                }
+        
+                .list-item__content {
+                    // width: 70%;
+                    display: inline-block;
+                    margin: 10px 0;
+        
+                    .list-item__name {
+                        font-weight: bold;
+                        font-size: 15px;
+                        margin: 0 10px;   
+                    }
+    
+                    .list-item__author {
+                        margin: 0 10px;
+                        font-size: 10px;
+                    }
+        
+                    .list-item__description {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;  
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        word-wrap: break-word;
+                        text-align: justify;
+    
+                        // margin: 0 32px;
+                    }
+                }
+            }
+        }
+    }
+}

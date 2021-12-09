@@ -18,6 +18,7 @@ import PostList from './Pages/PostList';
 import CreateUser from './Pages/CreateUser';
 import PostByUser from './Pages/PostByUser';
 import UserProfilePage from './Pages/UserProfilePage';
+import UserSavedList from './Pages/UserSavedList';
 
 export const routes = [
     {
@@ -99,6 +100,10 @@ export const routes = [
     {
         path: '/admin/thong-tin/:id',
         component: UserProfilePage,
+    },
+    {
+        path: '/admin/thong-tin/ds-luu/:id',
+        component: UserSavedList,
     },
     {
         component: NotFound,
