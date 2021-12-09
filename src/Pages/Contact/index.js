@@ -1,4 +1,3 @@
-import { style } from '@mui/system';
 import React, { useEffect } from 'react';
 
 import styles from './Contact.module.scss';
@@ -23,7 +22,7 @@ function Contact() {
                     <p>Bạn không biết mai ăn gì? Bạn khổ sở vì chọn món trưa/tối nay?</p>
                     <p>Đừng lo, vì đã có</p>
                     <Link to="/">
-                        <img src={logo} />
+                        <img className={styles['about-us__logo']} src={logo} />
                     </Link>
                     <div>
                         .
