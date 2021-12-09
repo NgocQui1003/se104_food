@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
 
 import CreatePost from "../../CreatePost";
 import styles from './AddPost.module.scss';
@@ -15,7 +13,6 @@ function Add() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [open, setOpen] = useState(false);
     const history = useHistory();
-    const dispatch = useDispatch()
 
     const [createPostValue, setCreatePostValue] = useState({
         postName: '',
@@ -153,6 +150,7 @@ function Add() {
 
    
         const res = await postApi.createPost(newPostData);
+        console.log(res);
 
         if (res.status) {
             history.push(`/danh-sach-bai-dang`);
