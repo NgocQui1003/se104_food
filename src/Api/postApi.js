@@ -24,7 +24,7 @@ const postApi = {
     getPostByUser: (id, params) => {
         console.log(id, params);
 
-        const url = `/post/user/${id}`;
+        const url = `/post/user/:_id`;
         return axiosClient.get(url, { params });
     },
     createPost: (data) => {
@@ -33,8 +33,8 @@ const postApi = {
     },
 
     updatePost: (id, data) => {
-        const url = `post/${id}`;
-        return axiosClient.put(url, data);
+        const url = `post/update/${id}`;
+        return axiosClient.post(url, data);
     },
     deleteOneUpload: (id) => {
         const url = `/post/delete/${id}`
