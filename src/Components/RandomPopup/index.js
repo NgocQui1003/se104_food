@@ -50,12 +50,12 @@ function RandomPopup(props) {
                             <CancelIcon onClick={() => handleCancel()} />
                         </div>
                         <div className={styles['random-title']}>
-                            <Link to={`/bai-viet/${postRandom['_id']}`}>
+                            <Link to={`/bai-dang/${postRandom['_id']}`}>
                                 {postRandom['title']}
                             </Link>
                         </div>
                         <div className={styles['random-image']}>
-                            <Link to={`/bai-viet/${postRandom['_id']}`}>
+                            <Link to={`/bai-dang/${postRandom['_id']}`}>
                                 <img src={postRandom['thumbnail_image']} />
                             </Link>
                         </div>
