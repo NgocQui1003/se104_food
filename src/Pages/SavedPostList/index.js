@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import styles from '../SavedPostList/SavedPostList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -9,11 +10,7 @@ import { Pagination } from '@mui/material';
 import UserMenu from '../../Components/UserMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
-// Redux
-import { userActions } from '../../Redux/Actions/userActions';
-
 // Api
-import userApi from '../../Api/userApi';
 import savedPostApi from '../../Api/savedPostApi';
 
 function SavedPostList() {
@@ -32,9 +29,7 @@ function SavedPostList() {
             userID: user._id
         }
         const response = await savedPostApi.getAll(params);
-        console.log("lưu: ", response);
-        setSavedList(response.result.data);
-        if (response.result.data) {
+        if (response.success === 1) {
             const newPost = response.result.data.map((e) => {
                 e.checked = false;
                 return e;
@@ -114,20 +109,22 @@ function SavedPostList() {
                     />
                 </div>
                 <div className={styles['list-item__container']}>
-                    <div className={styles['list-item__thumbnail']}>
-                        <img src={item.thumbnail_image} className={styles['thumnail']} />
-                    </div>
-                    <div className={styles['list-item__content']}>
-                        <div className={styles['list-item__name']}>
-                            {item.title}
+                    <Link to={`/bai-dang/${item.id_post}`} className={styles['list-item__link']}>
+                        <div className={styles['list-item__thumbnail']}>
+                            <img src={item.thumbnail_image} className={styles['thumnail']} />
                         </div>
-                        <div className={styles['list-item__author']}>
-                            {item.author}
+                        <div className={styles['list-item__content']}>
+                            <div className={styles['list-item__name']}>
+                                {item.title}
+                            </div>
+                            <div className={styles['list-item__author']}>
+                                {item.author}
+                            </div>
+                            <div className={styles['list-item__description']}>
+                                {item.description}
+                            </div>
                         </div>
-                        <div className={styles['list-item__description']}>
-                            {item.description}
-                        </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className={styles['menu-btn']}>
                     <button onClick={() => unsavedOnePost(item)} className={styles['menu-btn__delete']} >Xóa</button>
