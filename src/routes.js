@@ -85,10 +85,6 @@ export const routes = [
         component: UserPosts,
     },
     {
-        path: '/reset-password',
-        component: ResetPass,
-    },
-    {
         path: '/tim-kiem',
         component: Search,
     },
