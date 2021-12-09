@@ -62,7 +62,7 @@ function RandomPopup(props) {
                         {postRandom['id_author']
                             ?<div 
                                 className={styles['random-author']}
-                                onClick={() => history.push(`/user/${postRandom['id_author']['_id']}`)}
+                                onClick={() => history.push(`/danh-sach-bai-viet-ng-dung/${postRandom['id_author']['_id']}`)}
                             >
                                 <span className={styles['bold']}>Người nấu: </span>
                                 {`${postRandom['id_author']['lastname']} ${postRandom['id_author']['firstname']}`}
