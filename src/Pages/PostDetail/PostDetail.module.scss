@@ -36,7 +36,7 @@ img {
   width: 15%;
   margin-right: 2%;
   color: white;
-  background-color: #f0213b;
+  background-color: rgb(32, 120, 244);
   font-size: 30px;
   border-radius: 8px;
   cursor: pointer;
@@ -44,7 +44,7 @@ img {
   float: right;
 }
 .btn_like:active {
-  background-color: #c3293d;
+  background-color: rgb(23, 88, 180);
 }
 
 .btn_save {
@@ -52,7 +52,7 @@ img {
   padding: 1%;
   width: 10%;
   color: white;
-  background-color: #ca5a4b;
+  background-color: #f0213b;
   font-size: 30px;
   border-radius: 8px;
   cursor: pointer;
@@ -60,7 +60,7 @@ img {
   float: right;
 }
 .btn_save:active {
-  background-color: #a34b3f;
+  background-color: #c3293d;
 }
 
 .food_title {
