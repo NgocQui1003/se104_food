@@ -15,6 +15,16 @@ const postApi = {
         const url = `post/${id}`;
         return axiosClient.get(url)
     },
+
+    createPost: (data) => {
+        const url = 'post/create';
+        return axiosClient.post(url, data);
+    },
+
+    updatePost: (id, data) => {
+        const url = `post/${id}`;
+        return axiosClient.put(url, data);
+    },
 }
 
 export default postApi;

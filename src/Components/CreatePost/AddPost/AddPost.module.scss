@@ -1,0 +1,177 @@
+@import "../../../config.scss";
+
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .btn {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    font-size: 2em;
+    border-radius: 50%;
+    background-color: #ca5a4b;
+    color: white;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    z-index: 1;
+    bottom: 4%;
+    right: 2%;
+    cursor: pointer;
+  }
+  
+  .btn:active {
+    background-color: #ca5a4b;
+  }
+  
+  .post_form {
+    width: 100%;
+  }
+  
+  input[id="title"], input[id="description"],
+  textarea[id="description"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  input[id="image"] {
+    width: 35%;
+    padding: 10px 0px;
+  }
+  
+  .material {
+    width: 20%;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .step {
+    width: 42%;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .post_label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  .col-25 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+  }
+  
+  .col-75 {
+    float: left;
+    width: 80%;
+    margin-top: 6px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25,
+    .col-75 {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  
+  .box{
+    margin-bottom: 10px;
+  }
+  
+  .btn-box {
+    margin-left: 10px;
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+  }
+  
+  .btn-remove {
+    padding: 5px;
+    width: 40%;
+    margin-right: 10%;
+    border: none;
+    background-color: #F0213B;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .btn-remove:active {
+    background-color: #e9465c;
+  }
+  
+  .btn-add {
+    padding: 5px;
+    width: 50%;
+    border: none;
+    background-color: #3a3a3a;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .btn-add:active {
+    background-color: #686868;
+  }
+
+  .nav-links-mobile{
+    color: #CA5A4B;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  .nav-links-mobile:hover {
+    transition: all 0.2s ease-out;
+    border: 1.5px solid $mainColor;
+    border-radius: 5px;
+  }
+
+  .post_img {
+    width: 50%;
+    height: 50%;
+    border-radius: 5%;
+  }
+
+  .form-error {
+    font-size: 13px;
+    color: rgb(255, 0, 0);
+    text-align: left;
+    margin: 5px 0;
+    padding-left: 20%;
+    padding-top: 8%;
+    display: block;
+}
+
+.error-form {
+  font-size: 13px;
+  color: rgb(255, 0, 0);
+  text-align: left;
+  display: block;
+}
+
+  

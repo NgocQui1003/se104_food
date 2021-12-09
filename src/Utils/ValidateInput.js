@@ -33,6 +33,30 @@ const ValidateInput = {
         else return ''
     },
 
+    createPostName: (pName) => {
+        if (pName.trim() === '') {
+            return 'Vui lòng nhập tên bài viết';
+        } else return '';
+    },
+
+    createPostDescription: (pDescription) => {
+        if (pDescription.trim() === '') {
+            return 'Vui lòng nhập mô tả bài viết';
+        } else return '';
+    },
+
+    createMaterialName: (pIngredients) => {
+        if (pIngredients.trim() === '') {
+            return 'Vui lòng nhập đủ các nguyên liệu';
+        } else return '';
+    },
+
+    createStepName: (pDirections) => {
+        if (pDirections.trim() === '') {
+            return 'Vui lòng nhập đủ các bước làm';
+        } else return '';
+    },
+
 }
 
 export default ValidateInput;
