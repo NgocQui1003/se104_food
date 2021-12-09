@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styles from '../SavedPostList/SavedPostList.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Pagination } from '@mui/material';
 
 // Components
 import UserMenu from '../../Components/UserMenu';
@@ -18,22 +19,28 @@ import savedPostApi from '../../Api/savedPostApi';
 function SavedPostList() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
-
     const [savedList, setSavedList] = useState([]);
+    const [current_page, setPage] = useState(1);
+    const [total_page, setTotalPage] = useState(1);
+    const numRows = 10;
 
     const fetchSavedList = async () => {
         setLoading(true);
         const params = {
+            limit: numRows,
+            page: current_page,
             userID: user._id
         }
         const response = await savedPostApi.getAll(params);
-        setSavedList(response.data);
-        if (response.data) {
-            const newPost = response.data.map((e) => {
+        console.log("lưu: ", response);
+        setSavedList(response.result.data);
+        if (response.result.data) {
+            const newPost = response.result.data.map((e) => {
                 e.checked = false;
                 return e;
             });
             setSavedList(newPost);
+            setTotalPage(Math.ceil((response.result.total) / numRows));
         }
         setLoading(false);
     }
@@ -86,9 +93,14 @@ function SavedPostList() {
         </div>
     )
 
+    const handlePageChange = (value) => {
+        setPage(value);
+        window.scrollTo(0, 0);
+    }
+
     useEffect(() => {
         fetchSavedList();
-    }, [])
+    }, [current_page])
 
 
 
@@ -151,6 +163,13 @@ function SavedPostList() {
                                                 return <PostItem item={item} idx={idx} />
                                             })
                                         }
+                                        <div className={styles['list-pagination']}>
+                                            <Pagination
+                                                count={total_page}
+                                                page={current_page}
+                                                onChange={(e, page) => handlePageChange(page)}
+                                            ></Pagination>
+                                        </div>
                                     </>
                                 ) : (
                                     <div className={styles['list-item__null']}>
