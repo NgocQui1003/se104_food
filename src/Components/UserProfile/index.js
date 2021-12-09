@@ -4,6 +4,7 @@ import styles from './UserProfile.module.scss';
 import { Link } from 'react-router-dom';
 
 function UserProfile({ profile }) {
+    console.log(profile);
     return (
         <div className={styles['InformationUser-container-format']}>
             <h1 className={styles['InformationUser-container-tile']}>Thông tin</h1>
@@ -53,7 +54,7 @@ function UserProfile({ profile }) {
                                 <input type="radio" value="Nam"
                                     name="gender"
                                     id="gender-1"
-                                // checked={profile.gender.toLowerCase() == "nam"}
+                                    checked={profile.gender ? profile.gender.toLowerCase() == "nam" : false}
                                 />
                             </label>
                             <label className={styles["InformationUser-label-input"]} for="gender">
@@ -61,7 +62,7 @@ function UserProfile({ profile }) {
                                 <input type="radio" value="Nữ"
                                     name="gender"
                                     id="gender-0"
-                                // checked={profile.gender.toLowerCase() == "nữ"}
+                                    checked={profile.gender ? profile.gender.toLowerCase() == "nữ" : false}
                                 />
                             </label>
                         </div>
@@ -76,7 +77,7 @@ function UserProfile({ profile }) {
                                 <input type="radio" value="user"
                                     name="role"
                                     id="role-0"
-                                // checked={profile.role.role_name == "user"}
+                                    checked={profile.role ? profile.role.role_name == "user" : false}
                                 />
                             </label>
                             <label className={styles["InformationUser-label-input"]} for="role">
@@ -84,7 +85,7 @@ function UserProfile({ profile }) {
                                 <input type="radio" value="admin"
                                     name="role"
                                     id="role-1"
-                                // checked={profile.role.role_name == "admin"}
+                                    checked={profile.role ? profile.role.role_name == "admin" : false}
                                 />
                             </label>
                         </div>
