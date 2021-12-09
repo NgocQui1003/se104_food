@@ -22,6 +22,7 @@ import UserSavedList from './Pages/UserSavedList';
 import Search from './Pages/Search';
 import ListPost from './Pages/ListPost';
 import AdminListPost from './Pages/AdminListPost';
+import UpdatePost from './Pages/UpdatePost';
 
 export const routes = [
     {
@@ -103,6 +104,10 @@ export const routes = [
     {
         path: '/danh-sach-bai-viet-ng-dung/:id',
         component: PostByUser,
+    },
+    {
+        path: '/sua-bai-viet/:_id',
+        component: UpdatePost,
     },
     {
         path: '/admin/thong-tin/:id',

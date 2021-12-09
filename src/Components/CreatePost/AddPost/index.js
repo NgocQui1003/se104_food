@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
 
 import CreatePost from "../../CreatePost";
 import styles from './AddPost.module.scss';
@@ -15,7 +13,6 @@ function Add() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [open, setOpen] = useState(false);
     const history = useHistory();
-    const dispatch = useDispatch()
 
     const [createPostValue, setCreatePostValue] = useState({
         postName: '',
@@ -153,9 +150,11 @@ function Add() {
 
    
         const res = await postApi.createPost(newPostData);
+        console.log(res);
 
         if (res.status) {
-            history.push(`/bai-dang/${res.data._id}`)
+            history.push(`/danh-sach-bai-dang`);
+            setTimeout(function() { alert("Tạo bài viết thành công."); }, 1000);
         } else {
             setError({ ...error, createPost: res.message });
                 if (res.status === 0) {
@@ -329,8 +328,6 @@ function Add() {
                                     {selectedImage && (
                                         <div>
                                             <img className={styles['post_img']} alt="not fount" src={URL.createObjectURL(selectedImage)} />
-                                            <br />
-                                            <button className={styles['btn-remove']} onClick={() => setSelectedImage(null)}>Remove</button>
                                         </div>
                                     )}
                                 </div>
