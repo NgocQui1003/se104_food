@@ -14,12 +14,19 @@ import Random from './Pages/Random';
 import UsersList from './Pages/UsersList';
 import UserPosts from './Pages/UserPosts';
 import ResetPass from './Pages/ResetPassword';
+<<<<<<< HEAD
 import PostList from './Pages/PostList';
 import CreateUser from './Pages/CreateUser';
 import PostByUser from './Pages/PostByUser';
 import UserProfilePage from './Pages/UserProfilePage';
 import PostDetail from './Pages/PostDetail';
 import UserSavedList from './Pages/UserSavedList';
+=======
+import Search from './Pages/Search';
+import PostByUser from './Pages/PostByUser';
+import ListPost from './Pages/ListPost';
+import AdminListPost from './Pages/AdminListPost';
+>>>>>>> admin/post
 
 export const routes = [
     {
@@ -47,12 +54,16 @@ export const routes = [
         component: ForgotPassword,
     },
     {
-        path: '/dat-lai-mat-khau',
+        path: '/dat-lai-mat-khau/:token',
         component: ResetPass,
     },
     {
         path: '/luu',
         component: SavedPostList,
+    },
+    {
+        path: '/danh-sach-bai-viet',
+        component: ListPost,
     },
     {
         path: '/nguoi-dung',
@@ -84,6 +95,7 @@ export const routes = [
     },
     {
         path: '/tim-kiem',
+<<<<<<< HEAD
         component: PostList,
     },
     {
@@ -93,12 +105,16 @@ export const routes = [
     {
         path: '/admin/danh-sach-nguoi-dung',
         component: UsersList,
+=======
+        component: Search,  
+>>>>>>> admin/post
     },
     {
         path: '/danh-sach-bai-viet-ng-dung/:id',
         component: PostByUser,
     },
     {
+<<<<<<< HEAD
         path: '/admin/thong-tin/:id',
         component: UserProfilePage,
         path: '/bai-dang/:_id',
@@ -107,6 +123,10 @@ export const routes = [
     {
         path: '/admin/thong-tin/ds-luu/:id',
         component: UserSavedList,
+=======
+        path: '/admin/danh-sach-bai-viet',
+        component: AdminListPost,
+>>>>>>> admin/post
     },
     {
         component: NotFound,

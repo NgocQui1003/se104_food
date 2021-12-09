@@ -27,6 +27,7 @@ const postApi = {
         const url = `/post/user/${id}`;
         return axiosClient.get(url, { params });
     },
+<<<<<<< HEAD
     createPost: (data) => {
         const url = 'post/create';
         return axiosClient.post(url, data);
@@ -36,6 +37,21 @@ const postApi = {
         const url = `post/${id}`;
         return axiosClient.put(url, data);
     },
+=======
+    deleteOneUpload: (id) => {
+        const url = `/post/delete/${id}`
+        return axiosClient.delete(url);
+    },
+    deleteManyUpload: (id_list) => {
+        const data = {
+            data: {
+                list_post: id_list
+            }
+        }
+        const url = '/post/delete-many';
+        return axiosClient.delete(url, data);
+    }
+>>>>>>> admin/post
 }
 
 export default postApi;

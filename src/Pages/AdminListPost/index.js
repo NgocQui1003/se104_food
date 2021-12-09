@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import styles from './UserPosts.module.scss';
+import styles from './AdminListPost.module.scss';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
 import { Pagination } from '@mui/material';
@@ -11,15 +11,16 @@ import { Pagination } from '@mui/material';
 import UserMenu from '../../Components/UserMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
-// Redux
-import { userActions } from '../../Redux/Actions/userActions';
+
 
 // Api
 import userApi from '../../Api/userApi';
+import postApi from '../../Api/postApi';
 
-function SavedPostList() {
+function AdminListPost() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
+
     const [uploadList, setUploadList] = useState([]);
 
     // Pagination setup
@@ -33,15 +34,19 @@ function SavedPostList() {
             limit: numRows,
             page: currentpage
         }
-        const response = await userApi.getPosts(params);
-        if (response.status === 1) {
+        const response = await postApi.getPosts(params);
+
+        // pagination
+        setTotalPage(Math.ceil((response.paging.total) / numRows));
+
+        if (response.data) {
             const newPost = response.data.map((e) => {
                 e.checked = false;
                 return e;
             });
             setUploadList(newPost);
-            //pagination
-            setTotalPage(Math.ceil((response.paging.total) / numRows));
+        } else {
+            setUploadList(response.data);
         }
         setLoading(false);
     }
@@ -51,7 +56,7 @@ function SavedPostList() {
         currentList = currentList.filter(itm => itm._id !== post._id);
         setUploadList(currentList);
 
-        await userApi.deleteOneUpload(post._id);
+        await postApi.deleteOneUpload(post._id);
     }
 
     // Fetch checked list
@@ -81,7 +86,7 @@ function SavedPostList() {
         // Remaining danh sách
         checkedList = checkedList.filter((post) => post.checked == false);
         setUploadList(checkedList);
-        await userApi.deleteManyUpload(arrayids);
+        await postApi.deleteManyUpload(arrayids);
     };
 
     const selectAll = () => {
@@ -119,22 +124,20 @@ function SavedPostList() {
                     />
                 </div>
                 <div className={styles['list-item__container']}>
-                    <Link to={`/bai-dang/${item._id}`} className={styles['list-item__link']}>
-                        <div className={styles['list-item__thumbnail']}>
-                            <img src={item.thumbnail_image} className={styles['thumnail']} />
+                    <div className={styles['list-item__thumbnail']}>
+                        <img src={item.thumbnail_image} className={styles['thumnail']} />
+                    </div>
+                    <div className={styles['list-item__content']}>
+                        <div className={styles['list-item__name']}>
+                            {item.title}
                         </div>
-                        <div className={styles['list-item__content']}>
-                            <div className={styles['list-item__name']}>
-                                {item.title}
-                            </div>
-                            <div className={styles['list-item__author']}>
-                                {item.author}
-                            </div>
-                            <div className={styles['list-item__description']}>
-                                {item.description}
-                            </div>
+                        <div className={styles['list-item__author']}>
+                            {item.author}
                         </div>
-                    </Link>
+                        <div className={styles['list-item__description']}>
+                            {item.description}
+                        </div>
+                    </div>
                 </div>
 
                 <div className={styles['menu-btn']}>
@@ -152,7 +155,7 @@ function SavedPostList() {
         <div className={styles['container']}>
             <UserMenu user={user} />
             <div className={styles['list-container']}>
-                <h1 className={styles['list-name']}>Bài viết đã đăng</h1>
+                <h1 className={styles['list-name']}>Danh sách bài viết</h1>
 
                 {
                     loading ? <Loading /> : (
@@ -186,7 +189,7 @@ function SavedPostList() {
                                 ) : (
                                     <div className={styles['list-item__null']}>
                                         <p>
-                                            Bạn chưa đăng bài viết nào.
+                                            Không có danh sách bài viết nào
                                         </p>
                                     </div>
                                 )
@@ -199,4 +202,4 @@ function SavedPostList() {
         </div >
     ) : <NotLoggedIn />
 }
-export default SavedPostList;
+export default AdminListPost;

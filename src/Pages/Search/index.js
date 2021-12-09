@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styles from './PostList.module.scss';
+import styles from './Search.module.scss';
 import { Grid, Box } from '@mui/material';
 
 import { Link, useParams, useLocation, useHistory } from 'react-router-dom'
@@ -16,7 +16,7 @@ import reactionApi from '../../Api/reactionApi';
 
 import emptyPost from '../../Assets/empty-post.svg';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
-function PostList() {
+function Search() {
     const location = useLocation();  
 
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -262,4 +262,4 @@ function PostList() {
     )
 }
 
-export default PostList
+export default Search
