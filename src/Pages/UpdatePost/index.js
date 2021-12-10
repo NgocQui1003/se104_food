@@ -62,7 +62,7 @@ function UpdatePost() {
             ...updatePostValue,
             [name]: value
         });
-        console.log('Post value:',updatePostValue);
+        console.log('Post value:', updatePostValue);
     }
 
     const handleInputChange = (e, index) => {
@@ -145,7 +145,6 @@ function UpdatePost() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const newPostData = {
             title: updatePostValue.title,
             description: updatePostValue.description,
@@ -160,15 +159,15 @@ function UpdatePost() {
             thumbnail_image: updatePostValue.thumbnail_image,
         }
         console.log('newPostData:', newPostData);
-   
+
         const res = await postApi.updatePost(_id, newPostData);
 
-        if (res.status === 0 && res.message === 'Update Success') {
+        if (res.status === 1 && res.message === 'Update Success') {
             history.push(`/bai-dang/${_id}`);
-            setTimeout(function() { alert("Đổi thông tin bài viết thành công."); }, 1000);
+            setTimeout(function () { alert("Đổi thông tin bài viết thành công."); }, 1000);
         } else {
             setError({ ...error, createPost: res.message });
-                if (res.status === 1) {
+            if (res.status === 1) {
                 alert("Đổi thông tin bài viết thất bại.")
             }
         }
@@ -178,7 +177,7 @@ function UpdatePost() {
         <div className={[styles['InformationUser-container']].join(' ')}>
             <UserMenu user={user} />
             <div className={styles['InformationUser-container-format']}>
-            <h1 className={styles['ModifyInformation-container-tile']}>Đổi Thông Tin Bài viết</h1>
+                <h1 className={styles['ModifyInformation-container-tile']}>Đổi Thông Tin Bài viết</h1>
                 <form className={styles['post_form']} >
                     <div className={styles['row']}>
                         <div className={styles['col-25']}>
@@ -340,8 +339,8 @@ function UpdatePost() {
                             <input className={styles["ModifyInformation-button-cancel"]} type="submit" value="Hủy" />
                         </div>
                         <div className={styles["ModifyInformation-confirm"]}>
-                            <input className={styles["ModifyInformation-button-confirm"]} type="submit" value="Xác nhận" 
-                                onClick={handleSubmit}/>
+                            <input className={styles["ModifyInformation-button-confirm"]} type="submit" value="Xác nhận"
+                                onClick={handleSubmit} />
                         </div>
                     </div>
                 </form>
