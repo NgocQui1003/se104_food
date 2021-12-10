@@ -83,6 +83,7 @@ function ResetPass() {
                         {(error.confirmPassword == '') ? null :
                             <div className={styles['text-danger']}>{error.confirmPassword}</div>}
                     </div>
+                    <button type="submit" className={styles['submit-btn']}>Gửi</button>
 
                 
             </form>

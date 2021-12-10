@@ -49,7 +49,7 @@ export const routes = [
         component: ForgotPassword,
     },
     {
-        path: '/dat-lai-mat-khau/:token',
+        path: '/resetpassword/:token',
         component: ResetPass,
     },
     {
