@@ -50,7 +50,7 @@ export const routes = [
         component: ForgotPassword,
     },
     {
-        path: '/dat-lai-mat-khau/:token',
+        path: '/resetpassword/:token',
         component: ResetPass,
     },
     {
@@ -84,10 +84,6 @@ export const routes = [
     {
         path: '/danh-sach-bai-dang',
         component: UserPosts,
-    },
-    {
-        path: '/reset-password',
-        component: ResetPass,
     },
     {
         path: '/tim-kiem',

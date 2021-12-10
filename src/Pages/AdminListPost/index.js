@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Pagination } from '@mui/material';
 
 // Components
+import AdminMenu from '../../Components/AdminMenu'
 import UserMenu from '../../Components/UserMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
@@ -155,7 +156,7 @@ function AdminListPost() {
 
     return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>
-            <UserMenu user={user} />
+            <AdminMenu user={user} />
             <div className={styles['list-container']}>
                 <h1 className={styles['list-name']}>Danh sách bài viết</h1>
 
