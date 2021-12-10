@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import styles from '../ForgotPassword/ForgotPassword.module.scss';
+import styles from './ResetPassword.module.scss';
 
 import { useParams, useHistory } from 'react-router-dom'
 import ValidateInput from '../../Utils/ValidateInput';
 import userApi from '../../Api/userApi';
+import Notification from '../../Components/Notification';
 
 function ResetPass() {
     const history = useHistory();
@@ -19,26 +20,46 @@ function ResetPass() {
         confirmPassword: ''
     })
 
-    const submitHandler = e => {
+    const submitHandler = async e => {
         e.preventDefault();
         if (error.error === '' && error.password === '' && error.confirmPassword === '') {
             console.log('RESET PASSWORD');
-            userApi.resetPassword({ token, password: resetPass.password })
-                .then(res => res.data)
-                .then(data => {
-                    if (data.status) {
-                        history.push('/dang-nhap')
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            const dataPassword = {
+                newPass: resetPass.password, 
+                confirmPass: resetPass.confirmPassword,
+            }
+            const res = await userApi.resetPassword({ token, data: dataPassword })
+
+            console.log(res);
+            const type = (res.success) ? 'success' : 'error';
+            const message = res.message;
+            setNoti({
+                open: true,
+                type,
+                message,
+            })
+
+            if (res.success) {
+                setTimeout(() => history.push('/dang-nhap'), 3000);
+            }
         }
     }
 
+
+    const [noti, setNoti] = useState({
+        open: false,
+        type: 'error',
+        message: '',
+    })  
+    const handleCloseNoti = () => {
+        setNoti({
+            ...noti,
+            open: false,
+        })
+    }
     return (
         <div className={styles["container"]}>
-
+            <Notification noti={noti} handleCloseNoti={handleCloseNoti}/>
 
             <form onSubmit={submitHandler} className={styles['login-form']} >
                 <h2>Đặt lại mật khẩu</h2>
@@ -68,7 +89,7 @@ function ResetPass() {
                             <input type='password'
                                 className={styles["textbox"]}
                                 onChange={(e) => {
-                                    setResetPass({ ...resetPass, confirmPassWord: e.target.value })
+                                    setResetPass({ ...resetPass, confirmPassword: e.target.value })
                                     if (e.target.value.length >= resetPass.password.length) {
                                         let err = ValidateInput.validateConfPassWord(e.target.value, resetPass.password);
                                         setError({ ...error, confirmPassword: err })

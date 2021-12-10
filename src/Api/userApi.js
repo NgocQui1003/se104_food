@@ -20,11 +20,10 @@ const userApi = {
         const url = '/api/user/forgot-password';
         return axiosClient.post(url, email);
     },
-    resetPassword: ({token, password}) => {
-        console.log(token, password);
+    resetPassword: ({token, data}) => {
+        console.log(data);
         const URL = `api/user/reset-password/${token}`
-        console.log(URL);
-        return axiosClient.post(URL, {password})
+        return axiosClient.put(URL, data)
     },
 
     changePassword: (data) => {
