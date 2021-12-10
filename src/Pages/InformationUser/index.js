@@ -59,7 +59,7 @@ function InformationUser() {
                                     <input type="radio" value="Nam"
                                         name="gender"
                                         id="gender-1"
-                                        checked={user.gender == "Nam"}
+                                        checked={user.gender.toLowerCase() == "nam"}
                                     />
                                 </label>
                                 <label className={styles["InformationUser-label-input"]} for="gender">
@@ -67,7 +67,7 @@ function InformationUser() {
                                     <input type="radio" value="Nữ"
                                         name="gender"
                                         id="gender-0"
-                                        checked={user.gender == "Nữ"}
+                                        checked={user.gender.toLowerCase() == "nữ"}
                                     />
                                 </label>
                             </div>
