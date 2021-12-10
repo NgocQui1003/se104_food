@@ -130,7 +130,7 @@ function Add() {
             })
         // console.log('Post value:',createPostValue);
     }
-
+    let isTrue = true;
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -142,23 +142,34 @@ function Add() {
                     name: item.name,
                     quantity: item.amount
                 }
+                if (newValue.name === '' || newValue.quantity === '') {
+                    alert("Điền đầy đủ thông tin nguyên liệu");
+                    isTrue = false;
+                }
                 return newValue;
             }),
-            directions: createPostValue.directions.map((item) => item.step),
+            directions: createPostValue.directions.map((item) => {
+                if (item.step === '') {
+                    alert("Điền đầy đủ thông tin các bước");
+                    isTrue = false;
+                }
+                return item.step
+            }),
             thumbnail_image: createPostValue.thumbnails,
         }
 
-   
-        const res = await postApi.createPost(newPostData);
-        console.log(res);
+        if (isTrue) {
+            const res = await postApi.createPost(newPostData);
+            console.log(res);
 
-        if (res.status) {
-            history.push(`/danh-sach-bai-dang`);
-            setTimeout(function() { alert("Tạo bài viết thành công."); }, 1000);
-        } else {
-            setError({ ...error, createPost: res.message });
-                if (res.status === 0) {
-                alert("Tạo bài viết thất bại.")
+            if (res.status === 1 && res.message === 'Add Success') {
+                history.push(`/danh-sach-bai-dang`);
+                setTimeout(function() { alert("Tạo bài viết thành công."); }, 1000);
+            } else {
+                setError({ ...error, createPost: res.message });
+                    if (res.status === 0) {
+                    alert("Tạo bài viết thất bại.")
+                }
             }
         }
     }
