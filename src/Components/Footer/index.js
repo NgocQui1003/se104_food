@@ -12,8 +12,7 @@ function Footer() {
                     <h3>Nom Nom</h3>
                     <p className={styles["footer-links"]}>
                         <Link to="/" className={styles["link-1"]}>Trang chủ</Link>
-                        <Link to="/don-tu-lanh">Dọn tủ lạnh</Link>
-                        <Link to="#">Danh sách món ăn</Link>
+                        <Link to="/danh-sach-bai-viet">Danh sách món ăn</Link>
                         <Link to="/random-mon-an">Random món ăn</Link>
                     </p>
                     <p className={styles["footer-company-name"]}>nomnom©2021</p>
