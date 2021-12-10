@@ -17,7 +17,7 @@ import reactionApi from '../../Api/reactionApi';
 import emptyPost from '../../Assets/empty-post.svg';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 function Search() {
-    const location = useLocation();  
+    const location = useLocation();
 
     const urlSearchParams = new URLSearchParams(window.location.search);
     const querySearch = Object.fromEntries(urlSearchParams.entries());
@@ -81,6 +81,12 @@ function Search() {
         if (search === '') fetchPostList(); else
             fetchPostListSearch();
     }, [isUpdate])
+
+    useEffect(() => {
+        if (!loading) {
+            window.scrollTo(0, 0);
+        }
+    }, [loading])
 
     const setDefaultPage = () => {
         setPagination({
@@ -152,55 +158,51 @@ function Search() {
     const EmptyPost = () => {
         return (
             <div className={styles['container-empty-post']}>
-                <img src={emptyPost}/> 
+                <img src={emptyPost} />
                 <h2>Không thấy món bạn muốn?</h2>
                 <span>Hãy là người đầu tiên chia sẻ cách làm món đó để </span>
                 <span>giúp các bạn khác nhé!</span>
                 <div className={styles['btn-create-post']}>
-                    <LocalDiningIcon sx={{ color: '#fff' }}/>
+                    <LocalDiningIcon sx={{ color: '#fff' }} />
                     <button onClick={() => history.push('/viet-mon-moi')}>Viết món mới!</button>
-                </div>                
+                </div>
             </div>
         )
     }
 
     const LoadingPost = () => {
-        
+
         return (
             <div className={styles['container-loading-post']}>
                 <CircularProgress />
-                <p>Đang tìm kiếm món ăn !!!</p> 
+                <p>Đang tìm kiếm món ăn !!!</p>
             </div>
         )
     }
     const handleSearch = () => {
         if (search.trim() != '') {
             setDefaultPage()
-            fetchPostListSearch()    
+            fetchPostListSearch()
         }
     }
     return (
         <div className={styles['container']}>
-            <div className={styles['header']}>
-                {sortValue.map((item) =>
-                    <ButtonUnderline
-                        keyBtn={item.key}
-                        title={item.value}
-                        active={sortType === item.key}
-                        onClick={updateSortType}
-                    />
-                )}
-            </div>
-
-
             <div className={styles['content']}>
                 <Grid container spacing={4} lg={12}>
                     <Grid item lg={4} md={12} sm={12} xs={12} key={'filter'}>
+                        {sortValue.map((item) =>
+                            <ButtonUnderline
+                                keyBtn={item.key}
+                                title={item.value}
+                                active={sortType === item.key}
+                                onClick={updateSortType}
+                            />
+                        )}
                         <p className={styles['text-cnt-post']}>
                             {!loading
-                            ?<><span>({pagination.total})</span>{` Món tìm được!`}</>
-                            :`Đang tìm kiếm !!!`
-                        }
+                                ? <><span>({pagination.total})</span>{` Món tìm được!`}</>
+                                : `Đang tìm kiếm !!!`
+                            }
                         </p>
                         <div className={styles['filter']}>
                             <div className={styles['container-fillter']}>
@@ -212,7 +214,7 @@ function Search() {
                                     placeholder={'Tìm nguyên liệu, tên, ...'}
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    onKeyDown={(e) => { if (e.key === 'Enter') handleSearch()}}
+                                    onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
                                 />
                                 <br />
                                 <button onClick={handleSearch}>Tìm kiếm</button>
@@ -222,24 +224,24 @@ function Search() {
 
                     <Grid item lg={8} md={12} sm={12} xs={12} key={'post'}>
                         {loading === true
-                        ? <LoadingPost />
-                        :<div className={styles['post']}>
-                            <Box
-                                display="flex"
-                                justifyContent="center"
-                                alignItems="center"
-                            >
-                                <Grid container spacing={4} lg={12}>
-                                    {posts.map((post, index) =>
-                                        <Grid item lg={4} md={6} sm={6} xs={12} key={index}>
-                                            <ItemPost post={post} savePost={savePost} reactPost={reactPost} />
-                                        </Grid>
-                                    )}
-                                </Grid>
-                            </Box>
+                            ? <LoadingPost />
+                            : <div className={styles['post']}>
+                                <Box
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <Grid container spacing={4} lg={12}>
+                                        {posts.map((post, index) =>
+                                            <Grid item lg={4} md={6} sm={6} xs={12} key={index}>
+                                                <ItemPost post={post} savePost={savePost} reactPost={reactPost} />
+                                            </Grid>
+                                        )}
+                                    </Grid>
+                                </Box>
 
-                        </div>}
-                        {loading===false&&posts.length===0&&
+                            </div>}
+                        {loading === false && posts.length === 0 &&
                             <EmptyPost />
                         }
                     </Grid>
@@ -247,12 +249,12 @@ function Search() {
                 </Grid>
             </div>
             {
-                (posts.length>0 && !loading) &&
+                (posts.length > 0 && !loading) &&
                 <Pagination
                     className={styles['pagination']}
                     count={Math.floor((pagination.total + pagination.limit - 1) / pagination.limit)}
                     page={parseInt(pagination.current_page)}
-                    color="primary"
+                    // color="primary"
                     onChange={onChangePagination}
                 />
 
