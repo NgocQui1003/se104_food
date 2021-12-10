@@ -50,10 +50,15 @@ function ModifyInformation() {
         }
 
         const res = await userApi.updateProfile(newUser);
-
-        console.log(res);
         if (res.success) {
-            dispatch(userActions.setProfile(res.data))
+            let newProfile = res.data;
+            if (base64Image != '') {
+                const changeAvatar = await userApi.changeAvatar({avatar: base64Image});
+                if (changeAvatar.success)
+                    newProfile = changeAvatar.data;
+            }
+
+            dispatch(userActions.setProfile(newProfile));
         }
 
     }

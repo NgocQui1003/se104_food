@@ -50,7 +50,7 @@ function Navbar({ loggedIn, user }) {
                             <ul className={styles['nav-menu']}>
                                 <li className={styles['nav-item']}>
                                     <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Danh sách bài viết
+                                        Bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -77,7 +77,7 @@ function Navbar({ loggedIn, user }) {
                                     </li>
                                     <li className={styles['nav-item']}>
                                         <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Danh sách bài viết
+                                            Bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
@@ -126,7 +126,7 @@ function Navbar({ loggedIn, user }) {
                             <ul className={styles['nav-menu']}>
                                 <li className={styles['nav-item']}>
                                     <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Danh sách bài viết
+                                        Bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
@@ -148,7 +148,7 @@ function Navbar({ loggedIn, user }) {
                                 <div className={click ? styles['nav-item-remove'] : [styles['nav-item-remove'], styles['active']].join(' ')}>
                                     <li className={styles['nav-item']}>
                                         <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Danh sách bài viết
+                                            Bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>

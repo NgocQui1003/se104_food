@@ -164,6 +164,7 @@ form .ModifyInformation-button{
 //chỉnh màu và độ chuyển màu
 
 .ModifyInformation-button-cancel{
+    cursor: pointer;
     margin-right: 10px;
     color: #fff;
     background-color: rgb(65, 65, 65);
@@ -171,6 +172,7 @@ form .ModifyInformation-button{
 }
 
 .ModifyInformation-button-confirm{
+    cursor: pointer;
     background-color: $mainColor;
     font-weight: 500;
     color: #fff;

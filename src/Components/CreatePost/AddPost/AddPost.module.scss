@@ -143,11 +143,14 @@
     align-items: center;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    border: 2px solid white;
+    border-radius: 5px;
+
   }
 
   .nav-links-mobile:hover {
     transition: all 0.2s ease-out;
-    border: 1.5px solid $mainColor;
+    border: 2px solid $mainColor;
     border-radius: 5px;
   }
 

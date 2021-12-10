@@ -12,6 +12,7 @@ import userApi from '../../Api/userApi';
 import { useDispatch } from 'react-redux';
 import DropMenu from "../DropMenu";
 
+import SearchBar from "./SearchBar";
 
 function Navbar({ loggedIn, user }) {
     const dispatch = useDispatch();
@@ -66,18 +67,20 @@ function Navbar({ loggedIn, user }) {
                                 </li>
                                 <li className={styles['nav-item']}>
                                     <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Danh sách bài viết
+                                        Bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <input
+                                    <SearchBar search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+
+                                    {/* <input
                                         type="search"
                                         className={styles['nav-searchbar']}
                                         placeholder="Tìm kiếm công thức"
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                         onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
-                                    />
+                                    /> */}
                                 </li>
                             </ul>
                         </div>
@@ -152,7 +155,8 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <input
+                                    <SearchBar search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+                                    {/* <input
                                         type="search"
                                         className={styles['nav-searchbar']}
                                         placeholder="Tìm kiếm công thức"
@@ -160,7 +164,7 @@ function Navbar({ loggedIn, user }) {
                                         onChange={(e) => setSearch(e.target.value)}
                                         onKeyDown={(e) => { if (e.key === 'Enter') handleSearch() }}
 
-                                    />
+                                    /> */}
                                 </li>
                             </ul>
                         </div>

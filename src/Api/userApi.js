@@ -33,6 +33,11 @@ const userApi = {
         return axiosClient.put(url, data)
     },
 
+    changeAvatar: (data) => {
+        const url = 'api/user/change-avatar';
+        return axiosClient.put(url, data);
+    },
+
     updateProfile: (data) => {
         const url = 'api/user/update';
         return axiosClient.put(url, data)
