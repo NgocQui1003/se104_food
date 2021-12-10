@@ -111,7 +111,7 @@ function SavedPostList() {
     function PostItem({ item, idx }) {
         return (
             <div className={styles['list-item']} key={idx}>
-                
+
                 <div className={styles['list-item__checkbox']}>
                     <input type="checkbox" value={item._id}
                         onChange={fetchCheckedPost}
@@ -138,7 +138,7 @@ function SavedPostList() {
                 </div>
 
                 <div className={styles['menu-btn']}>
-                    <Link className={styles['menu-btn__nav']} to='/'>
+                    <Link className={styles['menu-btn__nav']} to={`/sua-bai-viet/${item._id}`} >
                         <div className={styles['menu-btn__editpost']}><EditIcon /></div>
                     </Link>
 
