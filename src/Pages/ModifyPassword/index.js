@@ -65,6 +65,7 @@ function ModifyPassword() {
         const data = {
             oldPassword: password.old,
             newPassword: password.new,
+            confirmPassword: password.confirmNew,
         }
 
         const res = await userApi.changePassword(data);
