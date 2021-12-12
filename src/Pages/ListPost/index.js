@@ -44,13 +44,14 @@ function ListPost() {
     }
     useEffect(() => {
         fetchPostList();
+        document.title = 'Danh sách bài đăng | Nom Nom';
     }, [isUpdate])
 
     const updateSortType = (key) => {
         setSortType(key)
     }
-    
-    
+
+
 
     const savePost = async (id) => {
         let currSave;
@@ -116,7 +117,7 @@ function ListPost() {
             value: 'Phổ biến',
         },
     ]
-    
+
 
     return (
         <div className={styles['container']}>

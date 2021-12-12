@@ -19,7 +19,7 @@ function Login() {
     const { loggedIn, user } = useSelector(state => state.User);
 
     useEffect(() => {
-        document.title = "Đăng nhập"
+        document.title = "Đăng nhập | Nom Nom"
     })
 
     const dispatch = useDispatch()

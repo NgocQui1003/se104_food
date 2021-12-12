@@ -55,6 +55,7 @@ function UpdatePost() {
     // fetch data
     useEffect(() => {
         fetchData();
+        document.title = 'Chỉnh sửa bài viết | Nom Nom'
     }, [])
 
     const handleChange = (e) => {
@@ -169,7 +170,7 @@ function UpdatePost() {
             }),
             thumbnail_image: updatePostValue.thumbnail_image,
         }
-        
+
         if (isTrue) {
             const res = await postApi.updatePost(_id, newPostData);
             console.log('Response: ', res);

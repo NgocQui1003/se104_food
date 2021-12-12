@@ -46,6 +46,7 @@ function UserProfilePage() {
 
     useEffect(() => {
         fetchUserData();
+        document.title = 'Admin'
     }, [])
 
 

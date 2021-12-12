@@ -40,6 +40,12 @@
     .list-item {
         display: flex;
 
+        .list-item__link {
+            display: flex;
+            color: black;
+            text-decoration: none;
+        }
+
         .list-item__checkbox {
             text-align: center;
             margin: 0 20px;

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './NotFound.module.scss';
 import img from '../../Assets/404_notfound.JPG';
 
 function NotFound() {
+
+    useEffect(() => {
+        document.title = 'Trang không tồn tại | Nom Nom';
+    })
+
     return (
         <div className={styles['container']}>
             <div className={styles['not-found-container__img']}>

@@ -20,7 +20,7 @@ function Register() {
     const { loggedIn, user } = useSelector(state => state.User);
 
     useEffect(() => {
-        document.title = "Đăng kí tài khoản - Nomnom"
+        document.title = "Đăng kí tài khoản | Nomnom"
     })
 
 

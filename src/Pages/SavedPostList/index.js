@@ -95,6 +95,7 @@ function SavedPostList() {
 
     useEffect(() => {
         fetchSavedList();
+        document.title = 'Bài viết đã lưu | Nom Nom'
     }, [current_page])
 
 

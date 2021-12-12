@@ -105,6 +105,7 @@ function UsersList() {
 
     useEffect(() => {
         fetchUserList();
+        document.title = 'Admin'
     }, [currentpage])
 
 

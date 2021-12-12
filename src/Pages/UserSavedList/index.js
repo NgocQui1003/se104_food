@@ -63,6 +63,7 @@ function UserSavedList() {
 
     useEffect(() => {
         fetchSavedList();
+        document.title = 'Admin'
     }, [current_page])
 
 

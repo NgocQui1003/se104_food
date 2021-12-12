@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './ResetPassword.module.scss';
 
 import { useParams, useHistory } from 'react-router-dom'
@@ -25,7 +25,7 @@ function ResetPass() {
         if (error.error === '' && error.password === '' && error.confirmPassword === '') {
             console.log('RESET PASSWORD');
             const dataPassword = {
-                newPass: resetPass.password, 
+                newPass: resetPass.password,
                 confirmPass: resetPass.confirmPassword,
             }
             const res = await userApi.resetPassword({ token, data: dataPassword })
@@ -50,63 +50,67 @@ function ResetPass() {
         open: false,
         type: 'error',
         message: '',
-    })  
+    })
     const handleCloseNoti = () => {
         setNoti({
             ...noti,
             open: false,
         })
     }
+
+    useEffect(() => {
+        document.title = 'Đặt lại mật khẩu | Nom Nom'
+    })
     return (
         <div className={styles["container"]}>
-            <Notification noti={noti} handleCloseNoti={handleCloseNoti}/>
+            <Notification noti={noti} handleCloseNoti={handleCloseNoti} />
 
             <form onSubmit={submitHandler} className={styles['login-form']} >
                 <h2>Đặt lại mật khẩu</h2>
-       
-                    <div>
-                        <div className={styles['form-input']}>
-                            <label className={styles['']}>
-                                Mật khẩu mới:
-                            </label>
-                            <input type='password'
-                                className={styles["textbox"]}
-                                onChange={(e) => {
-                                    setResetPass({ ...resetPass, password: e.target.value })
-                                }}
-                                onBlur={(e) => {
-                                    let err = ValidateInput.password(e.target.value);
-                                    setError({ ...error, password: err })
-                                }}
-                                required />
-                        </div>
-                        {(error.password == '') ? null :
-                            <div className={styles['text-danger']}>{error.password}</div>}
-                        <div className={styles['form-input']}>
-                            <label className={styles['']}>
-                                Nhập lại mật khẩu mới:
-                            </label>
-                            <input type='password'
-                                className={styles["textbox"]}
-                                onChange={(e) => {
-                                    setResetPass({ ...resetPass, confirmPassword: e.target.value })
-                                    if (e.target.value.length >= resetPass.password.length) {
-                                        let err = ValidateInput.validateConfPassWord(e.target.value, resetPass.password);
-                                        setError({ ...error, confirmPassword: err })
-                                    }
-                                }}
-                                onBlur={(e) => {
+
+                <div>
+                    <div className={styles['form-input']}>
+                        <label className={styles['']}>
+                            Mật khẩu mới:
+                        </label>
+                        <input type='password'
+                            className={styles["textbox"]}
+                            onChange={(e) => {
+                                setResetPass({ ...resetPass, password: e.target.value })
+                            }}
+                            onBlur={(e) => {
+                                let err = ValidateInput.password(e.target.value);
+                                setError({ ...error, password: err })
+                            }}
+                            required />
+                    </div>
+                    {(error.password == '') ? null :
+                        <div className={styles['text-danger']}>{error.password}</div>}
+                    <div className={styles['form-input']}>
+                        <label className={styles['']}>
+                            Nhập lại mật khẩu mới:
+                        </label>
+                        <input type='password'
+                            className={styles["textbox"]}
+                            onChange={(e) => {
+                                setResetPass({ ...resetPass, confirmPassword: e.target.value })
+                                if (e.target.value.length >= resetPass.password.length) {
                                     let err = ValidateInput.validateConfPassWord(e.target.value, resetPass.password);
                                     setError({ ...error, confirmPassword: err })
-                                }}
-                                required />
-                        </div>
-                        {(error.confirmPassword == '') ? null :
-                            <div className={styles['text-danger']}>{error.confirmPassword}</div>}
+                                }
+                            }}
+                            onBlur={(e) => {
+                                let err = ValidateInput.validateConfPassWord(e.target.value, resetPass.password);
+                                setError({ ...error, confirmPassword: err })
+                            }}
+                            required />
                     </div>
-                    <button type="submit" className={styles['submit-btn']}>Gửi</button>
+                    {(error.confirmPassword == '') ? null :
+                        <div className={styles['text-danger']}>{error.confirmPassword}</div>}
+                </div>
+                <button type="submit" className={styles['submit-btn']}>Gửi</button>
 
-                
+
             </form>
         </div>
     )

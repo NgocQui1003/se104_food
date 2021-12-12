@@ -21,8 +21,6 @@ import { style } from '@mui/system';
 function ListPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const querySearch = Object.fromEntries(urlSearchParams.entries());
-
-
     const { id } = useParams();
     const history = useHistory();
     const [loading, setLoading] = useState(false)
@@ -32,9 +30,9 @@ function ListPost() {
     const [isUpdate, setIsUpdate] = useState(false)
 
     const [pagination, setPagination] = useState({
-            total: 1,
-            current_page: querySearch.page || 1,
-            limit: 5,
+        total: 1,
+        current_page: querySearch.page || 1,
+        limit: 5,
     })
 
     const fetchPostList = async () => {
@@ -56,6 +54,7 @@ function ListPost() {
 
     useEffect(() => {
         fetchPostList();
+        document.title = `Danh sách bài viết theo người dùng | Nom Nom`;
     }, [isUpdate])
 
 

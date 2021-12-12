@@ -88,6 +88,10 @@ function Search() {
         }
     }, [loading])
 
+    useEffect(() => {
+        document.title = 'Tìm kiếm | Nom Nom'
+    })
+
     const setDefaultPage = () => {
         setPagination({
             current_page: 1,

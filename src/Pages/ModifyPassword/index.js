@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
@@ -58,8 +58,8 @@ function ModifyPassword() {
                 ...error,
                 confirmNew: err,
             })
-            return ;
-    
+            return;
+
         }
 
         const data = {
@@ -96,13 +96,17 @@ function ModifyPassword() {
         })
     }
 
+    useEffect(() => {
+        document.title = 'Đổi mật khẩu | Nom Nom';
+    })
+
     return user && loggedIn ? (
         <div className={[styles['ModifyPassWordContainer-container'], styles['auth']].join(' ')}>
             <UserMenu user={user} />
-            <Snackbar 
-                anchorOrigin={{vertical: 'top',horizontal: 'right'}}
-                open={notification.open} 
-                autoHideDuration={4000} 
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={notification.open}
+                autoHideDuration={4000}
                 onClose={handleClose}
             >
                 <Alert onClose={handleClose} severity={notification.type} sx={{ width: '100%' }}>

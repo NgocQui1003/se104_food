@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import UserMenu from '../../Components/UserMenu';
 import styles from '../ModifyInformation/ModifyInformation.module.scss';
@@ -35,9 +35,9 @@ function ModifyInformation() {
         })
 
         HandleImage.getBase64(file)
-        .then(result => {
-            setBase64Image(result)
-        })
+            .then(result => {
+                setBase64Image(result)
+            })
     }
 
     const handleSubmit = async (e) => {
@@ -53,7 +53,7 @@ function ModifyInformation() {
         if (res.success) {
             let newProfile = res.data;
             if (base64Image != '') {
-                const changeAvatar = await userApi.changeAvatar({avatar: base64Image});
+                const changeAvatar = await userApi.changeAvatar({ avatar: base64Image });
                 if (changeAvatar.success)
                     newProfile = changeAvatar.data;
             }
@@ -62,6 +62,10 @@ function ModifyInformation() {
         }
 
     }
+
+    useEffect(() => {
+        document.title = 'Đổi thông tin cá nhân | Nom Nom';
+    })
 
 
     return userState.user && userState.loggedIn ? (
@@ -74,7 +78,7 @@ function ModifyInformation() {
                 </div>
                 <div className={styles["ModifyInformation-choose-img"]}>
                     <div className={styles["avatar-user-profile"]}>
-                        <input className={styles['upload-image']}type="file" id="upload-image" name="upload-image" onChange={uploadImage} />
+                        <input className={styles['upload-image']} type="file" id="upload-image" name="upload-image" onChange={uploadImage} />
                         <label htmlFor="upload-image">Chọn Ảnh</label>
                     </div>
                 </div>
@@ -133,8 +137,8 @@ function ModifyInformation() {
                                 <input className={styles["ModifyInformation-button-cancel"]} type="submit" value="Hủy" />
                             </div>
                             <div className={styles["ModifyInformation-confirm"]}>
-                                <input className={styles["ModifyInformation-button-confirm"]} type="submit" value="Xác nhận" 
-                                    onClick={handleSubmit}/>
+                                <input className={styles["ModifyInformation-button-confirm"]} type="submit" value="Xác nhận"
+                                    onClick={handleSubmit} />
                             </div>
                         </div>
                     </form>

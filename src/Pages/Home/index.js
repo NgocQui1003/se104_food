@@ -37,6 +37,7 @@ function Home() {
 
     useEffect(() => {
         fetchPostList();
+        document.title = 'Trang chủ | Nom Nom';
     }, [sortType, userState])
 
     const updateSortType = (key) => {

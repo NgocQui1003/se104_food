@@ -17,7 +17,7 @@ import { userActions } from '../../Redux/Actions/userActions';
 // Api
 import userApi from '../../Api/userApi';
 
-function SavedPostList() {
+function UserPosts() {
     const { loggedIn, user } = useSelector(state => state.User);
     const [loading, setLoading] = useState(false);
     const [uploadList, setUploadList] = useState([]);
@@ -106,6 +106,7 @@ function SavedPostList() {
 
     useEffect(() => {
         fetchUploadList();
+        document.title = 'Bài viết đã đăng | Nom Nom'
     }, [currentpage])
 
     function PostItem({ item, idx }) {
@@ -199,4 +200,4 @@ function SavedPostList() {
         </div >
     ) : <NotLoggedIn />
 }
-export default SavedPostList;
+export default UserPosts;

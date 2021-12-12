@@ -31,7 +31,7 @@ function CreateUser() {
     }
 
     useEffect(() => {
-        document.title = "Admin Đăng kí - Nomnom"
+        document.title = "Admin"
     })
 
     const [registerValue, setRegisterValue] = useState({

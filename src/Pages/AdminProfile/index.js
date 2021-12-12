@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AdminMenu from '../../Components/AdminMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
@@ -15,6 +15,10 @@ function AdminProfile() {
     } else {
         isAdmin = false;
     }
+
+    useEffect(() => {
+        document.title = 'Admin';
+    })
 
     return user && loggedIn && isAdmin ? (
         <div className={styles['container']}>

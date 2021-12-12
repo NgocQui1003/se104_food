@@ -9,7 +9,7 @@ import Notification from '../../Components/Notification';
 function ForgotPassword() {
     const history = useHistory();
     useEffect(() => {
-        document.title = "Quên mật khẩu"
+        document.title = "Quên mật khẩu | Nom Nom"
     })
     const [email, setEmail] = useState('')
 

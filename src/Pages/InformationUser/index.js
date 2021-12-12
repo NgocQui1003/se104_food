@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import UserMenu from '../../Components/UserMenu';
 import styles from '../InformationUser/InformationUser.module.scss';
@@ -15,6 +15,10 @@ import NotLoggedIn from '../../Components/NotLoggedIn';
 
 function InformationUser() {
     const { loggedIn, user } = useSelector(state => state.User);
+
+    useEffect(() => {
+        document.title = 'Thông tin người dùng | Nom Nom';
+    })
 
     return user && loggedIn ? (
         <div className={[styles['InformationUser-container'], styles['auth']].join(' ')}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './Random.module.scss';
 
@@ -7,6 +7,10 @@ import RandomPopup from '../../Components/RandomPopup';
 function Random() {
 
     const [buttonPopup, setButtonPopup] = useState(false);
+
+    useEffect(() => {
+        document.title = 'Hôm nay ăn gì? | Nom Nom';
+    })
 
     return (
         <div className={styles['container']}>
