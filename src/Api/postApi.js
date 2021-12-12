@@ -24,7 +24,7 @@ const postApi = {
     getPostByUser: (id, params) => {
         console.log(id, params);
 
-        const url = `/post/user/:_id`;
+        const url = `/post/user/${id}`;
         return axiosClient.get(url, { params });
     },
     createPost: (data) => {

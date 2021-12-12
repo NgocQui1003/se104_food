@@ -55,7 +55,7 @@ function UsersList() {
         let currentList = userList;
         currentList = currentList.filter(itm => itm._id !== delete_user._id);
         setUserList(currentList);
-        await adminApi.deleteOne(user._id);
+        await adminApi.deleteOne(delete_user._id);
     }
 
     const fetchCheckedUser = (e) => {

@@ -41,7 +41,8 @@ function UpdatePost() {
         description: '',
         ingredients: '',
         directions: '',
-        thumbnail_image: ''
+        thumbnail_image: '',
+        updatePost: ''
     });
 
     const fetchData = async () => {
@@ -142,7 +143,7 @@ function UpdatePost() {
             })
         // console.log('Post value:',updatePostValue);
     }
-
+    let isTrue = true;
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPostData = {
@@ -153,22 +154,34 @@ function UpdatePost() {
                     name: item.name,
                     quantity: item.quantity
                 }
+                if (newValue.name === '' || newValue.quantity === '') {
+                    alert("Điền đầy đủ thông tin nguyên liệu");
+                    isTrue = false;
+                }
                 return newValue;
             }),
-            directions: updatePostValue.directions.map((item) => item.description),
+            directions: updatePostValue.directions.map((item) => {
+                if (item.description === '') {
+                    alert("Điền đầy đủ thông tin các bước");
+                    isTrue = false;
+                }
+                return item.description
+            }),
             thumbnail_image: updatePostValue.thumbnail_image,
         }
-        console.log('newPostData:', newPostData);
-
-        const res = await postApi.updatePost(_id, newPostData);
-
-        if (res.status === 1 && res.message === 'Update Success') {
-            history.push(`/bai-dang/${_id}`);
-            setTimeout(function () { alert("Đổi thông tin bài viết thành công."); }, 1000);
-        } else {
-            setError({ ...error, createPost: res.message });
-            if (res.status === 1) {
-                alert("Đổi thông tin bài viết thất bại.")
+        
+        if (isTrue) {
+            const res = await postApi.updatePost(_id, newPostData);
+            console.log('Response: ', res);
+            if (res.status === 1 && res.message === 'Update Success') {
+                history.push(`/bai-dang/${_id}`);
+                setTimeout(function () { alert("Đổi thông tin bài viết thành công."); }, 1000);
+            } else {
+                setError({ ...error, updatePost: res.message });
+                if (res.status === 0) {
+                    history.push(`/danh-sach-bai-dang`);
+                    setTimeout(function () { alert("Đổi thông tin bài viết thất bại."); }, 1000);
+                }
             }
         }
     }
@@ -194,7 +207,7 @@ function UpdatePost() {
                                     let error = ValidateInput.createPostName(e.target.value);
                                     setError({
                                         ...error,
-                                        postName: error
+                                        title: error
                                     });
                                 }} />
                         </div>
@@ -241,13 +254,6 @@ function UpdatePost() {
                                             placeholder="Nguyên liệu"
                                             value={x.name}
                                             onChange={e => handleInputChange(e, i)}
-                                            onBlur={(e) => {
-                                                let error = ValidateInput.createMaterialName(e.target.value);
-                                                setError({
-                                                    ...error,
-                                                    ingredients: error
-                                                });
-                                            }}
                                         />
                                         <input
                                             className={styles['material']}
@@ -255,13 +261,6 @@ function UpdatePost() {
                                             placeholder="Số lượng"
                                             value={x.quantity}
                                             onChange={e => handleInputChange(e, i)}
-                                            onBlur={(e) => {
-                                                let error = ValidateInput.createMaterialName(e.target.value);
-                                                setError({
-                                                    ...error,
-                                                    ingredients: error
-                                                });
-                                            }}
                                         />
                                         <div className={styles['btn-box']}>
                                             {amountIngredients !== 1 && <button
@@ -274,9 +273,6 @@ function UpdatePost() {
                                     </div>
                                 );
                             })}
-                            {error.ingredients == '' ? null :
-                                <div className={styles['error-form']}>{error.ingredients}</div>
-                            }
                         </div>
                     </div>
                     <div className={styles['row']}>
@@ -293,13 +289,6 @@ function UpdatePost() {
                                             placeholder="Hướng dẫn"
                                             value={y.description}
                                             onChange={e => handleInputStep(e, i)}
-                                            onBlur={(e) => {
-                                                let error = ValidateInput.createStepName(e.target.value);
-                                                setError({
-                                                    ...error,
-                                                    directions: error
-                                                });
-                                            }}
                                         />
                                         <div className={styles['btn-box']}>
                                             {amountSteps !== 1 && <button
@@ -309,13 +298,9 @@ function UpdatePost() {
                                                 className={styles['btn-add']}
                                                 onClick={handleAddStepClick}>Thêm</button>}
                                         </div>
-
                                     </div>
                                 );
                             })}
-                            {error.directions == '' ? null :
-                                <div className={styles['error-form']}>{error.directions}</div>
-                            }
                         </div>
                     </div>
 

@@ -98,12 +98,12 @@ function ItemPost({ post, savePost, reactPost }) {
                             {formatTitle(post['title'])}
                         </p>
                     </Link>
-                    <Link to={`danh-sach-bai-viet-ng-dung/${post.id_author._id}`} className={styles['container-avatar-user']}>
+                    <Link to={`/danh-sach-bai-viet-ng-dung/${post.id_author._id}`} className={styles['container-avatar-user']}>
                         <img
                             src={post['id_author']['avatar']}
                             alt='avatar-user'
                         />
-                        <span>{`${post['id_author']['firstname']} ${post['id_author']['lastname']}`}</span>
+                        <span>{`${post['id_author']['lastname']} ${post['id_author']['firstname']}`}</span>
                     </Link>
 
                     <div className={`${styles['btn-like']} ${post['isLike'] ? styles['active'] : ''}`}
