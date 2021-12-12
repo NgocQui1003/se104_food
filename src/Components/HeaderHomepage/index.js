@@ -86,11 +86,6 @@ function Navbar({ loggedIn, user }) {
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
-                                        <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Dọn tủ lạnh
-                                        </Link>
-                                    </li>
-                                    <li className={styles['nav-item']}>
                                         <Link to='/lien-he' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Liên hệ
                                         </Link>
@@ -154,11 +149,6 @@ function Navbar({ loggedIn, user }) {
                                     <li className={styles['nav-item']}>
                                         <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Random món ăn
-                                        </Link>
-                                    </li>
-                                    <li className={styles['nav-item']}>
-                                        <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Dọn tủ lạnh
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>

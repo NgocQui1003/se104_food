@@ -71,7 +71,7 @@ function Navbar({ loggedIn, user }) {
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <SearchBar search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+                                    <SearchBar search={search} setSearch={setSearch} handleSearch={handleSearch} />
 
                                     {/* <input
                                         type="search"
@@ -95,17 +95,12 @@ function Navbar({ loggedIn, user }) {
                                     </li>
                                     <li className={styles['nav-item']}>
                                         <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Danh sách bài viết
+                                            Bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
                                         <Link to='/random-mon-an' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Random món ăn
-                                        </Link>
-                                    </li>
-                                    <li className={styles['nav-item']}>
-                                        <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Dọn tủ lạnh
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
@@ -151,11 +146,11 @@ function Navbar({ loggedIn, user }) {
                                 </li>
                                 <li className={styles['nav-item']}>
                                     <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                        Danh sách bài viết
+                                        Bài viết
                                     </Link>
                                 </li>
                                 <li className={styles['nav-item']}>
-                                    <SearchBar search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+                                    <SearchBar search={search} setSearch={setSearch} handleSearch={handleSearch} />
                                     {/* <input
                                         type="search"
                                         className={styles['nav-searchbar']}
@@ -174,7 +169,7 @@ function Navbar({ loggedIn, user }) {
                                 <div className={click ? styles['nav-item-remove'] : [styles['nav-item-remove'], styles['active']].join(' ')}>
                                     <li className={styles['nav-item']}>
                                         <Link to='/danh-sach-bai-viet' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Danh sách bài viết
+                                            Bài viết
                                         </Link>
                                     </li>
                                     <li className={styles['nav-item']}>
@@ -182,12 +177,6 @@ function Navbar({ loggedIn, user }) {
                                             Random món ăn
                                         </Link>
                                     </li>
-                                    <li className={styles['nav-item']}>
-                                        <Link to='/don-tu-lanh' className={styles['nav-links']} onClick={closeMobileMenu}>
-                                            Dọn tủ lạnh
-                                        </Link>
-                                    </li>
-
                                     <li className={styles['nav-item']}>
                                         <Link to='/lien-he' className={styles['nav-links']} onClick={closeMobileMenu}>
                                             Liên hệ
