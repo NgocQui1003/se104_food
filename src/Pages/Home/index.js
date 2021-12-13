@@ -18,7 +18,6 @@ import Button from './Button';
 import RandomPopup from '../../Components/RandomPopup';
 
 function Home() {
-    window.scrollTo(0, 0);
     const history = useHistory();
     const userState = useSelector((state) => state.User);
     const [buttonPopup, setButtonPopup] = useState(false);

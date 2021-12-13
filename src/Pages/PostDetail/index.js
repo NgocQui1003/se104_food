@@ -174,8 +174,11 @@ function PostDetail() {
                 </div>
             </div>
             <div className={styles['food_btn']}>
-                <button className={styles['btn_save']} onClick={handleSavePost}><i class={post.isSaved ? "fas fa-bookmark" : "far fa-bookmark"}></i></button>
-                <button className={styles['btn_like']} onClick={handleReactPost}><i class={post.isLike ? "fas fa-thumbs-up" : "far fa-thumbs-up"}></i> {like ? like : post.numberLike}</button>
+                <button 
+                    id={'save_post_' + post._id + '_' + post.isSaved} 
+                    className={styles['btn_save']} 
+                    onClick={handleSavePost}><i class={post.isSaved ? "fas fa-bookmark" : "far fa-bookmark"}></i></button>
+                <button  className={styles['btn_like']} onClick={handleReactPost}><i class={post.isLike ? "fas fa-thumbs-up" : "far fa-thumbs-up"}></i> {like ? like : post.numberLike}</button>
             </div>
         </div>
     ) : null

@@ -102,7 +102,7 @@ function SavedPostList() {
 
     function PostItem({ item, idx }) {
         return (
-            <div className={styles['list-item']} key={idx}>
+            <div className={styles['list-item']} key={idx} id={'post_save_' + item.id_post}>
                 <div className={styles['list-item__checkbox']}>
                     <input type="checkbox" value={item.id_post}
                         onChange={fetchCheckedPost}

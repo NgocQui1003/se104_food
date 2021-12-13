@@ -82,7 +82,7 @@ function ItemPost({ post, savePost, reactPost }) {
                             alt={post['thumbnail_image']}
                         />
                     </Link>
-                    <div onClick={handleSavePost}>
+                    <div onClick={handleSavePost} id={`post_${post._id}_${post.isSaved}`}>
                         {post.isSaved
                             ? <BookmarkIcon className={styles['bookmark-icon']} />
                             : <BookmarkBorderIcon className={styles['bookmark-icon']} />}
