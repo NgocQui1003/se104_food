@@ -83,7 +83,7 @@ function ModifyPassword() {
         } else {
             setNotification({
                 open: true,
-                message: res.message,
+                message: 'Sai mật khẩu !',
                 type: 'error',
             });
         }
