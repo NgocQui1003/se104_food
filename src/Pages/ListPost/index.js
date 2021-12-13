@@ -6,7 +6,6 @@ import postApi from '../../Api/postApi';
 import savedPostApi from '../../Api/savedPostApi';
 import reactionApi from '../../Api/reactionApi';
 import Pagination from '@mui/material/Pagination';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import { useHistory } from 'react-router-dom';
 

@@ -117,7 +117,7 @@ function Home() {
                 <span>hoặc</span>
                 <span>Dọn tủ lạnh nhà bạn bằng cách nhập nguyên liệu còn thừa dưới đây</span>
                 <div className={styles['search-bar']}>
-                    <LocalDiningIcon sx={{ color: '#EB4A36' }} />
+                    <LocalDiningIcon sx={{ color: '#CA5A4B' }} />
                     <input placeholder="Cà chua, trứng"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}

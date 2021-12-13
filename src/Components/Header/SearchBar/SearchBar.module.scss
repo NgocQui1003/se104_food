@@ -1,3 +1,5 @@
+@import "../../../config.scss";
+
 .search-bar {
     width: 320px;
     display: flex;
@@ -22,8 +24,8 @@
         border-radius: 4px;
         width: 70px;
         height: 40px;
-        background-color: #EB4A36;
-        border: 1px solid #EB4A36;
+        background-color: $mainColor;
+        border: 1px solid $mainColor;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
 

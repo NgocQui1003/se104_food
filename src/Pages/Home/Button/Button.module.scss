@@ -1,3 +1,4 @@
+@import '../../../config.scss';
 .container {
     cursor: pointer;
     margin: 8px;
@@ -11,5 +12,5 @@
 }
 .active {
     color: white;
-    background-color: #EB4A36;
+    background-color: $mainColor;
 }

@@ -1,6 +1,6 @@
 // User saved post list_shown by Admin only
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import styles from './UserSavedList.module.scss';
@@ -12,7 +12,6 @@ import AdminMenu from '../../Components/AdminMenu';
 import NotLoggedIn from '../../Components/NotLoggedIn';
 
 // Api
-import savedPostApi from '../../Api/savedPostApi';
 import { useParams } from 'react-router';
 import adminApi from '../../Api/adminApi';
 

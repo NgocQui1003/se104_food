@@ -1,8 +1,7 @@
-import React, { useState, useSelector } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styles from '../AdminMenu/AdminMenu.module.scss';
-import logo from '../../Assets/100x100.png';
 
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -10,7 +9,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 // components
-import NotLoggedIn from '../NotLoggedIn';
+// import NotLoggedIn from '../NotLoggedIn';
 
 function AdminMenu({ user }) {
     // const { user, loggedIn } = useSelector(state => state.User);
