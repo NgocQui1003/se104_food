@@ -29,23 +29,48 @@ function ListPost() {
         limit: 12,
     });
 
-
-    const fetchPostList = async () => {
+    const fetchPostList = async (nextPage) => {
         setLoading(true);
+      
+        const currentPage = pagination.current_page; // Page hiện tại
+        const limit = pagination.limit; // Limit của page
+        const currentPostIds = posts.map(post => post.id); // Danh sách ID của bài post của trang hiện tại
+      
         const params = {
-            limit: pagination.limit,
-            page: pagination.current_page,
-            q: sortType,
-        }
+          nextPage, // Page muốn hướng tới
+          currentPage,
+          limit,
+          currentPostIds,
+          q: sortType, // Có thể bao gồm thông tin sắp xếp (nếu cần)
+        };
+      
         const response = await postApi.getPost(params);
-        setPosts(response.data)
-        setPagination(response.paging)
+      
+        setPosts(response.data);
+        setPagination(response.paging);
         setLoading(false);
-    }
-    useEffect(() => {
-        fetchPostList();
-        document.title = 'Danh sách bài đăng | Nom Nom';
-    }, [isUpdate])
+      }
+      
+      useEffect(() => {
+          fetchPostList(pagination.current_page); // Truyền trang hiện tại
+          document.title = 'Danh sách bài đăng | Nom Nom';
+      }, [isUpdate])
+    // const fetchPostList = async () => {
+    //     setLoading(true);
+    //     const params = {
+    //         limit: pagination.limit,
+    //         page: pagination.current_page,
+    //         q: sortType,
+    //     }
+    //     const response = await postApi.getPost(params);
+    //     setPosts(response.data)
+    //     setPagination(response.paging)
+    //     setLoading(false);
+    // }
+    // useEffect(() => {
+    //     fetchPostList();
+    //     document.title = 'Danh sách bài đăng | Nom Nom';
+    // }, [isUpdate])
 
     const updateSortType = (key) => {
         setSortType(key)
@@ -95,13 +120,36 @@ function ListPost() {
             await reactionApi.liked(id);
         }
     }
-    const onChangePagination = (e, page) => {
-        setPagination({
-            ...pagination,
-            current_page: page,
-        })
+    // const onChangePagination = (e, page) => {
+    //     setPagination({
+    //         ...pagination,
+    //         current_page: page,
+    //     })
+    //     setIsUpdate(!isUpdate);
+    // }
+
+    const onChangePagination = async (e, page) => {
+        let nextPage;
+      
+        if (page < pagination.current_page) {
+          nextPage = pagination.current_page - 1; // Quay lại trang trước
+        } else if (page > pagination.current_page) {
+          nextPage = pagination.current_page + 1; // Đi đến trang sau
+        } else {
+          nextPage = page; // Chọn trang cụ thể
+        }
+      
+        // Cập nhật trang hiện tại
+        setPagination(prevPagination => ({
+          ...prevPagination,
+          current_page: nextPage,
+        }));
+      
         setIsUpdate(!isUpdate);
-    }
+      
+        // Gọi hàm fetchPostList để tải dữ liệu cho trang mới
+        fetchPostList(nextPage);
+      }
 
     const sortValue = [
         {

@@ -186,11 +186,11 @@ function Register() {
             </form>
 
 
-            <p className={styles.center}>Hoặc</p>
+            {/* <p className={styles.center}>Hoặc</p>
             <div className={styles["thirdparty-login"]}>
                 <ThirdPartyFacebook onSubmit={handleSubmit} />
                 <ThirdPartyGoogle onSubmit={handleSubmit} />
-            </div>
+            </div> */}
 
         </div >
     );

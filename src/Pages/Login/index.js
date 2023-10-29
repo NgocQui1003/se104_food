@@ -110,9 +110,9 @@ function Login() {
                 </div>
                 <button type="submit" className={styles['submit-btn']}>Đăng nhập</button>
             </form>
-            <p>Hoặc</p>
+            {/* <p>Hoặc</p>
             <ThirdPartyFacebook />
-            <ThirdPartyGoogle />
+            <ThirdPartyGoogle /> */}
         </div>
     )
 }
